@@ -27,19 +27,19 @@ const Hero = memo(() => {
 
     const slides = [
         {
-            image: "https://images.unsplash.com/photo-1515187029135-18ee286d815b?auto=format&fit=crop&q=80&w=1200",
+            image: "https://images.unsplash.com/photo-1515187029135-18ee286d815b?auto=format&fit=crop&q=60&w=800",
             title: "ESCP Students for Finance",
             subtitle: "The New Chapter – Turin Campus",
             cta: "Read Our Vision"
         },
         {
-            image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=1200",
+            image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=60&w=800",
             title: "Meet the Founding Board",
             subtitle: "Building the future of finance at ESCP",
             cta: "View Team"
         },
         {
-            image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=1200",
+            image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=60&w=800",
             title: "Student Insights",
             subtitle: "Latest articles and market analysis",
             cta: "Read Articles"

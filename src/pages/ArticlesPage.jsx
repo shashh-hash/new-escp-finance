@@ -10,7 +10,7 @@ export default function ArticlesPage() {
             category: "Sustainability",
             author: "Luca Citton",
             date: "Nov 20, 2025",
-            image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800"
+            image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=60&w=600"
         },
         {
             title: "Blockchain in Banking: Beyond the Hype",
@@ -18,7 +18,7 @@ export default function ArticlesPage() {
             category: "Technology",
             author: "Francesco Kaitsas",
             date: "Nov 18, 2025",
-            image: "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?auto=format&fit=crop&q=80&w=800"
+            image: "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?auto=format&fit=crop&q=60&w=600"
         },
         {
             title: "Private Equity Trends in 2025",
@@ -26,7 +26,7 @@ export default function ArticlesPage() {
             category: "Markets",
             author: "Francesco Baci Paci",
             date: "Nov 15, 2025",
-            image: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&q=80&w=800"
+            image: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&q=60&w=600"
         },
         {
             title: "Central Bank Digital Currencies: A New Era",
@@ -34,7 +34,7 @@ export default function ArticlesPage() {
             category: "Policy",
             author: "Federico Furioso",
             date: "Nov 12, 2025",
-            image: "https://images.unsplash.com/photo-1621761191319-c6fb62004040?auto=format&fit=crop&q=80&w=800"
+            image: "https://images.unsplash.com/photo-1621761191319-c6fb62004040?auto=format&fit=crop&q=60&w=600"
         },
         {
             title: "Risk Management in Volatile Markets",
@@ -42,7 +42,7 @@ export default function ArticlesPage() {
             category: "Risk",
             author: "Giovanni Ciccarello",
             date: "Nov 10, 2025",
-            image: "https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?auto=format&fit=crop&q=80&w=800"
+            image: "https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?auto=format&fit=crop&q=60&w=600"
         },
         {
             title: "The Rise of Fintech in Europe",
@@ -50,7 +50,7 @@ export default function ArticlesPage() {
             category: "Fintech",
             author: "Giorgio Gheorghis Tsingros",
             date: "Nov 8, 2025",
-            image: "https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&q=80&w=800"
+            image: "https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&q=60&w=600"
         }
     ];
 
