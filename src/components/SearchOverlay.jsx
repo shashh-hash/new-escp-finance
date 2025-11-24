@@ -109,7 +109,8 @@ export default function SearchOverlay({ isOpen, onClose }) {
             // Dynamic import to avoid issues if package isn't installed yet
             const { GoogleGenerativeAI } = await import("@google/generative-ai");
             const genAI = new GoogleGenerativeAI(apiKey);
-            const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+            // Use gemini-1.5-flash which is faster and has better free tier availability
+            const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
             const prompt = `You are a helpful finance assistant for a university finance society website. 
             Answer this query concisely (max 2-3 sentences) specifically about finance/investing/economics: "${query}". 
