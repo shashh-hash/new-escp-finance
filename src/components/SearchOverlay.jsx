@@ -117,7 +117,17 @@ export default function SearchOverlay({ isOpen, onClose }) {
             If the query is not related to finance, politely redirect to finance topics. 
             Keep the tone professional but accessible to students.`;
 
-            const result = await model.generateContent(prompt);
+            // Create a timeout promise
+            const timeoutPromise = new Promise((_, reject) =>
+                setTimeout(() => reject(new Error("Request timed out")), 5000)
+            );
+
+            // Race the API call against the timeout
+            const result = await Promise.race([
+                model.generateContent(prompt),
+                timeoutPromise
+            ]);
+
             const response = await result.response;
             return response.text();
         } catch (error) {
