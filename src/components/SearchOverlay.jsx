@@ -156,6 +156,22 @@ export default function SearchOverlay({ isOpen, onClose }) {
         return ['ESG investing trends', 'Blockchain in finance', 'Private equity strategies', 'Market analysis'];
     };
 
+    // Simulated Global Search (since we don't have a real backend for this yet)
+    const searchGlobal = async (searchQuery) => {
+        // Simulate network delay
+        await new Promise(resolve => setTimeout(resolve, 500));
+
+        const lowerQuery = searchQuery.toLowerCase();
+        // Return some dummy global results if query matches keywords
+        if (lowerQuery.includes('finance') || lowerQuery.includes('market')) {
+            return [
+                { title: "Global Market Update", excerpt: "S&P 500 hits new record high as inflation cools.", source: "Bloomberg", url: "https://www.bloomberg.com", type: 'global' },
+                { title: "Fed Interest Rate Decision", excerpt: "Federal Reserve signals potential rate cuts in late 2024.", source: "Reuters", url: "https://www.reuters.com", type: 'global' }
+            ];
+        }
+        return [];
+    };
+
     // ... existing useEffects ...
 
     const performSearch = async () => {
