@@ -1,6 +1,27 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 export default function Sections() {
+    // Same articles as ArticlesPage
+    const articles = [
+        {
+            title: "The Future of Sustainable Finance: ESG in 2024",
+            excerpt: "Exploring how ESG criteria are reshaping investment strategies and corporate governance.",
+            category: "Sustainability",
+            date: "Nov 20, 2025",
+            image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=60&w=600",
+            slug: "sustainable-finance-esg-2024"
+        },
+        {
+            title: "Blockchain in Banking: Beyond the Hype",
+            excerpt: "A deep dive into real-world applications of blockchain technology in traditional banking.",
+            category: "Technology",
+            date: "Nov 18, 2025",
+            image: "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?auto=format&fit=crop&q=60&w=600",
+            slug: "blockchain-banking-revolution"
+        }
+    ];
+
     return (
         <>
             {/* Mission Section */}
@@ -41,29 +62,36 @@ export default function Sections() {
             <section className="container mx-auto px-8 py-16 border-t border-gray-200">
                 <div className="flex justify-between items-baseline mb-8">
                     <h2 className="font-serif text-3xl">Latest Articles</h2>
-                    <a href="#" className="text-sm text-gray-500 transition-colors" style={{ color: 'var(--color-text-secondary)' }} onMouseEnter={(e) => e.target.style.color = 'var(--color-accent)'} onMouseLeave={(e) => e.target.style.color = 'var(--color-text-secondary)'}>View all</a>
+                    <Link
+                        to="/articles"
+                        className="text-sm text-gray-500 hover:text-[#C5A059] transition-colors"
+                    >
+                        View all →
+                    </Link>
                 </div>
                 <div className="grid md:grid-cols-2 gap-8">
-                    <div className="group cursor-pointer">
-                        <div className="h-64 bg-gray-200 mb-4 overflow-hidden relative">
-                            <div className="absolute top-4 left-4 bg-[#C5A059] text-white text-xs px-3 py-1 uppercase tracking-widest">Markets</div>
-                            <img src="https://images.unsplash.com/photo-1611974765270-ca12586343bb?auto=format&fit=crop&q=80" alt="Markets" className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700" />
-                        </div>
-                        <span className="text-gray-400 text-xs block mb-2">20.11.2025</span>
-                        <h3 className="font-serif text-xl group-hover:text-[#C5A059] transition-colors leading-tight">
-                            The Rise of Private Credit in Europe: Opportunities & Risks
-                        </h3>
-                    </div>
-                    <div className="group cursor-pointer">
-                        <div className="h-64 bg-gray-200 mb-4 overflow-hidden relative">
-                            <div className="absolute top-4 left-4 bg-[#051C2C] text-white text-xs px-3 py-1 uppercase tracking-widest">Tech</div>
-                            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80" alt="Fintech" className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700" />
-                        </div>
-                        <span className="text-gray-400 text-xs block mb-2">15.11.2025</span>
-                        <h3 className="font-serif text-xl group-hover:text-[#C5A059] transition-colors leading-tight">
-                            Fintech Valuation Trends: A 2025 Outlook
-                        </h3>
-                    </div>
+                    {articles.map((article, idx) => (
+                        <Link
+                            key={idx}
+                            to={`/articles/${article.slug}`}
+                            className="group cursor-pointer"
+                        >
+                            <div className="h-64 bg-gray-200 mb-4 overflow-hidden relative">
+                                <div className="absolute top-4 left-4 bg-[#C5A059] text-white text-xs px-3 py-1 uppercase tracking-widest">
+                                    {article.category}
+                                </div>
+                                <img
+                                    src={article.image}
+                                    alt={article.title}
+                                    className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
+                                />
+                            </div>
+                            <span className="text-gray-400 text-xs block mb-2">{article.date}</span>
+                            <h3 className="font-serif text-xl group-hover:text-[#C5A059] transition-colors leading-tight">
+                                {article.title}
+                            </h3>
+                        </Link>
+                    ))}
                 </div>
             </section>
 
@@ -96,9 +124,12 @@ export default function Sections() {
                     <p className="text-gray-400 mb-8 max-w-xl mx-auto">
                         Interested in partnering with us or joining the team? Send us an email or follow us on social media.
                     </p>
-                    <a href="mailto:finance.turin@escp.eu" className="inline-block bg-[#C5A059] hover:bg-[#b08d4d] text-white px-8 py-3 rounded-full uppercase tracking-widest text-sm font-bold transition-colors">
+                    <Link
+                        to="/contact"
+                        className="inline-block bg-[#C5A059] hover:bg-[#b08d4d] text-white px-8 py-3 rounded-full uppercase tracking-widest text-sm font-bold transition-colors"
+                    >
                         Contact Us
-                    </a>
+                    </Link>
                 </div>
             </section>
         </>
