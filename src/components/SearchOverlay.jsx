@@ -185,61 +185,67 @@ export default function SearchOverlay({ isOpen, onClose }) {
         setShowAIResponse(true);
         setAIResponse(''); // Clear previous response
 
-        // 1. Get local results immediately
-        const siteResults = searchSite(query);
-        const suggestions = getSmartSuggestions(query);
+        try {
+            // 1. Get local results immediately
+            const siteResults = searchSite(query);
+            const suggestions = getSmartSuggestions(query);
 
-        // 4. Get global results (moved up to show faster)
-        const globalResults = await searchGlobal(query);
+            // 4. Get global results (moved up to show faster)
+            const globalResults = await searchGlobal(query);
 
-        setResults({
-            site: siteResults,
-            global: globalResults,
-            suggestions: suggestions
-        });
+            setResults({
+                site: siteResults,
+                global: globalResults,
+                suggestions: suggestions
+            });
 
-        // 2. Try to get AI response with BRUTE FORCE TIMEOUT
-        let aiResp = null;
-        let isTimedOut = false;
+            // 2. Try to get AI response with BRUTE FORCE TIMEOUT
+            let aiResp = null;
+            let isTimedOut = false;
 
-        // Only try Gemini if we have a key
-        if (apiKey) {
-            const limitCheck = checkRateLimit();
-            if (limitCheck.allowed) {
-                try {
-                    // Create a promise that rejects after 4 seconds
-                    const timeoutPromise = new Promise((_, reject) => {
-                        setTimeout(() => {
-                            isTimedOut = true;
-                            reject(new Error("Timeout"));
-                        }, 4000);
-                    });
+            // Only try Gemini if we have a key
+            if (apiKey) {
+                const limitCheck = checkRateLimit();
+                if (limitCheck.allowed) {
+                    try {
+                        // Create a promise that rejects after 4 seconds
+                        const timeoutPromise = new Promise((_, reject) => {
+                            setTimeout(() => {
+                                isTimedOut = true;
+                                reject(new Error("Timeout"));
+                            }, 4000);
+                        });
 
-                    // Race API against timeout
-                    aiResp = await Promise.race([
-                        getGeminiResponse(query),
-                        timeoutPromise
-                    ]);
-                } catch (err) {
-                    console.log("API Error or Timeout:", err);
-                    // Fallback will happen below
+                        // Race API against timeout
+                        aiResp = await Promise.race([
+                            getGeminiResponse(query),
+                            timeoutPromise
+                        ]);
+                    } catch (err) {
+                        console.log("API Error or Timeout:", err);
+                        // Fallback will happen below
+                    }
                 }
             }
-        }
 
-        // 3. Fallback logic (Simulated)
-        // If no AI response, OR if it timed out, OR if no key
-        if (!aiResp || isTimedOut) {
-            console.log("Using simulated fallback (Reason: " + (isTimedOut ? "Timeout" : "No Key/Error") + ")");
-            aiResp = getSimulatedResponse(query);
+            // 3. Fallback logic (Simulated)
+            // If no AI response, OR if it timed out, OR if no key
+            if (!aiResp || isTimedOut) {
+                console.log("Using simulated fallback (Reason: " + (isTimedOut ? "Timeout" : "No Key/Error") + ")");
+                aiResp = getSimulatedResponse(query);
 
-            if (!aiResp) {
-                aiResp = `I can help you explore "${query}" in the context of finance. I've found relevant articles and resources below. Our site covers ESG investing, blockchain technology, private equity trends, and more.`;
+                if (!aiResp) {
+                    aiResp = `I can help you explore "${query}" in the context of finance. I've found relevant articles and resources below. Our site covers ESG investing, blockchain technology, private equity trends, and more.`;
+                }
             }
-        }
 
-        setAIResponse(aiResp);
-        setLoading(false);
+            setAIResponse(aiResp);
+        } catch (error) {
+            console.error("Critical Search Error:", error);
+            setAIResponse("I encountered an error while searching. Please try again.");
+        } finally {
+            setLoading(false);
+        }
     };
 
     useEffect(() => {
