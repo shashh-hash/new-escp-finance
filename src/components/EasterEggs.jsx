@@ -15,6 +15,17 @@ export default function EasterEggs() {
     // Konami Code Handler
     useEffect(() => {
         const handleKeyDown = (e) => {
+            // Ignore if user is typing in an input, textarea, or contenteditable
+            const target = e.target;
+            if (
+                target.tagName === 'INPUT' ||
+                target.tagName === 'TEXTAREA' ||
+                target.isContentEditable ||
+                target.closest('[contenteditable="true"]')
+            ) {
+                return;
+            }
+
             const key = e.key.toLowerCase();
 
             // Check konami code
