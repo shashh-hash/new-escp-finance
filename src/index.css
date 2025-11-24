@@ -109,7 +109,7 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Custom scrollbar */
+/* Custom scrollbar - subtle dark theme */
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
@@ -120,12 +120,12 @@ html {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(135deg, #D4AF37 0%, #E8C547 100%);
+  background: rgba(255, 255, 255, 0.2);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #E8C547;
+  background: rgba(255, 255, 255, 0.3);
 }
 
 /* Selection color */
