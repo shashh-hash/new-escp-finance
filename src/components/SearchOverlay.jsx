@@ -168,7 +168,11 @@ export default function SearchOverlay({ isOpen, onClose }) {
         if (apiKey) {
             const limitCheck = checkRateLimit();
             if (limitCheck.allowed) {
-                aiResp = await getGeminiResponse(query);
+                try {
+                    aiResp = await getGeminiResponse(query);
+                } catch (err) {
+                    console.error("Gemini API failed, falling back to simulation:", err);
+                }
             } else {
                 console.warn("Rate limit reached:", limitCheck.reason);
             }
@@ -176,6 +180,7 @@ export default function SearchOverlay({ isOpen, onClose }) {
 
         // 3. Fallback to simulated response if no key, API failed, or rate limited
         if (!aiResp) {
+            console.log("Using simulated response fallback");
             aiResp = getSimulatedResponse(query);
 
             // If still no response (query not in simulated DB), give a generic helpful response
