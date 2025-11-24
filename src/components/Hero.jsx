@@ -51,38 +51,44 @@ const Hero = memo(() => {
     ];
 
     return (
-        <div className="relative bg-[#051C2C] text-white overflow-hidden">
-            <Slider {...settings} className="h-[600px] lg:h-[700px]">
+        <section className="relative w-full h-[500px] sm:h-[600px] md:h-[700px] overflow-hidden">
+            <Slider {...settings}>
                 {slides.map((slide, index) => (
-                    <div key={index} className="relative h-[600px] lg:h-[700px] outline-none">
-                        <div className="absolute inset-0 bg-black/40 z-10"></div>
-                        <img
-                            src={slide.image}
-                            alt={slide.title}
-                            loading={index === 0 ? "eager" : "lazy"}
-                            className="w-full h-full object-cover"
-                        />
+                    <div key={index} className="relative w-full h-[500px] sm:h-[600px] md:h-[700px]">
+                        {/* Background Image */}
+                        <div className="absolute inset-0">
+                            <img
+                                src={slide.image}
+                                alt={slide.title}
+                                className="w-full h-full object-cover"
+                                loading={index === 0 ? "eager" : "lazy"}
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-transparent"></div>
+                        </div>
 
-                        <div className="absolute inset-0 z-20 flex flex-col justify-center items-start container mx-auto px-6 lg:px-12">
-                            <div className="max-w-3xl">
-                                <h1 className="text-5xl lg:text-7xl font-serif font-medium leading-tight mb-6 drop-shadow-lg">
-                                    {slide.title}
-                                    <br />
-                                    <span className="text-3xl lg:text-5xl text-gray-200 mt-2 block">{slide.subtitle}</span>
-                                </h1>
-
-                                <Link
-                                    to={slide.link}
-                                    className="inline-block mt-8 px-8 py-3 bg-[#C5A059] hover:bg-[#b08d4d] text-white rounded-full text-sm font-bold uppercase tracking-widest transition-colors shadow-lg"
-                                >
-                                    {slide.cta}
-                                </Link>
+                        {/* Content */}
+                        <div className="relative h-full flex items-center">
+                            <div className="container mx-auto px-4 sm:px-6 lg:px-12">
+                                <div className="max-w-2xl">
+                                    <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light tracking-tight text-white mb-4 sm:mb-6">
+                                        {slide.title}
+                                    </h1>
+                                    <p className="text-base sm:text-lg md:text-xl text-gray-300 mb-6 sm:mb-8 font-light">
+                                        {slide.subtitle}
+                                    </p>
+                                    <Link
+                                        to={slide.link}
+                                        className="inline-block mt-4 sm:mt-8 px-6 sm:px-8 py-3 sm:py-4 bg-[#D4AF37] hover:bg-[#E8C547] text-white rounded-full text-sm sm:text-base font-bold uppercase tracking-widest transition-all shadow-lg hover:shadow-xl touch-manipulation min-h-[44px] flex items-center justify-center"
+                                    >
+                                        {slide.cta}
+                                    </Link>
+                                </div>
                             </div>
                         </div>
                     </div>
                 ))}
             </Slider>
-        </div>
+        </section>
     );
 });
 
