@@ -20,22 +20,17 @@ jobs:
         with:
           node-version: 20
           cache: 'npm'
-          cache-dependency-path: escp-finance/package-lock.json
+          cache-dependency-path: '**/package-lock.json'
 
       - name: Install dependencies
-        run: |
-          cd escp-finance
-          npm ci
+        run: npm ci
+        working-directory: ./escp-finance
 
       - name: Build
         env:
           VITE_GEMINI_API_KEY: ${{ secrets.VITE_GEMINI_API_KEY }}
-        run: |
-          cd escp-finance
-          npm run build
-          # Move build output to root docs folder for GitHub Pages (if using docs folder method)
-          # OR deploy directly from dist if using gh-pages action
-          # Since the repo is configured for docs folder, we'll ensure it's updated
+        run: npm run build
+        working-directory: ./escp-finance
           
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
