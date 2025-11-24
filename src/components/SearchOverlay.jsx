@@ -136,6 +136,31 @@ export default function SearchOverlay({ isOpen, onClose }) {
         }
     };
 
+    // Local Site Search
+    const searchSite = (searchQuery) => {
+        const lowerQuery = searchQuery.toLowerCase();
+        const results = [];
+
+        // Search Articles
+        siteContent.articles.forEach(article => {
+            if (article.title.toLowerCase().includes(lowerQuery) ||
+                article.excerpt.toLowerCase().includes(lowerQuery) ||
+                article.keywords.some(k => k.toLowerCase().includes(lowerQuery))) {
+                results.push({ ...article, type: 'site' });
+            }
+        });
+
+        // Search Pages
+        siteContent.pages.forEach(page => {
+            if (page.title.toLowerCase().includes(lowerQuery) ||
+                page.keywords.some(k => k.toLowerCase().includes(lowerQuery))) {
+                results.push({ ...page, type: 'site', excerpt: `Visit our ${page.title} page` });
+            }
+        });
+
+        return results;
+    };
+
     // Smart suggestions based on query
     const getSmartSuggestions = (searchQuery) => {
         const lowerQuery = searchQuery.toLowerCase();
