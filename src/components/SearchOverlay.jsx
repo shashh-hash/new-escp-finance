@@ -441,6 +441,10 @@ export default function SearchOverlay({ isOpen, onClose }) {
                             className={`w-1.5 h-1.5 rounded-full ${apiKey ? 'bg-green-500' : 'bg-red-500'}`}
                             title={apiKey ? "AI Active" : "AI Inactive (No Key)"}
                         />
+                        {/* Visible Status for Debugging */}
+                        <span className="text-[10px] text-gray-600 ml-1">
+                            {loading ? 'Thinking...' : (aiResponse ? 'Active' : 'Ready')}
+                        </span>
                     </div>
                     <p className="text-xs text-gray-500">
                         Press <kbd className="px-2 py-1 bg-white/10 rounded ml-1">ESC</kbd> to close
