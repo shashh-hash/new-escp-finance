@@ -57,7 +57,7 @@ export default function StockTicker() {
     }, []);
 
     return (
-        <div className="bg-[#042440] border-y border-white/10 py-2 overflow-hidden">
+        <div className="bg-black border-y border-gray-800 py-2 overflow-hidden">
             <div className="ticker-wrapper">
                 <div className="ticker-content">
                     {/* Duplicate the stocks array to create seamless loop */}
