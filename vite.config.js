@@ -6,6 +6,6 @@ export default defineConfig({
   plugins: [react()],
   base: '/new-escp-finance/',
   build: {
-    outDir: 'docs',
+    outDir: 'dist',
   },
 })
