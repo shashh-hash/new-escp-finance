@@ -1,27 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { articles, newsItems, leadershipTeam } from '../data/siteData';
 
 export default function Sections() {
-    // Same articles as ArticlesPage
-    const articles = [
-        {
-            title: "The Future of Sustainable Finance: ESG in 2024",
-            excerpt: "Exploring how ESG criteria are reshaping investment strategies and corporate governance.",
-            category: "Sustainability",
-            date: "Nov 20, 2025",
-            image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=60&w=600",
-            slug: "sustainable-finance-esg-2024"
-        },
-        {
-            title: "Blockchain in Banking: Beyond the Hype",
-            excerpt: "A deep dive into real-world applications of blockchain technology in traditional banking.",
-            category: "Technology",
-            date: "Nov 18, 2025",
-            image: "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?auto=format&fit=crop&q=60&w=600",
-            slug: "blockchain-banking-revolution"
-        }
-    ];
-
     return (
         <>
             {/* Mission Section */}
@@ -70,7 +51,7 @@ export default function Sections() {
                     </Link>
                 </div>
                 <div className="grid md:grid-cols-2 gap-8">
-                    {articles.map((article, idx) => (
+                    {articles.slice(0, 2).map((article, idx) => (
                         <Link
                             key={idx}
                             to={`/articles/${article.slug}`}
@@ -95,16 +76,59 @@ export default function Sections() {
                 </div>
             </section>
 
-            {/* The Team (Founding Board) */}
+            {/* Latest News */}
+            <section className="container mx-auto px-8 py-16 border-t border-gray-200">
+                <div className="flex justify-between items-baseline mb-8">
+                    <h2 className="font-serif text-3xl">Latest News</h2>
+                    <Link
+                        to="/news"
+                        className="text-sm text-gray-500 hover:text-[#C5A059] transition-colors"
+                    >
+                        View all →
+                    </Link>
+                </div>
+                <div className="grid md:grid-cols-3 gap-6">
+                    {newsItems.slice(0, 3).map((news, idx) => (
+                        <a
+                            key={idx}
+                            href={news.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="group cursor-pointer"
+                        >
+                            <div className="h-48 bg-gray-200 mb-4 overflow-hidden relative">
+                                <div className="absolute top-4 left-4 bg-[#051C2C] text-white text-xs px-3 py-1 uppercase tracking-widest">
+                                    {news.category}
+                                </div>
+                                <img
+                                    src={news.image}
+                                    alt={news.title}
+                                    className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
+                                />
+                            </div>
+                            <span className="text-gray-400 text-xs block mb-2">{news.source} • {news.date}</span>
+                            <h3 className="font-serif text-lg group-hover:text-[#C5A059] transition-colors leading-tight">
+                                {news.title}
+                            </h3>
+                        </a>
+                    ))}
+                </div>
+            </section>
+
+            {/* The Team (Leadership) */}
             <section className="py-16">
                 <div className="container mx-auto px-8">
-                    <h2 className="font-serif text-3xl mb-12 text-center">The Founding Board</h2>
+                    <div className="flex justify-between items-baseline mb-12">
+                        <h2 className="font-serif text-3xl text-center flex-1">Leadership Team</h2>
+                        <Link
+                            to="/about"
+                            className="text-sm text-gray-500 hover:text-[#C5A059] transition-colors"
+                        >
+                            View full team →
+                        </Link>
+                    </div>
                     <div className="grid md:grid-cols-3 gap-12">
-                        {[
-                            { name: "Alessandro Rossi", role: "President", img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80" },
-                            { name: "Sofia Bianchi", role: "Head of Research", img: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80" },
-                            { name: "Marco Verdi", role: "Head of Events", img: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80" }
-                        ].map((member, idx) => (
+                        {leadershipTeam.map((member, idx) => (
                             <div key={idx} className="text-center group">
                                 <div className="w-48 h-48 mx-auto mb-6 overflow-hidden rounded-full border-2 border-transparent group-hover:border-[#C5A059] transition-all duration-300">
                                     <img src={member.img} alt={member.name} className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" />
