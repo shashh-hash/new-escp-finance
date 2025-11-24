@@ -1,4 +1,5 @@
 import React, { memo } from 'react';
+import { Link } from 'react-router-dom';
 import Slider from 'react-slick';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -30,19 +31,22 @@ const Hero = memo(() => {
             image: "https://images.unsplash.com/photo-1515187029135-18ee286d815b?auto=format&fit=crop&q=60&w=800",
             title: "ESCP Students for Finance",
             subtitle: "The New Chapter – Turin Campus",
-            cta: "Read Our Vision"
+            cta: "Read Our Mission",
+            link: "/mission"
         },
         {
             image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=60&w=800",
             title: "Meet the Founding Board",
             subtitle: "Building the future of finance at ESCP",
-            cta: "View Team"
+            cta: "View Team",
+            link: "/about"
         },
         {
             image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=60&w=800",
             title: "Student Insights",
             subtitle: "Latest articles and market analysis",
-            cta: "Read Articles"
+            cta: "Read Articles",
+            link: "/articles"
         }
     ];
 
@@ -67,12 +71,12 @@ const Hero = memo(() => {
                                     <span className="text-3xl lg:text-5xl text-gray-200 mt-2 block">{slide.subtitle}</span>
                                 </h1>
 
-                                <button
-                                    onClick={() => alert(`Navigating to: ${slide.cta}`)}
-                                    className="mt-8 px-8 py-3 bg-[#C5A059] hover:bg-[#b08d4d] text-white rounded-full text-sm font-bold uppercase tracking-widest transition-colors shadow-lg"
+                                <Link
+                                    to={slide.link}
+                                    className="inline-block mt-8 px-8 py-3 bg-[#C5A059] hover:bg-[#b08d4d] text-white rounded-full text-sm font-bold uppercase tracking-widest transition-colors shadow-lg"
                                 >
                                     {slide.cta}
-                                </button>
+                                </Link>
                             </div>
                         </div>
                     </div>
