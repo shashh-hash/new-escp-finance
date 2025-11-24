@@ -167,40 +167,13 @@ export default function SearchOverlay({ isOpen, onClose }) {
 
         setLoading(true);
         setShowAIResponse(true);
+        setAIResponse(''); // Clear previous response
 
         // 1. Get local results immediately
         const siteResults = searchSite(query);
         const suggestions = getSmartSuggestions(query);
 
-        // 2. Try to get AI response
-        let aiResp = null;
-
-        // Only try Gemini if we have a key
-        if (apiKey) {
-            const limitCheck = checkRateLimit();
-            if (limitCheck.allowed) {
-                try {
-                    aiResp = await getGeminiResponse(query);
-                } catch (err) {
-                    console.error("Gemini API failed, falling back to simulation:", err);
-                }
-            } else {
-                console.warn("Rate limit reached:", limitCheck.reason);
-            }
-        }
-
-        // 3. Fallback to simulated response if no key, API failed, or rate limited
-        if (!aiResp) {
-            console.log("Using simulated response fallback");
-            aiResp = getSimulatedResponse(query);
-
-            // If still no response (query not in simulated DB), give a generic helpful response
-            if (!aiResp) {
-                aiResp = `I can help you explore "${query}" in the context of finance. I've found relevant articles and resources below. Our site covers ESG investing, blockchain technology, private equity trends, and more.`;
-            }
-        }
-
-        // 4. Get global results
+        // 4. Get global results (moved up to show faster)
         const globalResults = await searchGlobal(query);
 
         setResults({
@@ -208,6 +181,47 @@ export default function SearchOverlay({ isOpen, onClose }) {
             global: globalResults,
             suggestions: suggestions
         });
+
+        // 2. Try to get AI response with BRUTE FORCE TIMEOUT
+        let aiResp = null;
+        let isTimedOut = false;
+
+        // Only try Gemini if we have a key
+        if (apiKey) {
+            const limitCheck = checkRateLimit();
+            if (limitCheck.allowed) {
+                try {
+                    // Create a promise that rejects after 4 seconds
+                    const timeoutPromise = new Promise((_, reject) => {
+                        setTimeout(() => {
+                            isTimedOut = true;
+                            reject(new Error("Timeout"));
+                        }, 4000);
+                    });
+
+                    // Race API against timeout
+                    aiResp = await Promise.race([
+                        getGeminiResponse(query),
+                        timeoutPromise
+                    ]);
+                } catch (err) {
+                    console.log("API Error or Timeout:", err);
+                    // Fallback will happen below
+                }
+            }
+        }
+
+        // 3. Fallback logic (Simulated)
+        // If no AI response, OR if it timed out, OR if no key
+        if (!aiResp || isTimedOut) {
+            console.log("Using simulated fallback (Reason: " + (isTimedOut ? "Timeout" : "No Key/Error") + ")");
+            aiResp = getSimulatedResponse(query);
+
+            if (!aiResp) {
+                aiResp = `I can help you explore "${query}" in the context of finance. I've found relevant articles and resources below. Our site covers ESG investing, blockchain technology, private equity trends, and more.`;
+            }
+        }
+
         setAIResponse(aiResp);
         setLoading(false);
     };
