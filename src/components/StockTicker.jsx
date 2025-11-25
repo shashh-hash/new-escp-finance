@@ -5,13 +5,14 @@ export default function StockTicker() {
         { symbol: 'S&P 500', value: '5,980.00', change: '+0.45%', positive: true, type: 'index' },
         { symbol: 'NASDAQ', value: '19,000.00', change: '+0.82%', positive: true, type: 'index' },
         { symbol: 'DOW', value: '44,700.00', change: '+0.15%', positive: true, type: 'index' },
-        { symbol: 'EUR/USD', value: '1.0480', change: '-0.12%', positive: false, type: 'forex' },
-        { symbol: 'GBP/USD', value: '1.2580', change: '+0.05%', positive: true, type: 'forex' },
-        { symbol: 'USD/JPY', value: '154.20', change: '-0.25%', positive: false, type: 'forex' },
+        { symbol: 'EUR/USD', value: '1.0480', change: '-0.12%', positive: false, type: 'forex', forexKey: 'EUR' },
+        { symbol: 'GBP/USD', value: '1.2580', change: '+0.05%', positive: true, type: 'forex', forexKey: 'GBP' },
+        { symbol: 'USD/JPY', value: '154.20', change: '-0.25%', positive: false, type: 'forex', forexKey: 'JPY' },
         { symbol: 'GOLD', value: '$2,650.00', change: '+1.10%', positive: true, type: 'commodity' },
         { symbol: 'OIL', value: '$69.00', change: '-0.50%', positive: false, type: 'commodity' },
         { symbol: 'BTC', value: '$98,000', change: '+2.80%', positive: true, type: 'crypto', id: 'bitcoin' }
     ]);
+    const [prevForexRates, setPrevForexRates] = useState({});
 
     // Fetch real crypto prices
     useEffect(() => {
@@ -48,13 +49,58 @@ export default function StockTicker() {
         return () => clearInterval(cryptoInterval);
     }, []);
 
-    // Simulate real-time updates for others
+    // Fetch real forex rates
+    useEffect(() => {
+        const fetchForex = async () => {
+            try {
+                const response = await fetch('https://api.exchangerate-api.com/v4/latest/USD');
+                const data = await response.json();
+
+                if (data.rates) {
+                    setStocks(prev => prev.map(stock => {
+                        if (stock.type === 'forex' && stock.forexKey) {
+                            const rate = stock.forexKey === 'JPY'
+                                ? data.rates[stock.forexKey]
+                                : 1 / data.rates[stock.forexKey];
+
+                            // Calculate change from previous rate
+                            const prevRate = prevForexRates[stock.forexKey];
+                            let changePercent = 0;
+                            if (prevRate) {
+                                changePercent = ((rate - prevRate) / prevRate) * 100;
+                            }
+
+                            // Update previous rates
+                            setPrevForexRates(p => ({ ...p, [stock.forexKey]: rate }));
+
+                            return {
+                                ...stock,
+                                value: rate.toFixed(4),
+                                change: `${changePercent >= 0 ? '+' : ''}${changePercent.toFixed(2)}%`,
+                                positive: changePercent >= 0
+                            };
+                        }
+                        return stock;
+                    }));
+                }
+            } catch (err) {
+                console.log("Forex fetch failed, using simulation");
+            }
+        };
+
+        fetchForex();
+        const forexInterval = setInterval(fetchForex, 300000); // Fetch every 5 minutes
+
+        return () => clearInterval(forexInterval);
+    }, [prevForexRates]);
+
+    // Simulate real-time updates for non-fetched assets
     useEffect(() => {
         const interval = setInterval(() => {
             setStocks(prevStocks =>
                 prevStocks.map(stock => {
-                    // Skip crypto if we are fetching it (though we can add micro-movements if we want)
-                    if (stock.type === 'crypto') return stock;
+                    // Skip crypto and forex as we're fetching them
+                    if (stock.type === 'crypto' || stock.type === 'forex') return stock;
 
                     // Realistic random walk
                     const volatility = 0.0002;
