@@ -110,7 +110,7 @@ export default function SearchOverlay({ isOpen, onClose }) {
             const { GoogleGenerativeAI } = await import("@google/generative-ai");
             const genAI = new GoogleGenerativeAI(apiKey);
             // Use gemini-1.5-flash which is faster and has better free tier availability
-            const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+            const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
 
             const prompt = `You are a helpful finance assistant for a university finance society website. 
             Answer this query concisely (max 2-3 sentences) specifically about finance/investing/economics: "${query}". 
