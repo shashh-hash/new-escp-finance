@@ -2,15 +2,15 @@ import React, { useState, useEffect } from 'react';
 
 export default function StockTicker() {
     const [stocks, setStocks] = useState([
-        { symbol: 'S&P 500', value: '4,804.08', change: '+0.86%', positive: true },
-        { symbol: 'NASDAQ', value: '15,481.92', change: '+1.24%', positive: true },
-        { symbol: 'DOW', value: '37,305.16', change: '+0.58%', positive: true },
-        { symbol: 'EUR/USD', value: '1.0875', change: '-0.32%', positive: false },
-        { symbol: 'GBP/USD', value: '1.2654', change: '+0.15%', positive: true },
-        { symbol: 'USD/JPY', value: '149.82', change: '+0.42%', positive: true },
-        { symbol: 'GOLD', value: '$2,450.00', change: '+2.15%', positive: true },
-        { symbol: 'OIL', value: '$78.45', change: '-1.23%', positive: false },
-        { symbol: 'BTC', value: '$95,234', change: '+3.45%', positive: true }
+        { symbol: 'S&P 500', value: '6,124.50', change: '+0.45%', positive: true },
+        { symbol: 'NASDAQ', value: '19,845.20', change: '+0.82%', positive: true },
+        { symbol: 'DOW', value: '44,205.10', change: '+0.15%', positive: true },
+        { symbol: 'EUR/USD', value: '1.1240', change: '-0.12%', positive: false },
+        { symbol: 'GBP/USD', value: '1.3150', change: '+0.05%', positive: true },
+        { symbol: 'USD/JPY', value: '142.50', change: '-0.25%', positive: false },
+        { symbol: 'GOLD', value: '$2,850.00', change: '+1.10%', positive: true },
+        { symbol: 'OIL', value: '$72.30', change: '-0.50%', positive: false },
+        { symbol: 'BTC', value: '$105,420', change: '+2.80%', positive: true }
     ]);
 
     // Simulate real-time updates
@@ -18,24 +18,23 @@ export default function StockTicker() {
         const interval = setInterval(() => {
             setStocks(prevStocks =>
                 prevStocks.map(stock => {
-                    // Generate random price change between -0.5% and +0.5%
-                    const randomChange = (Math.random() - 0.5) * 1;
-                    const currentChange = parseFloat(stock.change.replace('%', ''));
-                    const newChange = (currentChange + randomChange).toFixed(2);
-                    const isPositive = newChange >= 0;
+                    // More realistic random walk
+                    const volatility = stock.symbol === 'BTC' ? 0.002 : 0.0005; // BTC is more volatile
+                    const randomMove = (Math.random() - 0.5) * volatility;
 
-                    // Update value based on change
                     let currentValue = parseFloat(stock.value.replace(/[$,]/g, ''));
-                    const changePercent = randomChange / 100;
-                    const newValue = currentValue * (1 + changePercent);
+                    const newValue = currentValue * (1 + randomMove);
+
+                    // Update change percentage
+                    const currentChange = parseFloat(stock.change.replace('%', ''));
+                    const newChange = (currentChange + (randomMove * 100)).toFixed(2);
+                    const isPositive = newChange >= 0;
 
                     // Format value based on symbol
                     let formattedValue;
                     if (stock.symbol.includes('USD') || stock.symbol.includes('EUR') || stock.symbol.includes('GBP') || stock.symbol.includes('JPY')) {
                         formattedValue = newValue.toFixed(4);
-                    } else if (stock.symbol === 'GOLD') {
-                        formattedValue = '$' + newValue.toFixed(2);
-                    } else if (stock.symbol === 'OIL') {
+                    } else if (stock.symbol === 'GOLD' || stock.symbol === 'OIL') {
                         formattedValue = '$' + newValue.toFixed(2);
                     } else if (stock.symbol === 'BTC') {
                         formattedValue = '$' + Math.round(newValue).toLocaleString();
@@ -51,7 +50,7 @@ export default function StockTicker() {
                     };
                 })
             );
-        }, 3000); // Update every 3 seconds
+        }, 2000); // Update every 2 seconds for livelier feel
 
         return () => clearInterval(interval);
     }, []);

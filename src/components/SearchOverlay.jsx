@@ -40,6 +40,13 @@ export default function SearchOverlay({ isOpen, onClose }) {
             { title: "Our Mission", url: "/mission", keywords: ["mission", "vision", "goals", "purpose", "values"] },
             { title: "Financial News", url: "/news", keywords: ["news", "updates", "markets", "latest", "headlines"] },
             { title: "Contact", url: "/contact", keywords: ["contact", "email", "reach", "connect", "get in touch"] }
+        ],
+        team: [
+            { title: "Alessandro Romano", role: "President", url: "/about", keywords: ["president", "leader", "alessandro", "romano", "head"] },
+            { title: "Sofia Rossi", role: "Vice President", url: "/about", keywords: ["vp", "vice president", "sofia", "rossi"] },
+            { title: "Marco Bianchi", role: "Head of Research", url: "/about", keywords: ["research", "head", "marco", "bianchi", "analyst"] },
+            { title: "Giulia Ferrari", role: "Head of Events", url: "/about", keywords: ["events", "social", "giulia", "ferrari"] },
+            { title: "Luca Esposito", role: "Treasurer", url: "/about", keywords: ["finance", "treasurer", "money", "luca", "esposito"] }
         ]
     };
 
@@ -162,6 +169,15 @@ export default function SearchOverlay({ isOpen, onClose }) {
             if (page.title.toLowerCase().includes(lowerQuery) ||
                 page.keywords.some(k => k.toLowerCase().includes(lowerQuery))) {
                 results.push({ ...page, type: 'site', excerpt: `Visit our ${page.title} page` });
+            }
+        });
+
+        // Search Team
+        siteContent.team.forEach(member => {
+            if (member.title.toLowerCase().includes(lowerQuery) ||
+                member.role.toLowerCase().includes(lowerQuery) ||
+                member.keywords.some(k => k.toLowerCase().includes(lowerQuery))) {
+                results.push({ ...member, type: 'site', excerpt: `${member.role} - ESCP Finance Society` });
             }
         });
 

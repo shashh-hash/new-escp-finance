@@ -67,18 +67,18 @@ const Hero = memo(() => {
                         </div>
 
                         {/* Content */}
-                        <div className="relative h-full flex items-center">
+                        <div className="relative h-full flex items-center justify-center text-center">
                             <div className="container mx-auto px-4 sm:px-6 lg:px-12">
-                                <div className="max-w-2xl">
-                                    <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light tracking-tight text-white mb-4 sm:mb-6">
+                                <div className="max-w-4xl mx-auto">
+                                    <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light tracking-tight text-white mb-6 drop-shadow-lg">
                                         {slide.title}
                                     </h1>
-                                    <p className="text-base sm:text-lg md:text-xl text-gray-300 mb-6 sm:mb-8 font-light">
+                                    <p className="text-lg sm:text-xl md:text-2xl text-gray-200 mb-8 font-light tracking-wide drop-shadow-md">
                                         {slide.subtitle}
                                     </p>
                                     <Link
                                         to={slide.link}
-                                        className="inline-block mt-4 sm:mt-8 px-6 sm:px-8 py-3 sm:py-4 bg-[#D4AF37] hover:bg-[#E8C547] text-white rounded-full text-sm sm:text-base font-bold uppercase tracking-widest transition-all shadow-lg hover:shadow-xl touch-manipulation min-h-[44px] flex items-center justify-center"
+                                        className="inline-block px-8 py-4 bg-gradient-to-r from-[#D4AF37] to-[#B59025] hover:from-[#E8C547] hover:to-[#D4AF37] text-white rounded-full text-base font-bold uppercase tracking-widest transition-all shadow-lg hover:shadow-[#D4AF37]/50 transform hover:-translate-y-1"
                                     >
                                         {slide.cta}
                                     </Link>
