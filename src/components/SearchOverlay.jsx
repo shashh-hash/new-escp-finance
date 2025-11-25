@@ -112,14 +112,21 @@ export default function SearchOverlay({ isOpen, onClose }) {
             // Use gemini-1.5-flash which is faster and has better free tier availability
             const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
 
-            const prompt = `You are a helpful finance assistant for a university finance society website. 
-            Answer this query concisely (max 2-3 sentences) specifically about finance/investing/economics: "${query}". 
-            If the query is not related to finance, politely redirect to finance topics. 
-            Keep the tone professional but accessible to students.`;
+            const prompt = `You are an expert financial analyst and educator for a prestigious university finance society.
+            Provide a comprehensive, insightful, and professional answer to the following query: "${query}".
+            
+            Guidelines:
+            1. Go beyond surface-level definitions; explain the "why" and "how".
+            2. Include current market context or real-world examples where relevant (e.g., 2024/2025 trends).
+            3. Structure your answer clearly.
+            4. Keep the tone sophisticated yet accessible to ambitious finance students.
+            5. If the query is not related to finance/economics/business, politely redirect.
+            
+            Aim for a response that demonstrates deep domain knowledge.`;
 
             // Create a timeout promise
             const timeoutPromise = new Promise((_, reject) =>
-                setTimeout(() => reject(new Error("Request timed out")), 5000)
+                setTimeout(() => reject(new Error("Request timed out")), 10000)
             );
 
             // Race the API call against the timeout
@@ -233,12 +240,12 @@ export default function SearchOverlay({ isOpen, onClose }) {
                 const limitCheck = checkRateLimit();
                 if (limitCheck.allowed) {
                     try {
-                        // Create a promise that rejects after 4 seconds
+                        // Create a promise that rejects after 10 seconds
                         const timeoutPromise = new Promise((_, reject) => {
                             setTimeout(() => {
                                 isTimedOut = true;
                                 reject(new Error("Timeout"));
-                            }, 4000);
+                            }, 10000);
                         });
 
                         // Race API against timeout
