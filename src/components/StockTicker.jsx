@@ -2,44 +2,82 @@ import React, { useState, useEffect } from 'react';
 
 export default function StockTicker() {
     const [stocks, setStocks] = useState([
-        { symbol: 'S&P 500', value: '6,124.50', change: '+0.45%', positive: true },
-        { symbol: 'NASDAQ', value: '19,845.20', change: '+0.82%', positive: true },
-        { symbol: 'DOW', value: '44,205.10', change: '+0.15%', positive: true },
-        { symbol: 'EUR/USD', value: '1.1240', change: '-0.12%', positive: false },
-        { symbol: 'GBP/USD', value: '1.3150', change: '+0.05%', positive: true },
-        { symbol: 'USD/JPY', value: '142.50', change: '-0.25%', positive: false },
-        { symbol: 'GOLD', value: '$2,850.00', change: '+1.10%', positive: true },
-        { symbol: 'OIL', value: '$72.30', change: '-0.50%', positive: false },
-        { symbol: 'BTC', value: '$105,420', change: '+2.80%', positive: true }
+        { symbol: 'S&P 500', value: '5,980.00', change: '+0.45%', positive: true, type: 'index' },
+        { symbol: 'NASDAQ', value: '19,000.00', change: '+0.82%', positive: true, type: 'index' },
+        { symbol: 'DOW', value: '44,700.00', change: '+0.15%', positive: true, type: 'index' },
+        { symbol: 'EUR/USD', value: '1.0480', change: '-0.12%', positive: false, type: 'forex' },
+        { symbol: 'GBP/USD', value: '1.2580', change: '+0.05%', positive: true, type: 'forex' },
+        { symbol: 'USD/JPY', value: '154.20', change: '-0.25%', positive: false, type: 'forex' },
+        { symbol: 'GOLD', value: '$2,650.00', change: '+1.10%', positive: true, type: 'commodity' },
+        { symbol: 'OIL', value: '$69.00', change: '-0.50%', positive: false, type: 'commodity' },
+        { symbol: 'BTC', value: '$98,000', change: '+2.80%', positive: true, type: 'crypto', id: 'bitcoin' }
     ]);
 
-    // Simulate real-time updates
+    // Fetch real crypto prices
+    useEffect(() => {
+        const fetchCrypto = async () => {
+            try {
+                const response = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd&include_24hr_change=true');
+                const data = await response.json();
+
+                if (data.bitcoin) {
+                    setStocks(prev => prev.map(stock => {
+                        if (stock.id === 'bitcoin') {
+                            const price = data.bitcoin.usd;
+                            const change = data.bitcoin.usd_24h_change;
+                            return {
+                                ...stock,
+                                value: '$' + Math.round(price).toLocaleString(),
+                                change: `${change >= 0 ? '+' : ''}${change.toFixed(2)}%`,
+                                positive: change >= 0,
+                                type: 'crypto',
+                                id: 'bitcoin'
+                            };
+                        }
+                        return stock;
+                    }));
+                }
+            } catch (err) {
+                console.log("Crypto fetch failed, using simulation");
+            }
+        };
+
+        fetchCrypto();
+        const cryptoInterval = setInterval(fetchCrypto, 60000); // Fetch every minute
+
+        return () => clearInterval(cryptoInterval);
+    }, []);
+
+    // Simulate real-time updates for others
     useEffect(() => {
         const interval = setInterval(() => {
             setStocks(prevStocks =>
                 prevStocks.map(stock => {
-                    // More realistic random walk
-                    const volatility = stock.symbol === 'BTC' ? 0.002 : 0.0005; // BTC is more volatile
+                    // Skip crypto if we are fetching it (though we can add micro-movements if we want)
+                    if (stock.type === 'crypto') return stock;
+
+                    // Realistic random walk
+                    const volatility = 0.0002;
                     const randomMove = (Math.random() - 0.5) * volatility;
 
                     let currentValue = parseFloat(stock.value.replace(/[$,]/g, ''));
                     const newValue = currentValue * (1 + randomMove);
 
-                    // Update change percentage
+                    // Update change percentage slightly
                     const currentChange = parseFloat(stock.change.replace('%', ''));
                     const newChange = (currentChange + (randomMove * 100)).toFixed(2);
                     const isPositive = newChange >= 0;
 
                     // Format value based on symbol
                     let formattedValue;
-                    if (stock.symbol.includes('USD') || stock.symbol.includes('EUR') || stock.symbol.includes('GBP') || stock.symbol.includes('JPY')) {
+                    if (stock.type === 'forex') {
                         formattedValue = newValue.toFixed(4);
-                    } else if (stock.symbol === 'GOLD' || stock.symbol === 'OIL') {
+                    } else if (stock.type === 'commodity') {
                         formattedValue = '$' + newValue.toFixed(2);
-                    } else if (stock.symbol === 'BTC') {
-                        formattedValue = '$' + Math.round(newValue).toLocaleString();
-                    } else {
+                    } else if (stock.type === 'index') {
                         formattedValue = newValue.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+                    } else {
+                        formattedValue = newValue.toLocaleString('en-US');
                     }
 
                     return {
@@ -50,45 +88,43 @@ export default function StockTicker() {
                     };
                 })
             );
-        }, 2000); // Update every 2 seconds for livelier feel
+        }, 3000);
 
         return () => clearInterval(interval);
     }, []);
 
     return (
-        <div className="bg-black border-y border-gray-800 py-2 overflow-hidden">
-            <div className="ticker-wrapper">
-                <div className="ticker-content">
-                    {/* Duplicate the stocks array to create seamless loop */}
-                    {[...stocks, ...stocks].map((stock, idx) => (
-                        <div key={idx} className="ticker-item inline-flex items-center px-6 whitespace-nowrap">
-                            <span className="text-gray-400 text-sm font-medium mr-2">{stock.symbol}</span>
-                            <span className="text-white text-sm font-bold mr-2">{stock.value}</span>
-                            <span className={`text-sm font-medium ${stock.positive ? 'text-green-500' : 'text-red-500'}`}>
-                                {stock.positive ? '↑' : '↓'} {stock.change}
+        <div className="bg-[#0A1929] border-b border-white/10 overflow-hidden h-12 flex items-center relative z-20">
+            <div className="ticker-wrap w-full">
+                <div className="ticker">
+                    {[...stocks, ...stocks].map((stock, index) => (
+                        <div key={index} className="ticker-item inline-flex items-center px-6 border-r border-white/5">
+                            <span className="text-gray-400 font-medium text-sm mr-3">{stock.symbol}</span>
+                            <span className="text-white font-bold text-sm mr-3">{stock.value}</span>
+                            <span className={`text-xs font-medium ${stock.positive ? 'text-green-400' : 'text-red-400'}`}>
+                                {stock.change}
                             </span>
                         </div>
                     ))}
                 </div>
             </div>
-
             <style jsx>{`
-                .ticker-wrapper {
+                .ticker-wrap {
                     overflow: hidden;
+                    white-space: nowrap;
                 }
-                .ticker-content {
-                    display: inline-flex;
-                    animation: scroll 60s linear infinite;
+                .ticker {
+                    display: inline-block;
+                    animation: ticker 40s linear infinite;
                 }
-                @keyframes scroll {
-                    0% {
-                        transform: translateX(0);
-                    }
-                    100% {
-                        transform: translateX(-50%);
-                    }
+                .ticker-item {
+                    display: inline-block;
                 }
-                .ticker-content:hover {
+                @keyframes ticker {
+                    0% { transform: translateX(0); }
+                    100% { transform: translateX(-50%); }
+                }
+                .ticker:hover {
                     animation-play-state: paused;
                 }
             `}</style>

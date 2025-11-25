@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
+import ReactMarkdown from 'react-markdown';
 
 export default function SearchOverlay({ isOpen, onClose }) {
     const [query, setQuery] = useState('');
@@ -42,11 +43,24 @@ export default function SearchOverlay({ isOpen, onClose }) {
             { title: "Contact", url: "/contact", keywords: ["contact", "email", "reach", "connect", "get in touch"] }
         ],
         team: [
-            { title: "Alessandro Romano", role: "President", url: "/about", keywords: ["president", "leader", "alessandro", "romano", "head"] },
-            { title: "Sofia Rossi", role: "Vice President", url: "/about", keywords: ["vp", "vice president", "sofia", "rossi"] },
-            { title: "Marco Bianchi", role: "Head of Research", url: "/about", keywords: ["research", "head", "marco", "bianchi", "analyst"] },
-            { title: "Giulia Ferrari", role: "Head of Events", url: "/about", keywords: ["events", "social", "giulia", "ferrari"] },
-            { title: "Luca Esposito", role: "Treasurer", url: "/about", keywords: ["finance", "treasurer", "money", "luca", "esposito"] }
+            { title: "Lorenzo Sargiani", role: "Founder & President", url: "/about", keywords: ["founder", "president", "lorenzo", "sargiani", "leader"] },
+            { title: "Ines Desmaretz", role: "Vice President", url: "/about", keywords: ["vp", "vice president", "ines", "desmaretz"] },
+            { title: "Daria Iannuzzi", role: "Vice President & Head of Events", url: "/about", keywords: ["vp", "events", "daria", "iannuzzi"] },
+            { title: "Martina Proietti Silvestri", role: "Board Member & Head of Events", url: "/about", keywords: ["board", "events", "martina", "proietti", "silvestri"] },
+            { title: "Christos Gerontopoulos", role: "Board Member", url: "/about", keywords: ["board", "christos", "gerontopoulos"] },
+            { title: "Lucas Thai", role: "Board Member", url: "/about", keywords: ["board", "lucas", "thai"] },
+            { title: "Alex Toumasson", role: "Board Member", url: "/about", keywords: ["board", "alex", "toumasson"] },
+            { title: "Edoardo Cerrano", role: "Head of HR", url: "/about", keywords: ["hr", "head", "edoardo", "cerrano"] },
+            { title: "Flavio Antonuzzo", role: "Head of Strategy", url: "/about", keywords: ["strategy", "head", "flavio", "antonuzzo"] },
+            { title: "Tommaso Girani", role: "Head of Strategy", url: "/about", keywords: ["strategy", "head", "tommaso", "girani"] },
+            { title: "Luca Citton", role: "Head of Articles", url: "/about", keywords: ["articles", "head", "luca", "citton"] },
+            { title: "Francesco Kaitsas", role: "Head of Articles", url: "/about", keywords: ["articles", "head", "francesco", "kaitsas"] },
+            { title: "Adriano Cogorno", role: "Head of Research", url: "/about", keywords: ["research", "head", "adriano", "cogorno"] },
+            { title: "Giuseppe Mansueto", role: "Head of Research", url: "/about", keywords: ["research", "head", "giuseppe", "mansueto"] },
+            { title: "Valentina Petrini", role: "Head of Marketing", url: "/about", keywords: ["marketing", "head", "valentina", "petrini"] },
+            { title: "Beatrice Pellini", role: "Head of Instagram", url: "/about", keywords: ["instagram", "head", "beatrice", "pellini"] },
+            { title: "Marina Meucci", role: "Head of LinkedIn", url: "/about", keywords: ["linkedin", "head", "marina", "meucci"] },
+            { title: "Shashank Tripathi", role: "Head of Tech", url: "/about", keywords: ["tech", "head", "shashank", "tripathi", "developer"] }
         ]
     };
 
@@ -435,12 +449,14 @@ export default function SearchOverlay({ isOpen, onClose }) {
                             {showAIResponse && aiResponse && (
                                 <div className="p-5 bg-gradient-to-r from-[#C5A059]/10 to-[#b08d4d]/10 border border-[#C5A059]/30 rounded-lg">
                                     <div className="flex items-start gap-3">
-                                        <div className="w-8 h-8 bg-[#C5A059] rounded-full flex items-center justify-center flex-shrink-0">
+                                        <div className="w-8 h-8 bg-[#C5A059] rounded-full flex items-center justify-center flex-shrink-0 mt-1">
                                             <span className="text-lg">🤖</span>
                                         </div>
                                         <div className="flex-1">
                                             <h4 className="text-sm font-medium text-[#C5A059] mb-2">AI Insight</h4>
-                                            <p className="text-sm text-gray-200 leading-relaxed">{aiResponse}</p>
+                                            <div className="text-sm text-gray-200 leading-relaxed prose prose-invert prose-sm max-w-none">
+                                                <ReactMarkdown>{aiResponse}</ReactMarkdown>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
