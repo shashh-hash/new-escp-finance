@@ -110,3 +110,5 @@ This is a student society project. For contributions, please contact the Tech De
 ---
 
 Built with ❤️ by the ESCP Finance Tech Team
+
+<!-- Last deployed: 2025-11-29 -->
