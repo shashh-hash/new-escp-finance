@@ -16,11 +16,32 @@ export default function StockTicker() {
     const [prevForexRates, setPrevForexRates] = useState({});
     const [prevMetalPrices, setPrevMetalPrices] = useState({});
 
+    // Helper to get correct URL based on environment
+    const getApiUrl = (type) => {
+        const isDev = import.meta.env.DEV;
+        switch (type) {
+            case 'crypto':
+                return isDev
+                    ? '/api/crypto/api/v3/simple/price?ids=bitcoin&vs_currencies=usd&include_24hr_change=true'
+                    : 'https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd&include_24hr_change=true';
+            case 'forex':
+                return isDev
+                    ? '/api/forex/v4/latest/USD'
+                    : 'https://api.exchangerate-api.com/v4/latest/USD';
+            case 'metals':
+                return isDev
+                    ? '/api/metals/v1/latest?api_key=7TZ027KOPOCLBFSWXOSP288SWXOSP&currency=USD&unit=toz'
+                    : 'https://api.metals.dev/v1/latest?api_key=7TZ027KOPOCLBFSWXOSP288SWXOSP&currency=USD&unit=toz';
+            default:
+                return '';
+        }
+    };
+
     // Fetch real crypto prices
     useEffect(() => {
         const fetchCrypto = async () => {
             try {
-                const response = await fetch('/api/crypto/api/v3/simple/price?ids=bitcoin&vs_currencies=usd&include_24hr_change=true');
+                const response = await fetch(getApiUrl('crypto'));
                 const data = await response.json();
 
                 if (data.bitcoin) {
@@ -55,7 +76,7 @@ export default function StockTicker() {
     useEffect(() => {
         const fetchForex = async () => {
             try {
-                const response = await fetch('/api/forex/v4/latest/USD');
+                const response = await fetch(getApiUrl('forex'));
                 const data = await response.json();
 
                 if (data.rates) {
@@ -110,7 +131,7 @@ export default function StockTicker() {
     useEffect(() => {
         const fetchMetals = async () => {
             try {
-                const response = await fetch('/api/metals/v1/latest?api_key=7TZ027KOPOCLBFSWXOSP288SWXOSP&currency=USD&unit=toz');
+                const response = await fetch(getApiUrl('metals'));
                 const data = await response.json();
 
                 if (data.status === 'success' && data.metals) {
