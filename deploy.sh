@@ -18,6 +18,6 @@ git add -A
 git commit -m 'deploy'
 
 # if you are deploying to https://<USERNAME>.github.io/<REPO>
-git push -f git@github.com:shashh-hash/new-escp-finance.git main:gh-pages
+git push -f git@github.com:ESCP-Students-for-Finance/new-escp-finance.git main:gh-pages
 
 cd -
