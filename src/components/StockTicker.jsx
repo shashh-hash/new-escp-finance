@@ -8,17 +8,19 @@ export default function StockTicker() {
         { symbol: 'EUR/USD', value: '1.0480', change: '-0.12%', positive: false, type: 'forex', forexKey: 'EUR' },
         { symbol: 'GBP/USD', value: '1.2580', change: '+0.05%', positive: true, type: 'forex', forexKey: 'GBP' },
         { symbol: 'USD/JPY', value: '154.20', change: '-0.25%', positive: false, type: 'forex', forexKey: 'JPY' },
-        { symbol: 'GOLD', value: '$2,650.00', change: '+1.10%', positive: true, type: 'commodity' },
+        { symbol: 'GOLD', value: '$2,650.00', change: '+1.10%', positive: true, type: 'commodity', metalKey: 'gold' },
+        { symbol: 'SILVER', value: '$31.50', change: '+0.80%', positive: true, type: 'commodity', metalKey: 'silver' },
         { symbol: 'OIL', value: '$69.00', change: '-0.50%', positive: false, type: 'commodity' },
         { symbol: 'BTC', value: '$98,000', change: '+2.80%', positive: true, type: 'crypto', id: 'bitcoin' }
     ]);
     const [prevForexRates, setPrevForexRates] = useState({});
+    const [prevMetalPrices, setPrevMetalPrices] = useState({});
 
     // Fetch real crypto prices
     useEffect(() => {
         const fetchCrypto = async () => {
             try {
-                const response = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd&include_24hr_change=true');
+                const response = await fetch('/api/crypto/api/v3/simple/price?ids=bitcoin&vs_currencies=usd&include_24hr_change=true');
                 const data = await response.json();
 
                 if (data.bitcoin) {
@@ -53,38 +55,48 @@ export default function StockTicker() {
     useEffect(() => {
         const fetchForex = async () => {
             try {
-                const response = await fetch('https://api.exchangerate-api.com/v4/latest/USD');
+                const response = await fetch('/api/forex/v4/latest/USD');
                 const data = await response.json();
 
                 if (data.rates) {
-                    setStocks(prev => prev.map(stock => {
-                        if (stock.type === 'forex' && stock.forexKey) {
-                            const rate = stock.forexKey === 'JPY'
-                                ? data.rates[stock.forexKey]
-                                : 1 / data.rates[stock.forexKey];
+                    setPrevForexRates(prevRates => {
+                        const newStocks = [];
+                        setStocks(prev => prev.map(stock => {
+                            if (stock.type === 'forex' && stock.forexKey) {
+                                const rate = stock.forexKey === 'JPY'
+                                    ? data.rates[stock.forexKey]
+                                    : 1 / data.rates[stock.forexKey];
 
-                            // Calculate change from previous rate
-                            const prevRate = prevForexRates[stock.forexKey];
-                            let changePercent = 0;
-                            if (prevRate) {
-                                changePercent = ((rate - prevRate) / prevRate) * 100;
+                                // Calculate change from previous rate
+                                const prevRate = prevRates[stock.forexKey];
+                                let changePercent = 0;
+                                if (prevRate) {
+                                    changePercent = ((rate - prevRate) / prevRate) * 100;
+                                }
+
+                                return {
+                                    ...stock,
+                                    value: rate.toFixed(4),
+                                    change: `${changePercent >= 0 ? '+' : ''}${changePercent.toFixed(2)}%`,
+                                    positive: changePercent >= 0
+                                };
                             }
+                            return stock;
+                        }));
 
-                            // Update previous rates
-                            setPrevForexRates(p => ({ ...p, [stock.forexKey]: rate }));
-
-                            return {
-                                ...stock,
-                                value: rate.toFixed(4),
-                                change: `${changePercent >= 0 ? '+' : ''}${changePercent.toFixed(2)}%`,
-                                positive: changePercent >= 0
-                            };
-                        }
-                        return stock;
-                    }));
+                        // Update previous rates for next comparison
+                        const newRates = { ...prevRates };
+                        Object.keys(data.rates).forEach(key => {
+                            if (['EUR', 'GBP', 'JPY'].includes(key)) {
+                                newRates[key] = key === 'JPY' ? data.rates[key] : 1 / data.rates[key];
+                            }
+                        });
+                        return newRates;
+                    });
                 }
             } catch (err) {
-                console.log("Forex fetch failed, using simulation");
+                console.log("Forex fetch failed:", err);
+                console.log("Using fallback for forex rates");
             }
         };
 
@@ -92,17 +104,66 @@ export default function StockTicker() {
         const forexInterval = setInterval(fetchForex, 300000); // Fetch every 5 minutes
 
         return () => clearInterval(forexInterval);
-    }, [prevForexRates]);
+    }, []);
+
+    // Fetch real metal prices from Metals.dev
+    useEffect(() => {
+        const fetchMetals = async () => {
+            try {
+                const response = await fetch('/api/metals/v1/latest?api_key=7TZ027KOPOCLBFSWXOSP288SWXOSP&currency=USD&unit=toz');
+                const data = await response.json();
+
+                if (data.status === 'success' && data.metals) {
+                    setPrevMetalPrices(prevPrices => {
+                        setStocks(prev => prev.map(stock => {
+                            if (stock.type === 'commodity' && stock.metalKey) {
+                                const price = data.metals[stock.metalKey];
+
+                                // Calculate change from previous price
+                                const prevPrice = prevPrices[stock.metalKey];
+                                let changePercent = 0;
+                                if (prevPrice) {
+                                    changePercent = ((price - prevPrice) / prevPrice) * 100;
+                                }
+
+                                return {
+                                    ...stock,
+                                    value: '$' + price.toFixed(2),
+                                    change: `${changePercent >= 0 ? '+' : ''}${changePercent.toFixed(2)}%`,
+                                    positive: changePercent >= 0
+                                };
+                            }
+                            return stock;
+                        }));
+
+                        // Update previous prices for next comparison
+                        const newPrices = { ...prevPrices };
+                        if (data.metals.gold) newPrices.gold = data.metals.gold;
+                        if (data.metals.silver) newPrices.silver = data.metals.silver;
+                        return newPrices;
+                    });
+                }
+            } catch (err) {
+                console.log("Metals fetch failed:", err);
+                console.log("Using fallback for metal prices");
+            }
+        };
+
+        fetchMetals();
+        const metalsInterval = setInterval(fetchMetals, 300000); // Fetch every 5 minutes
+
+        return () => clearInterval(metalsInterval);
+    }, []);
 
     // Simulate real-time updates for non-fetched assets
     useEffect(() => {
         const interval = setInterval(() => {
             setStocks(prevStocks =>
                 prevStocks.map(stock => {
-                    // Skip crypto and forex as we're fetching them
-                    if (stock.type === 'crypto' || stock.type === 'forex') return stock;
+                    // Skip crypto, forex, and metals fetched from APIs
+                    if (stock.type === 'crypto' || stock.type === 'forex' || stock.metalKey) return stock;
 
-                    // Realistic random walk
+                    // Realistic random walk for indices and oil
                     const volatility = 0.0002;
                     const randomMove = (Math.random() - 0.5) * volatility;
 
