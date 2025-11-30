@@ -4,6 +4,7 @@ import StockTicker from './StockTicker';
 import SearchOverlay from './SearchOverlay';
 import { useTheme } from '../context/ThemeContext';
 import logo from '../assets/logo.png';
+import logoFull from '../assets/escp_logo_full.png';
 
 export default function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -59,15 +60,9 @@ export default function Header() {
             <div className="shadow-lg" style={{ backgroundColor: 'var(--color-secondary)' }}>
                 <div className="container mx-auto px-4 sm:px-6 lg:px-12 h-[70px] sm:h-[80px] flex items-center justify-between">
                     {/* Logo */}
-                    <Link to="/" className="flex items-center gap-2 sm:gap-4 group z-50" onClick={handleMobileLinkClick}>
-                        {/* Logo Icon */}
-                        <img src={logo} alt="ESCP Students for Finance" className="h-10 sm:h-14 w-auto mr-3 sm:mr-4" />
-
-                        {/* Text */}
-                        <div className="flex flex-col justify-center">
-                            <span className="text-sm sm:text-lg font-bold tracking-wide text-white leading-none font-['Inter']">ESCP STUDENTS</span>
-                            <span className="text-[10px] sm:text-xs font-medium tracking-[0.2em] text-gray-300 leading-none mt-1 uppercase font-['Inter']">FOR FINANCE</span>
-                        </div>
+                    <Link to="/" className="flex items-center group z-50" onClick={handleMobileLinkClick}>
+                        {/* Full Logo Image */}
+                        <img src={logoFull} alt="ESCP Students for Finance" className="h-14 sm:h-20 w-auto object-contain" />
                     </Link>
 
                     {/* Desktop Nav */}
