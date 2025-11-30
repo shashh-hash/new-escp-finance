@@ -46,23 +46,26 @@ export default function StockTicker() {
         }
     };
 
-    // Fetch real crypto prices
+    // Fetch real crypto prices from Alpha Vantage
     useEffect(() => {
         const fetchCrypto = async () => {
             try {
-                const response = await fetch(getApiUrl('crypto'));
+                const getAlphaUrl = getApiUrl('alphavantage');
+                const response = await fetch(getAlphaUrl('BTC'));
                 const data = await response.json();
 
-                if (data.bitcoin) {
+                if (data['Global Quote'] && data['Global Quote']['05. price']) {
+                    const quote = data['Global Quote'];
+                    const price = parseFloat(quote['05. price']);
+                    const changePercent = parseFloat(quote['10. change percent'].replace('%', ''));
+
                     setStocks(prev => prev.map(stock => {
                         if (stock.id === 'bitcoin') {
-                            const price = data.bitcoin.usd;
-                            const change = data.bitcoin.usd_24h_change;
                             return {
                                 ...stock,
                                 value: '$' + Math.round(price).toLocaleString(),
-                                change: `${change >= 0 ? '+' : ''}${change.toFixed(2)}%`,
-                                positive: change >= 0,
+                                change: `${changePercent >= 0 ? '+' : ''}${changePercent.toFixed(2)}%`,
+                                positive: changePercent >= 0,
                                 type: 'crypto',
                                 id: 'bitcoin'
                             };
@@ -71,12 +74,12 @@ export default function StockTicker() {
                     }));
                 }
             } catch (err) {
-                console.log("Crypto fetch failed, using simulation");
+                console.log("Crypto fetch failed:", err);
             }
         };
 
         fetchCrypto();
-        const cryptoInterval = setInterval(fetchCrypto, 60000); // Fetch every minute
+        const cryptoInterval = setInterval(fetchCrypto, 300000); // Fetch every 5 minutes
 
         return () => clearInterval(cryptoInterval);
     }, []);
@@ -206,29 +209,41 @@ export default function StockTicker() {
         return () => clearInterval(alphaInterval);
     }, []);
 
-    // Fetch real metal prices from Metals.dev
+    // Fetch real metal prices from Alpha Vantage
     useEffect(() => {
         const fetchMetals = async () => {
-            try {
-                const response = await fetch(getApiUrl('metals'));
-                const data = await response.json();
+            const metals = [
+                { symbol: 'GLD', stockSymbol: 'GOLD', metalKey: 'gold' }, // Gold ETF
+                { symbol: 'SLV', stockSymbol: 'SILVER', metalKey: 'silver' } // Silver ETF
+            ];
 
-                if (data.status === 'success' && data.metals) {
-                    setPrevMetalPrices(prevPrices => {
+            const getAlphaUrl = getApiUrl('alphavantage');
+
+            for (let i = 0; i < metals.length; i++) {
+                const { symbol, stockSymbol, metalKey } = metals[i];
+
+                // Wait 12 seconds between requests
+                if (i > 0) {
+                    await new Promise(resolve => setTimeout(resolve, 12000));
+                }
+
+                try {
+                    const response = await fetch(getAlphaUrl(symbol));
+                    const data = await response.json();
+
+                    if (data['Global Quote'] && data['Global Quote']['05. price']) {
+                        const quote = data['Global Quote'];
+                        const currentPrice = parseFloat(quote['05. price']);
+                        const changePercent = parseFloat(quote['10. change percent'].replace('%', ''));
+
+                        // Approximate metal price from ETF (GLD ~= gold/10, SLV ~= silver)
+                        const metalPrice = metalKey === 'gold' ? currentPrice * 10 : currentPrice;
+
                         setStocks(prev => prev.map(stock => {
-                            if (stock.type === 'commodity' && stock.metalKey) {
-                                const price = data.metals[stock.metalKey];
-
-                                // Calculate change from previous price
-                                const prevPrice = prevPrices[stock.metalKey];
-                                let changePercent = 0;
-                                if (prevPrice) {
-                                    changePercent = ((price - prevPrice) / prevPrice) * 100;
-                                }
-
+                            if (stock.metalKey === metalKey) {
                                 return {
                                     ...stock,
-                                    value: '$' + price.toFixed(2),
+                                    value: '$' + metalPrice.toFixed(2),
                                     change: `${changePercent >= 0 ? '+' : ''}${changePercent.toFixed(2)}%`,
                                     positive: changePercent >= 0
                                 };
@@ -236,16 +251,14 @@ export default function StockTicker() {
                             return stock;
                         }));
 
-                        // Update previous prices for next comparison
-                        const newPrices = { ...prevPrices };
-                        if (data.metals.gold) newPrices.gold = data.metals.gold;
-                        if (data.metals.silver) newPrices.silver = data.metals.silver;
-                        return newPrices;
-                    });
+                        setPrevMetalPrices(prevPrices => ({
+                            ...prevPrices,
+                            [metalKey]: metalPrice
+                        }));
+                    }
+                } catch (err) {
+                    console.log(`Metal fetch failed for ${stockSymbol}:`, err);
                 }
-            } catch (err) {
-                console.log("Metals fetch failed:", err);
-                console.log("Using fallback for metal prices");
             }
         };
 
