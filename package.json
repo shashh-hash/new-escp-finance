@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "build:gh": "vite build --base=/new-escp-finance/",
     "lint": "eslint .",
     "preview": "vite preview"
   },
