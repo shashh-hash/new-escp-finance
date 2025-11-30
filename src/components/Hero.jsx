@@ -1,12 +1,13 @@
-import React, { memo } from 'react';
+import React, { memo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Slider from 'react-slick';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import heroVideo from '../assets/hero_bg.mp4';
 
 const Hero = memo(() => {
+    const [currentSlide, setCurrentSlide] = useState(0);
+
     const settings = {
         dots: true,
         infinite: true,
@@ -18,13 +19,14 @@ const Hero = memo(() => {
         fade: true,
         arrows: false,
         pauseOnHover: false,
+        beforeChange: (current, next) => setCurrentSlide(next),
         appendDots: dots => (
             <div style={{ bottom: "40px" }}>
                 <ul className="m-0 p-0 flex justify-center gap-3"> {dots} </ul>
             </div>
         ),
         customPaging: i => (
-            <div className="w-12 h-1 bg-white/30 hover:bg-white transition-all duration-300 rounded-full cursor-pointer"></div>
+            <div className={`w-12 h-1 transition-all duration-300 rounded-full cursor-pointer ${i === currentSlide ? 'bg-white' : 'bg-white/30 hover:bg-white/50'}`}></div>
         )
     };
 
@@ -33,22 +35,19 @@ const Hero = memo(() => {
             title: "ESCP Students for Finance",
             subtitle: "Discover a new chapter at the Turin Campus",
             cta: "Read Our Mission",
-            link: "/mission",
-            badge: "Turin Campus"
+            link: "/mission"
         },
         {
             title: "Meet the Team",
             subtitle: "Building the future of finance at ESCP",
             cta: "View Team",
-            link: "/about",
-            badge: "Our People"
+            link: "/about"
         },
         {
             title: "Market Momentum",
             subtitle: "Explore the latest articles and market analysis",
             cta: "Read Articles",
-            link: "/articles",
-            badge: "Latest Insights"
+            link: "/articles"
         }
     ];
 
@@ -65,7 +64,7 @@ const Hero = memo(() => {
                     playsInline
                     className="w-full h-full object-cover opacity-90"
                 >
-                    <source src={heroVideo} type="video/mp4" />
+                    <source src="https://videos.pexels.com/video-files/3191288/3191288-hd_1920_1080_25fps.mp4" type="video/mp4" />
                     Your browser does not support the video tag.
                 </video>
             </div>
@@ -78,32 +77,42 @@ const Hero = memo(() => {
                             <div className="h-full flex items-center justify-center text-center">
                                 <div className="container mx-auto px-4 sm:px-6 lg:px-12">
                                     <div className="max-w-5xl mx-auto">
-                                        <motion.div
-                                            initial={{ opacity: 0, y: 30 }}
-                                            whileInView={{ opacity: 1, y: 0 }}
-                                            transition={{ duration: 0.8, ease: "easeOut" }}
-                                        >
-                                            <span className="inline-block py-1 px-3 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white/90 text-sm font-medium tracking-widest uppercase mb-6">
-                                                {slide.badge}
-                                            </span>
-                                        </motion.div>
+                                        {/* Animate content only when slide is active */}
+                                        {index === currentSlide && (
+                                            <>
+                                                <motion.h1
+                                                    initial={{ opacity: 0, y: 40 }}
+                                                    animate={{ opacity: 1, y: 0 }}
+                                                    transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+                                                    className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-light tracking-tight text-white mb-8 drop-shadow-2xl"
+                                                >
+                                                    {slide.title}
+                                                </motion.h1>
 
-                                        <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-light tracking-tight text-white mb-8 drop-shadow-2xl">
-                                            {slide.title}
-                                        </h1>
+                                                <motion.p
+                                                    initial={{ opacity: 0, y: 30 }}
+                                                    animate={{ opacity: 1, y: 0 }}
+                                                    transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }}
+                                                    className="text-lg sm:text-xl md:text-2xl text-gray-200 mb-10 font-light tracking-wide max-w-3xl mx-auto leading-relaxed drop-shadow-md"
+                                                >
+                                                    {slide.subtitle}
+                                                </motion.p>
 
-                                        <p className="text-lg sm:text-xl md:text-2xl text-gray-200 mb-10 font-light tracking-wide max-w-3xl mx-auto leading-relaxed drop-shadow-md">
-                                            {slide.subtitle}
-                                        </p>
-
-                                        <div className="flex justify-center">
-                                            <Link
-                                                to={slide.link}
-                                                className="px-8 py-4 bg-white text-black rounded-full text-base font-bold uppercase tracking-widest hover:bg-gray-200 transition-all transform hover:-translate-y-1 shadow-lg hover:shadow-xl"
-                                            >
-                                                {slide.cta}
-                                            </Link>
-                                        </div>
+                                                <motion.div
+                                                    initial={{ opacity: 0, y: 20 }}
+                                                    animate={{ opacity: 1, y: 0 }}
+                                                    transition={{ duration: 0.8, ease: "easeOut", delay: 0.6 }}
+                                                    className="flex justify-center"
+                                                >
+                                                    <Link
+                                                        to={slide.link}
+                                                        className="px-8 py-4 bg-white text-black rounded-full text-base font-bold uppercase tracking-widest hover:bg-gray-200 transition-all transform hover:-translate-y-1 shadow-lg hover:shadow-xl"
+                                                    >
+                                                        {slide.cta}
+                                                    </Link>
+                                                </motion.div>
+                                            </>
+                                        )}
                                     </div>
                                 </div>
                             </div>
