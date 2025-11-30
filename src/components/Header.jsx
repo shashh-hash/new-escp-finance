@@ -61,9 +61,9 @@ export default function Header() {
                     {/* Logo */}
                     <Link to="/" className="flex items-center gap-2 sm:gap-4 group z-50" onClick={handleMobileLinkClick}>
                         <img src={logo} alt="ESCP Students for Finance" className="h-12 sm:h-16 w-auto" />
-                        <div className="flex flex-col justify-center">
-                            <span className="text-sm sm:text-xl tracking-[0.15em] font-['Cinzel'] text-white leading-none font-semibold">ESCP STUDENTS</span>
-                            <span className="text-xs sm:text-base tracking-[0.3em] font-['Cinzel'] text-white leading-none font-medium mt-1 ml-0.5">FOR FINANCE</span>
+                        <div className="flex flex-col justify-center gap-0.5">
+                            <span className="text-sm sm:text-lg tracking-[0.15em] font-['Cinzel'] text-white leading-none font-semibold">ESCP STUDENTS</span>
+                            <span className="text-sm sm:text-lg tracking-[0.15em] font-['Cinzel'] text-white leading-none font-semibold">FOR FINANCE</span>
                         </div>
                     </Link>
 
@@ -85,7 +85,7 @@ export default function Header() {
                                         <span
                                             className="absolute bottom-0 left-0 h-0.5 transition-all duration-300"
                                             style={{
-                                                backgroundColor: 'var(--color-accent)',
+                                                backgroundColor: '#E5E7EB', // Light gray
                                                 width: isActive(item.path) ? '100%' : '0'
                                             }}></span>
                                     </Link>
