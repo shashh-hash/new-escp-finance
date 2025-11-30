@@ -25,6 +25,11 @@ export default defineConfig({
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api\/crypto/, ''),
       },
+      '/api/alphavantage': {
+        target: 'https://www.alphavantage.co',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api\/alphavantage/, ''),
+      },
     },
   },
 })

@@ -15,6 +15,7 @@ export default function StockTicker() {
     ]);
     const [prevForexRates, setPrevForexRates] = useState({});
     const [prevMetalPrices, setPrevMetalPrices] = useState({});
+    const [prevIndexPrices, setPrevIndexPrices] = useState({});
 
     // Helper to get correct URL based on environment
     const getApiUrl = (type) => {
@@ -32,6 +33,14 @@ export default function StockTicker() {
                 return isDev
                     ? '/api/metals/v1/latest?api_key=7TZ027KOPOCLBFSWXOSP288SWXOSP&currency=USD&unit=toz'
                     : 'https://api.metals.dev/v1/latest?api_key=7TZ027KOPOCLBFSWXOSP288SWXOSP&currency=USD&unit=toz';
+            case 'alphavantage':
+                return (symbol) => {
+                    const apiKey = 'NOX2Z63WS5P8KKHH';
+                    const alphaUrl = `https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${symbol}&apikey=${apiKey}`;
+                    return isDev
+                        ? `/api/alphavantage/query?function=GLOBAL_QUOTE&symbol=${symbol}&apikey=${apiKey}`
+                        : alphaUrl;
+                };
             default:
                 return '';
         }
@@ -127,6 +136,76 @@ export default function StockTicker() {
         return () => clearInterval(forexInterval);
     }, []);
 
+    // Fetch real indices and oil prices from Alpha Vantage
+    useEffect(() => {
+        const fetchAlphaVantageData = async () => {
+            const symbols = [
+                { symbol: 'SPY', stockSymbol: 'S&P 500', type: 'index' }, // Using SPY ETF as proxy for S&P 500
+                { symbol: 'QQQ', stockSymbol: 'NASDAQ', type: 'index' }, // Using QQQ ETF as proxy for NASDAQ
+                { symbol: 'DIA', stockSymbol: 'DOW', type: 'index' }, // Using DIA ETF as proxy for DOW
+                { symbol: 'USO', stockSymbol: 'OIL', type: 'commodity' } // Using USO ETF as proxy for Oil
+            ];
+
+            const getAlphaUrl = getApiUrl('alphavantage');
+
+            // Add delay between requests to respect API rate limits
+            for (let i = 0; i < symbols.length; i++) {
+                const { symbol, stockSymbol, type } = symbols[i];
+
+                // Wait 12 seconds between requests (5 calls per minute limit)
+                if (i > 0) {
+                    await new Promise(resolve => setTimeout(resolve, 12000));
+                }
+
+                try {
+                    const response = await fetch(getAlphaUrl(symbol));
+                    const data = await response.json();
+
+                    if (data['Global Quote'] && data['Global Quote']['05. price']) {
+                        const quote = data['Global Quote'];
+                        const currentPrice = parseFloat(quote['05. price']);
+                        const changePercent = parseFloat(quote['10. change percent'].replace('%', ''));
+
+                        setStocks(prev => prev.map(stock => {
+                            if (stock.symbol === stockSymbol) {
+                                // For indices (ETFs), multiply by approximate factor to get index value
+                                let displayValue = currentPrice;
+                                if (type === 'index') {
+                                    if (stockSymbol === 'S&P 500') displayValue = currentPrice * 10; // SPY ~= S&P/10
+                                    else if (stockSymbol === 'NASDAQ') displayValue = currentPrice * 40; // QQQ ~= NASDAQ/40
+                                    else if (stockSymbol === 'DOW') displayValue = currentPrice * 100; // DIA ~= DOW/100
+                                }
+
+                                return {
+                                    ...stock,
+                                    value: type === 'commodity'
+                                        ? '$' + displayValue.toFixed(2)
+                                        : displayValue.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }),
+                                    change: `${changePercent >= 0 ? '+' : ''}${changePercent.toFixed(2)}%`,
+                                    positive: changePercent >= 0
+                                };
+                            }
+                            return stock;
+                        }));
+
+                        setPrevIndexPrices(prevPrices => ({
+                            ...prevPrices,
+                            [stockSymbol]: currentPrice
+                        }));
+                    }
+                } catch (err) {
+                    console.log(`Alpha Vantage fetch failed for ${stockSymbol}:`, err);
+                }
+            }
+        };
+
+        fetchAlphaVantageData();
+        // Fetch every 5 minutes (well within the 25 calls/day limit)
+        const alphaInterval = setInterval(fetchAlphaVantageData, 300000);
+
+        return () => clearInterval(alphaInterval);
+    }, []);
+
     // Fetch real metal prices from Metals.dev
     useEffect(() => {
         const fetchMetals = async () => {
@@ -176,50 +255,6 @@ export default function StockTicker() {
         return () => clearInterval(metalsInterval);
     }, []);
 
-    // Simulate real-time updates for non-fetched assets
-    useEffect(() => {
-        const interval = setInterval(() => {
-            setStocks(prevStocks =>
-                prevStocks.map(stock => {
-                    // Skip crypto, forex, and metals fetched from APIs
-                    if (stock.type === 'crypto' || stock.type === 'forex' || stock.metalKey) return stock;
-
-                    // Realistic random walk for indices and oil
-                    const volatility = 0.0002;
-                    const randomMove = (Math.random() - 0.5) * volatility;
-
-                    let currentValue = parseFloat(stock.value.replace(/[$,]/g, ''));
-                    const newValue = currentValue * (1 + randomMove);
-
-                    // Update change percentage slightly
-                    const currentChange = parseFloat(stock.change.replace('%', ''));
-                    const newChange = (currentChange + (randomMove * 100)).toFixed(2);
-                    const isPositive = newChange >= 0;
-
-                    // Format value based on symbol
-                    let formattedValue;
-                    if (stock.type === 'forex') {
-                        formattedValue = newValue.toFixed(4);
-                    } else if (stock.type === 'commodity') {
-                        formattedValue = '$' + newValue.toFixed(2);
-                    } else if (stock.type === 'index') {
-                        formattedValue = newValue.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-                    } else {
-                        formattedValue = newValue.toLocaleString('en-US');
-                    }
-
-                    return {
-                        ...stock,
-                        value: formattedValue,
-                        change: `${isPositive ? '+' : ''}${newChange}%`,
-                        positive: isPositive
-                    };
-                })
-            );
-        }, 3000);
-
-        return () => clearInterval(interval);
-    }, []);
 
     return (
         <div className="bg-[#0A1929] border-b border-white/10 overflow-hidden h-12 flex items-center relative z-20">
