@@ -66,7 +66,7 @@ export default function Header() {
                             src={logoFull}
                             alt="ESCP Students for Finance"
                             className="h-16 sm:h-24 w-auto object-contain transition-opacity hover:opacity-90"
-                            style={{ filter: 'brightness(0) invert(1)' }}
+                            style={{ filter: 'invert(1) grayscale(1) brightness(1.5)' }}
                         />
                     </Link>
 
