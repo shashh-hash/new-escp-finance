@@ -94,7 +94,7 @@ export default function StockTicker() {
                     }));
                 }
             } catch (err) {
-                console.log(\"Forex fetch failed:\", err);
+                console.log("Forex fetch failed:", err);
             }
         };
 
