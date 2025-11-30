@@ -61,15 +61,12 @@ export default function Header() {
                     {/* Logo */}
                     <Link to="/" className="flex items-center gap-2 sm:gap-4 group z-50" onClick={handleMobileLinkClick}>
                         {/* Logo Icon */}
-                        <img src={logo} alt="ESCP Students for Finance" className="h-10 sm:h-14 w-auto" />
-
-                        {/* Vertical Separator */}
-                        <div className="h-8 sm:h-10 w-[1px] bg-white/30 mx-3 sm:mx-4"></div>
+                        <img src={logo} alt="ESCP Students for Finance" className="h-10 sm:h-14 w-auto mr-3 sm:mr-4" />
 
                         {/* Text */}
                         <div className="flex flex-col justify-center">
-                            <span className="text-xs sm:text-base tracking-wide text-white leading-tight font-medium uppercase font-['Inter']">ESCP STUDENTS</span>
-                            <span className="text-xs sm:text-base tracking-wide text-white leading-tight font-medium uppercase font-['Inter']">FOR FINANCE</span>
+                            <span className="text-sm sm:text-lg font-bold tracking-wide text-white leading-none font-['Inter']">ESCP STUDENTS</span>
+                            <span className="text-[10px] sm:text-xs font-medium tracking-[0.2em] text-gray-300 leading-none mt-1 uppercase font-['Inter']">FOR FINANCE</span>
                         </div>
                     </Link>
 
