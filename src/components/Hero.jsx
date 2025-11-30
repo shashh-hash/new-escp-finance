@@ -30,7 +30,7 @@ const Hero = memo(() => {
         {
             image: "https://images.unsplash.com/photo-1515187029135-18ee286d815b?auto=format&fit=crop&q=60&w=800",
             title: "ESCP Students for Finance",
-            subtitle: "The New Chapter – Turin Campus",
+            subtitle: "Discover a new chapter at the Turin Campus",
             cta: "Read Our Mission",
             link: "/mission"
         },
@@ -44,7 +44,7 @@ const Hero = memo(() => {
         {
             image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=60&w=800",
             title: "Market Momentum",
-            subtitle: "Latest articles and market analysis",
+            subtitle: "Explore the latest articles and market analysis",
             cta: "Read Articles",
             link: "/articles"
         }
