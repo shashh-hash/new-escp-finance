@@ -4,7 +4,7 @@
 set -e
 
 # build
-npm run build
+VITE_BASE_PATH=/new-escp-finance/ npm run build
 
 # navigate into the build output directory
 cd dist
