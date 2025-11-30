@@ -2,273 +2,115 @@ import React, { useState, useEffect } from 'react';
 
 export default function StockTicker() {
     const [stocks, setStocks] = useState([
-        { symbol: 'S&P 500', value: '5,980.00', change: '+0.45%', positive: true, type: 'index' },
-        { symbol: 'NASDAQ', value: '19,000.00', change: '+0.82%', positive: true, type: 'index' },
-        { symbol: 'DOW', value: '44,700.00', change: '+0.15%', positive: true, type: 'index' },
+        { symbol: 'S&P 500', value: '5,980.00', change: '+0.45%', positive: true, type: 'index', apiSymbol: 'SPY' },
+        { symbol: 'NASDAQ', value: '19,000.00', change: '+0.82%', positive: true, type: 'index', apiSymbol: 'QQQ' },
+        { symbol: 'DOW', value: '44,700.00', change: '+0.15%', positive: true, type: 'index', apiSymbol: 'DIA' },
         { symbol: 'EUR/USD', value: '1.0480', change: '-0.12%', positive: false, type: 'forex', forexKey: 'EUR' },
         { symbol: 'GBP/USD', value: '1.2580', change: '+0.05%', positive: true, type: 'forex', forexKey: 'GBP' },
         { symbol: 'USD/JPY', value: '154.20', change: '-0.25%', positive: false, type: 'forex', forexKey: 'JPY' },
-        { symbol: 'GOLD', value: '$2,650.00', change: '+1.10%', positive: true, type: 'commodity', metalKey: 'gold' },
-        { symbol: 'SILVER', value: '$31.50', change: '+0.80%', positive: true, type: 'commodity', metalKey: 'silver' },
-        { symbol: 'OIL', value: '$69.00', change: '-0.50%', positive: false, type: 'commodity' },
-        { symbol: 'BTC', value: '$98,000', change: '+2.80%', positive: true, type: 'crypto', id: 'bitcoin' }
+        { symbol: 'GOLD', value: '$2,650.00', change: '+1.10%', positive: true, type: 'commodity', apiSymbol: 'GLD' },
+        { symbol: 'SILVER', value: '$31.50', change: '+0.80%', positive: true, type: 'commodity', apiSymbol: 'SLV' },
+        { symbol: 'OIL', value: '$69.00', change: '-0.50%', positive: false, type: 'commodity', apiSymbol: 'USO' },
+        { symbol: 'BTC', value: '$98,000', change: '+2.80%', positive: true, type: 'crypto', apiSymbol: 'BTCUSD' }
     ]);
-    const [prevForexRates, setPrevForexRates] = useState({});
-    const [prevMetalPrices, setPrevMetalPrices] = useState({});
-    const [prevIndexPrices, setPrevIndexPrices] = useState({});
 
-    // Helper to get correct URL based on environment
-    const getApiUrl = (type) => {
-        const isDev = import.meta.env.DEV;
-        switch (type) {
-            case 'crypto':
-                return isDev
-                    ? '/api/crypto/api/v3/simple/price?ids=bitcoin&vs_currencies=usd&include_24hr_change=true'
-                    : 'https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd&include_24hr_change=true';
-            case 'forex':
-                return isDev
-                    ? '/api/forex/v4/latest/USD'
-                    : 'https://api.exchangerate-api.com/v4/latest/USD';
-            case 'metals':
-                return isDev
-                    ? '/api/metals/v1/latest?api_key=7TZ027KOPOCLBFSWXOSP288SWXOSP&currency=USD&unit=toz'
-                    : 'https://api.metals.dev/v1/latest?api_key=7TZ027KOPOCLBFSWXOSP288SWXOSP&currency=USD&unit=toz';
-            case 'alphavantage':
-                return (symbol) => {
-                    const apiKey = 'NOX2Z63WS5P8KKHH';
-                    const alphaUrl = `https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${symbol}&apikey=${apiKey}`;
-                    return isDev
-                        ? `/api/alphavantage/query?function=GLOBAL_QUOTE&symbol=${symbol}&apikey=${apiKey}`
-                        : alphaUrl;
-                };
-            default:
-                return '';
-        }
-    };
+    const ALPHA_VANTAGE_KEY = 'NOX2Z63WS5P8KKHH';
 
-    // Fetch real crypto prices from Alpha Vantage
+    // Fetch all data from Alpha Vantage
     useEffect(() => {
-        const fetchCrypto = async () => {
+        const fetchAllData = async () => {
+            const symbols = stocks.filter(s => s.apiSymbol).map(s => s.apiSymbol);
+
+            for (let i = 0; i < symbols.length; i++) {
+                const symbol = symbols[i];
+
+                // Wait 12 seconds between requests to respect rate limits
+                if (i > 0) {
+                    await new Promise(resolve => setTimeout(resolve, 12000));
+                }
+
+                try {
+                    const url = `https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${symbol}&apikey=${ALPHA_VANTAGE_KEY}`;
+                    const response = await fetch(url);
+                    const data = await response.json();
+
+                    if (data['Global Quote'] && data['Global Quote']['05. price']) {
+                        const quote = data['Global Quote'];
+                        const price = parseFloat(quote['05. price']);
+                        const changePercent = parseFloat(quote['10. change percent'].replace('%', ''));
+
+                        setStocks(prev => prev.map(stock => {
+                            if (stock.apiSymbol === symbol) {
+                                let displayValue = price;
+
+                                // Scale ETF prices to approximate index/commodity values
+                                if (stock.symbol === 'S&P 500') displayValue = price * 10;
+                                else if (stock.symbol === 'NASDAQ') displayValue = price * 40;
+                                else if (stock.symbol === 'DOW') displayValue = price * 100;
+                                else if (stock.symbol === 'GOLD') displayValue = price * 10;
+                                // SILVER (SLV), OIL (USO), BTC use direct price
+
+                                const formattedValue = stock.type === 'commodity' || stock.type === 'crypto'
+                                    ? '$' + (stock.type === 'crypto' ? Math.round(displayValue).toLocaleString() : displayValue.toFixed(2))
+                                    : displayValue.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+
+                                return {
+                                    ...stock,
+                                    value: formattedValue,
+                                    change: `${changePercent >= 0 ? '+' : ''}${changePercent.toFixed(2)}%`,
+                                    positive: changePercent >= 0
+                                };
+                            }
+                            return stock;
+                        }));
+                    }
+                } catch (err) {
+                    console.log(`Alpha Vantage fetch failed for ${symbol}:`, err);
+                }
+            }
+        };
+
+        // Fetch forex data separately (still works well)
+        const fetchForex = async () => {
             try {
-                const getAlphaUrl = getApiUrl('alphavantage');
-                // Use BTCUSD for Bitcoin (crypto forex pair)
-                const response = await fetch(getAlphaUrl('BTCUSD'));
+                const response = await fetch('https://api.exchangerate-api.com/v4/latest/USD');
                 const data = await response.json();
 
-                if (data['Global Quote'] && data['Global Quote']['05. price']) {
-                    const quote = data['Global Quote'];
-                    const price = parseFloat(quote['05. price']);
-                    const changePercent = parseFloat(quote['10. change percent'].replace('%', ''));
-
+                if (data.rates) {
                     setStocks(prev => prev.map(stock => {
-                        if (stock.id === 'bitcoin') {
+                        if (stock.type === 'forex' && stock.forexKey) {
+                            const rate = stock.forexKey === 'JPY'
+                                ? data.rates[stock.forexKey]
+                                : 1 / data.rates[stock.forexKey];
+
                             return {
                                 ...stock,
-                                value: '$' + Math.round(price).toLocaleString(),
-                                change: `${changePercent >= 0 ? '+' : ''}${changePercent.toFixed(2)}%`,
-                                positive: changePercent >= 0,
-                                type: 'crypto',
-                                id: 'bitcoin'
+                                value: rate.toFixed(4),
+                                change: stock.change, // Keep existing change for now
+                                positive: stock.positive
                             };
                         }
                         return stock;
                     }));
                 }
             } catch (err) {
-                console.log("Crypto fetch failed:", err);
+                console.log(\"Forex fetch failed:\", err);
             }
         };
 
-        fetchCrypto();
-        const cryptoInterval = setInterval(fetchCrypto, 300000); // Fetch every 5 minutes
-
-        return () => clearInterval(cryptoInterval);
-    }, []);
-
-    // Fetch real forex rates
-    useEffect(() => {
-        const fetchForex = async () => {
-            try {
-                const response = await fetch(getApiUrl('forex'));
-                const data = await response.json();
-
-                if (data.rates) {
-                    setPrevForexRates(prevRates => {
-                        const newStocks = [];
-                        setStocks(prev => prev.map(stock => {
-                            if (stock.type === 'forex' && stock.forexKey) {
-                                const rate = stock.forexKey === 'JPY'
-                                    ? data.rates[stock.forexKey]
-                                    : 1 / data.rates[stock.forexKey];
-
-                                // Calculate change from previous rate
-                                const prevRate = prevRates[stock.forexKey];
-                                let changePercent = 0;
-                                if (prevRate) {
-                                    changePercent = ((rate - prevRate) / prevRate) * 100;
-                                }
-
-                                return {
-                                    ...stock,
-                                    value: rate.toFixed(4),
-                                    change: `${changePercent >= 0 ? '+' : ''}${changePercent.toFixed(2)}%`,
-                                    positive: changePercent >= 0
-                                };
-                            }
-                            return stock;
-                        }));
-
-                        // Update previous rates for next comparison
-                        const newRates = { ...prevRates };
-                        Object.keys(data.rates).forEach(key => {
-                            if (['EUR', 'GBP', 'JPY'].includes(key)) {
-                                newRates[key] = key === 'JPY' ? data.rates[key] : 1 / data.rates[key];
-                            }
-                        });
-                        return newRates;
-                    });
-                }
-            } catch (err) {
-                console.log("Forex fetch failed:", err);
-                console.log("Using fallback for forex rates");
-            }
-        };
-
+        // Initial fetch
+        fetchAllData();
         fetchForex();
-        const forexInterval = setInterval(fetchForex, 300000); // Fetch every 5 minutes
 
-        return () => clearInterval(forexInterval);
-    }, []);
+        // Set up intervals
+        const alphaInterval = setInterval(fetchAllData, 300000); // Every 5 minutes
+        const forexInterval = setInterval(fetchForex, 300000); // Every 5 minutes
 
-    // Fetch real indices and oil prices from Alpha Vantage
-    useEffect(() => {
-        const fetchAlphaVantageData = async () => {
-            const symbols = [
-                { symbol: 'SPY', stockSymbol: 'S&P 500', type: 'index' }, // Using SPY ETF as proxy for S&P 500
-                { symbol: 'QQQ', stockSymbol: 'NASDAQ', type: 'index' }, // Using QQQ ETF as proxy for NASDAQ
-                { symbol: 'DIA', stockSymbol: 'DOW', type: 'index' }, // Using DIA ETF as proxy for DOW
-                { symbol: 'USO', stockSymbol: 'OIL', type: 'commodity' } // Using USO ETF as proxy for Oil
-            ];
-
-            const getAlphaUrl = getApiUrl('alphavantage');
-
-            // Add delay between requests to respect API rate limits
-            for (let i = 0; i < symbols.length; i++) {
-                const { symbol, stockSymbol, type } = symbols[i];
-
-                // Wait 12 seconds between requests (5 calls per minute limit)
-                if (i > 0) {
-                    await new Promise(resolve => setTimeout(resolve, 12000));
-                }
-
-                try {
-                    const response = await fetch(getAlphaUrl(symbol));
-                    const data = await response.json();
-
-                    if (data['Global Quote'] && data['Global Quote']['05. price']) {
-                        const quote = data['Global Quote'];
-                        const currentPrice = parseFloat(quote['05. price']);
-                        const changePercent = parseFloat(quote['10. change percent'].replace('%', ''));
-
-                        setStocks(prev => prev.map(stock => {
-                            if (stock.symbol === stockSymbol) {
-                                // For indices (ETFs), multiply by approximate factor to get index value
-                                let displayValue = currentPrice;
-                                if (type === 'index') {
-                                    if (stockSymbol === 'S&P 500') displayValue = currentPrice * 10; // SPY ~= S&P/10
-                                    else if (stockSymbol === 'NASDAQ') displayValue = currentPrice * 40; // QQQ ~= NASDAQ/40
-                                    else if (stockSymbol === 'DOW') displayValue = currentPrice * 100; // DIA ~= DOW/100
-                                }
-
-                                return {
-                                    ...stock,
-                                    value: type === 'commodity'
-                                        ? '$' + displayValue.toFixed(2)
-                                        : displayValue.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }),
-                                    change: `${changePercent >= 0 ? '+' : ''}${changePercent.toFixed(2)}%`,
-                                    positive: changePercent >= 0
-                                };
-                            }
-                            return stock;
-                        }));
-
-                        setPrevIndexPrices(prevPrices => ({
-                            ...prevPrices,
-                            [stockSymbol]: currentPrice
-                        }));
-                    }
-                } catch (err) {
-                    console.log(`Alpha Vantage fetch failed for ${stockSymbol}:`, err);
-                }
-            }
+        return () => {
+            clearInterval(alphaInterval);
+            clearInterval(forexInterval);
         };
-
-        fetchAlphaVantageData();
-        // Fetch every 5 minutes (well within the 25 calls/day limit)
-        const alphaInterval = setInterval(fetchAlphaVantageData, 300000);
-
-        return () => clearInterval(alphaInterval);
     }, []);
-
-    // Fetch real metal prices from Alpha Vantage
-    useEffect(() => {
-        const fetchMetals = async () => {
-            const metals = [
-                { symbol: 'GLD', stockSymbol: 'GOLD', metalKey: 'gold' }, // Gold ETF
-                { symbol: 'SLV', stockSymbol: 'SILVER', metalKey: 'silver' } // Silver ETF
-            ];
-
-            const getAlphaUrl = getApiUrl('alphavantage');
-
-            for (let i = 0; i < metals.length; i++) {
-                const { symbol, stockSymbol, metalKey } = metals[i];
-
-                // Wait 12 seconds between requests
-                if (i > 0) {
-                    await new Promise(resolve => setTimeout(resolve, 12000));
-                }
-
-                try {
-                    const response = await fetch(getAlphaUrl(symbol));
-                    const data = await response.json();
-
-                    if (data['Global Quote'] && data['Global Quote']['05. price']) {
-                        const quote = data['Global Quote'];
-                        const currentPrice = parseFloat(quote['05. price']);
-                        const changePercent = parseFloat(quote['10. change percent'].replace('%', ''));
-
-                        // Approximate metal price from ETF (GLD ~= gold/10, SLV ~= silver)
-                        const metalPrice = metalKey === 'gold' ? currentPrice * 10 : currentPrice;
-
-                        setStocks(prev => prev.map(stock => {
-                            if (stock.metalKey === metalKey) {
-                                return {
-                                    ...stock,
-                                    value: '$' + metalPrice.toFixed(2),
-                                    change: `${changePercent >= 0 ? '+' : ''}${changePercent.toFixed(2)}%`,
-                                    positive: changePercent >= 0
-                                };
-                            }
-                            return stock;
-                        }));
-
-                        setPrevMetalPrices(prevPrices => ({
-                            ...prevPrices,
-                            [metalKey]: metalPrice
-                        }));
-                    }
-                } catch (err) {
-                    console.log(`Metal fetch failed for ${stockSymbol}:`, err);
-                }
-            }
-        };
-
-        fetchMetals();
-        const metalsInterval = setInterval(fetchMetals, 300000); // Fetch every 5 minutes
-
-        return () => clearInterval(metalsInterval);
-    }, []);
-
 
     return (
         <div className="bg-[#0A1929] border-b border-white/10 overflow-hidden h-12 flex items-center relative z-20">
