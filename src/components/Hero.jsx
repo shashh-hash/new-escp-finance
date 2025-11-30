@@ -78,7 +78,7 @@ const Hero = memo(() => {
                                     </p>
                                     <Link
                                         to={slide.link}
-                                        className="inline-block px-8 py-4 bg-gradient-to-r from-[#D4AF37] to-[#B59025] hover:from-[#E8C547] hover:to-[#D4AF37] text-white rounded-full text-base font-bold uppercase tracking-widest transition-all shadow-lg hover:shadow-[#D4AF37]/50 transform hover:-translate-y-1"
+                                        className="inline-block px-8 py-4 bg-white/10 hover:bg-white/20 text-white rounded-full text-base font-bold uppercase tracking-widest transition-all border border-white/30 hover:border-white/50 transform hover:-translate-y-1"
                                     >
                                         {slide.cta}
                                     </Link>

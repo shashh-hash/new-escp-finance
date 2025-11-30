@@ -61,9 +61,9 @@ export default function Header() {
                     {/* Logo */}
                     <Link to="/" className="flex items-center gap-2 sm:gap-4 group z-50" onClick={handleMobileLinkClick}>
                         <img src={logo} alt="ESCP Students for Finance" className="h-12 sm:h-16 w-auto" />
-                        <div className="flex flex-col">
-                            <span className="text-sm sm:text-xl tracking-[0.15em] font-serif transition-colors leading-none" style={{ color: 'var(--color-text)' }}>ESCP STUDENTS</span>
-                            <span className="text-[10px] sm:text-xs tracking-[0.4em] font-sans transition-colors leading-none mt-1" style={{ color: 'var(--color-accent)' }}>FOR FINANCE</span>
+                        <div className="flex flex-col gap-1">
+                            <span className="text-sm sm:text-xl tracking-[0.15em] font-serif transition-colors leading-none text-white">ESCP STUDENTS</span>
+                            <span className="text-sm sm:text-xl tracking-[0.15em] font-serif transition-colors leading-none text-white">FOR FINANCE</span>
                         </div>
                     </Link>
 
@@ -132,7 +132,7 @@ export default function Header() {
                                         to={item.path}
                                         onClick={handleMobileLinkClick}
                                         className={`block py-4 px-4 text-base font-medium uppercase tracking-wider transition-all touch-manipulation ${isActive(item.path)
-                                            ? 'bg-white/10 text-white border-l-4 border-[#D4AF37]'
+                                            ? 'bg-white/10 text-white border-l-4 border-white'
                                             : 'text-gray-400 hover:bg-white/5 hover:text-white border-l-4 border-transparent'
                                             }`}>
                                         {item.name}
