@@ -61,10 +61,13 @@ export default function Header() {
                 <div className="container mx-auto px-4 sm:px-6 lg:px-12 h-[70px] sm:h-[80px] flex items-center justify-between">
                     {/* Logo */}
                     <Link to="/" className="flex items-center group z-50" onClick={handleMobileLinkClick}>
-                        {/* Full Logo Image with White Background for Visibility */}
-                        <div className="bg-white px-3 py-1.5 rounded-lg shadow-sm">
-                            <img src={logoFull} alt="ESCP Students for Finance" className="h-10 sm:h-14 w-auto object-contain" />
-                        </div>
+                        {/* Full Logo Image with White Filter for Seamless Integration */}
+                        <img
+                            src={logoFull}
+                            alt="ESCP Students for Finance"
+                            className="h-14 sm:h-20 w-auto object-contain transition-opacity hover:opacity-90"
+                            style={{ filter: 'brightness(0) invert(1)' }}
+                        />
                     </Link>
 
                     {/* Desktop Nav */}
