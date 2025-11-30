@@ -51,7 +51,8 @@ export default function StockTicker() {
         const fetchCrypto = async () => {
             try {
                 const getAlphaUrl = getApiUrl('alphavantage');
-                const response = await fetch(getAlphaUrl('BTC'));
+                // Use BTCUSD for Bitcoin (crypto forex pair)
+                const response = await fetch(getAlphaUrl('BTCUSD'));
                 const data = await response.json();
 
                 if (data['Global Quote'] && data['Global Quote']['05. price']) {
