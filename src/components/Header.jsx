@@ -61,7 +61,7 @@ export default function Header() {
                     {/* Logo */}
                     <Link to="/" className="flex items-center gap-2 sm:gap-4 group z-50" onClick={handleMobileLinkClick}>
                         <img src={logo} alt="ESCP Students for Finance" className="h-12 sm:h-16 w-auto" />
-                        <div className="flex flex-col justify-center gap-1">
+                        <div className="flex flex-col justify-center gap-0.5">
                             <span className="text-sm sm:text-lg tracking-[0.15em] font-['Cinzel'] text-white leading-none font-semibold">ESCP STUDENTS</span>
                             <span className="text-sm sm:text-lg tracking-[0.15em] font-['Cinzel'] text-white leading-none font-semibold">FOR FINANCE</span>
                         </div>
