@@ -45,7 +45,7 @@ export default function Sections() {
                     <h2 className="font-serif text-3xl">Latest Articles</h2>
                     <Link
                         to="/articles"
-                        className="text-sm text-gray-500 hover:text-[#C5A059] transition-colors"
+                        className="text-sm text-gray-500 hover:text-white transition-colors"
                     >
                         View all →
                     </Link>
@@ -58,7 +58,7 @@ export default function Sections() {
                             className="group cursor-pointer"
                         >
                             <div className="h-64 bg-gray-200 mb-4 overflow-hidden relative">
-                                <div className="absolute top-4 left-4 bg-[#C5A059] text-white text-xs px-3 py-1 uppercase tracking-widest">
+                                <div className="absolute top-4 left-4 bg-white/10 backdrop-blur-sm text-white text-xs px-3 py-1 uppercase tracking-widest border border-white/20">
                                     {article.category}
                                 </div>
                                 <img
@@ -68,7 +68,7 @@ export default function Sections() {
                                 />
                             </div>
                             <span className="text-gray-400 text-xs block mb-2">{article.date}</span>
-                            <h3 className="font-serif text-xl group-hover:text-[#C5A059] transition-colors leading-tight">
+                            <h3 className="font-serif text-xl group-hover:text-white transition-colors leading-tight">
                                 {article.title}
                             </h3>
                         </Link>
@@ -82,7 +82,7 @@ export default function Sections() {
                     <h2 className="font-serif text-3xl">Latest News</h2>
                     <Link
                         to="/news"
-                        className="text-sm text-gray-500 hover:text-[#C5A059] transition-colors"
+                        className="text-sm text-gray-500 hover:text-white transition-colors"
                     >
                         View all →
                     </Link>
@@ -107,7 +107,7 @@ export default function Sections() {
                                 />
                             </div>
                             <span className="text-gray-400 text-xs block mb-2">{news.source} • {news.date}</span>
-                            <h3 className="font-serif text-lg group-hover:text-[#C5A059] transition-colors leading-tight">
+                            <h3 className="font-serif text-lg group-hover:text-white transition-colors leading-tight">
                                 {news.title}
                             </h3>
                         </a>
@@ -122,7 +122,7 @@ export default function Sections() {
                         <h2 className="font-serif text-3xl text-center flex-1">Leadership Team</h2>
                         <Link
                             to="/about"
-                            className="text-sm text-gray-500 hover:text-[#C5A059] transition-colors"
+                            className="text-sm text-gray-500 hover:text-white transition-colors"
                         >
                             View full team →
                         </Link>
@@ -130,7 +130,7 @@ export default function Sections() {
                     <div className="grid md:grid-cols-3 gap-12">
                         {leadershipTeam.map((member, idx) => (
                             <div key={idx} className="text-center group">
-                                <div className="w-48 h-48 mx-auto mb-6 overflow-hidden rounded-full border-2 border-transparent group-hover:border-[#C5A059] transition-all duration-300">
+                                <div className="w-48 h-48 mx-auto mb-6 overflow-hidden rounded-full border-2 border-transparent group-hover:border-white transition-all duration-300">
                                     <img src={member.img} alt={member.name} className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" />
                                 </div>
                                 <h3 className="font-serif text-xl mb-1">{member.name}</h3>
@@ -150,7 +150,7 @@ export default function Sections() {
                     </p>
                     <Link
                         to="/contact"
-                        className="inline-block bg-[#C5A059] hover:bg-[#b08d4d] text-white px-8 py-3 rounded-full uppercase tracking-widest text-sm font-bold transition-colors"
+                        className="inline-block bg-white/10 hover:bg-white/20 text-white px-8 py-3 rounded-full uppercase tracking-widest text-sm font-bold transition-colors border border-white/30 hover:border-white/50"
                     >
                         Contact Us
                     </Link>
