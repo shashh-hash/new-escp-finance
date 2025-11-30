@@ -60,10 +60,16 @@ export default function Header() {
                 <div className="container mx-auto px-4 sm:px-6 lg:px-12 h-[70px] sm:h-[80px] flex items-center justify-between">
                     {/* Logo */}
                     <Link to="/" className="flex items-center gap-2 sm:gap-4 group z-50" onClick={handleMobileLinkClick}>
-                        <img src={logo} alt="ESCP Students for Finance" className="h-12 sm:h-16 w-auto" />
+                        {/* Logo Icon */}
+                        <img src={logo} alt="ESCP Students for Finance" className="h-10 sm:h-14 w-auto" />
+
+                        {/* Vertical Separator */}
+                        <div className="h-8 sm:h-10 w-[1px] bg-white/30 mx-3 sm:mx-4"></div>
+
+                        {/* Text */}
                         <div className="flex flex-col justify-center">
-                            <span className="text-sm sm:text-lg font-bold tracking-[0.15em] text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-300 leading-tight uppercase font-['Inter']">ESCP Students</span>
-                            <span className="text-sm sm:text-lg font-bold tracking-[0.15em] text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-300 leading-tight uppercase font-['Inter']">for Finance</span>
+                            <span className="text-xs sm:text-base tracking-wide text-white leading-tight font-medium uppercase font-['Inter']">ESCP STUDENTS</span>
+                            <span className="text-xs sm:text-base tracking-wide text-white leading-tight font-medium uppercase font-['Inter']">FOR FINANCE</span>
                         </div>
                     </Link>
 
