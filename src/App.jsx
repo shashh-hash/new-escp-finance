@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { HashRouter, Routes, Route } from 'react-router-dom';
 import { ThemeProvider } from './context/ThemeContext';
 import HomePage from './pages/HomePage';
 import AboutPage from './pages/AboutPage';
@@ -12,7 +12,7 @@ import ContactPage from './pages/ContactPage';
 function App() {
   return (
     <ThemeProvider>
-      <BrowserRouter basename={import.meta.env.BASE_URL}>
+      <HashRouter>
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/about" element={<AboutPage />} />
@@ -22,7 +22,7 @@ function App() {
           <Route path="/news" element={<NewsPage />} />
           <Route path="/contact" element={<ContactPage />} />
         </Routes>
-      </BrowserRouter>
+      </HashRouter>
     </ThemeProvider>
   );
 }
