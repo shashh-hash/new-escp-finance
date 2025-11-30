@@ -6,7 +6,7 @@ export default function Sections() {
     return (
         <>
             {/* Mission Section */}
-            <section className="text-white py-16" style={{ backgroundColor: 'var(--color-accent)' }}>
+            <section className="text-white py-16" style={{ backgroundColor: 'var(--color-primary)' }}>
                 <div className="container mx-auto px-8 text-center">
                     <h2 className="font-serif text-3xl mb-6">Our Mission</h2>
                     <p className="text-xl max-w-3xl mx-auto leading-relaxed font-light">
@@ -18,7 +18,7 @@ export default function Sections() {
             {/* About Us */}
             <section className="container mx-auto px-8 py-16 grid md:grid-cols-2 gap-16 items-center">
                 <div>
-                    <h2 className="font-serif text-3xl mb-6" style={{ color: 'var(--color-accent)' }}>About the Society</h2>
+                    <h2 className="font-serif text-3xl mb-6 text-white">About the Society</h2>
                     <p className="mb-6 leading-relaxed" style={{ color: 'var(--color-text-secondary)' }}>
                         Founded in 2025 at the ESCP Turin Campus, we are a student-led organization dedicated to fostering a deep understanding of the financial industry. We provide a platform for students to engage with industry professionals, participate in workshops, and publish cutting-edge research.
                     </p>
@@ -115,31 +115,7 @@ export default function Sections() {
                 </div>
             </section>
 
-            {/* The Team (Leadership) */}
-            <section className="py-16">
-                <div className="container mx-auto px-8">
-                    <div className="flex justify-between items-baseline mb-12">
-                        <h2 className="font-serif text-3xl text-center flex-1">Leadership Team</h2>
-                        <Link
-                            to="/about"
-                            className="text-sm text-gray-500 hover:text-white transition-colors"
-                        >
-                            View full team →
-                        </Link>
-                    </div>
-                    <div className="grid md:grid-cols-3 gap-12">
-                        {leadershipTeam.map((member, idx) => (
-                            <div key={idx} className="text-center group">
-                                <div className="w-48 h-48 mx-auto mb-6 overflow-hidden rounded-full border-2 border-transparent group-hover:border-white transition-all duration-300">
-                                    <img src={member.img} alt={member.name} className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" />
-                                </div>
-                                <h3 className="font-serif text-xl mb-1">{member.name}</h3>
-                                <p className="text-xs uppercase tracking-widest text-gray-500">{member.role}</p>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            </section>
+
 
             {/* Contact Section */}
             <section className="bg-[#2C2C2C] text-white py-16">

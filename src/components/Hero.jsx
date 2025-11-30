@@ -36,14 +36,14 @@ const Hero = memo(() => {
         },
         {
             image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=60&w=800",
-            title: "Meet the Founding Board",
+            title: "Meet the Team",
             subtitle: "Building the future of finance at ESCP",
             cta: "View Team",
             link: "/about"
         },
         {
             image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=60&w=800",
-            title: "Student Insights",
+            title: "Market Momentum",
             subtitle: "Latest articles and market analysis",
             cta: "Read Articles",
             link: "/articles"
