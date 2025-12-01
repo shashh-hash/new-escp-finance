@@ -1,12 +1,72 @@
-import React, { memo, useState } from 'react';
+import React, { memo, useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import Slider from 'react-slick';
 import { motion, AnimatePresence } from 'framer-motion';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import heroVideo from '../assets/hero_bg_new.mp4';
 
 const Hero = memo(() => {
     const [currentSlide, setCurrentSlide] = useState(0);
+    const videoRef = useRef(null);
+
+    useEffect(() => {
+        const video = videoRef.current;
+        if (!video) return;
+
+        let playAttempts = 0;
+        const maxAttempts = 5;
+
+        const attemptPlay = () => {
+            if (playAttempts >= maxAttempts) {
+                console.log('Max play attempts reached');
+                return;
+            }
+
+            playAttempts++;
+            console.log(`Play attempt ${playAttempts}`);
+
+            video.play()
+                .then(() => {
+                    console.log('Video playing successfully');
+                })
+                .catch(err => {
+                    console.error('Play failed:', err);
+                    // Retry after delay
+                    setTimeout(attemptPlay, 500);
+                });
+        };
+
+        const handleCanPlay = () => {
+            console.log('Video can play');
+            attemptPlay();
+        };
+
+        const handleLoadedData = () => {
+            console.log('Video data loaded');
+            attemptPlay();
+        };
+
+        const handleError = (e) => {
+            console.error('Video error:', e);
+        };
+
+        // Add event listeners
+        video.addEventListener('canplay', handleCanPlay);
+        video.addEventListener('loadeddata', handleLoadedData);
+        video.addEventListener('error', handleError);
+
+        // Force load and immediate play attempt
+        video.load();
+        attemptPlay();
+
+        // Cleanup
+        return () => {
+            video.removeEventListener('canplay', handleCanPlay);
+            video.removeEventListener('loadeddata', handleLoadedData);
+            video.removeEventListener('error', handleError);
+        };
+    }, []);
 
     const settings = {
         dots: true,
@@ -58,13 +118,21 @@ const Hero = memo(() => {
                 <div className="absolute inset-0 bg-black/50 z-10"></div> {/* Overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/30 z-10"></div> {/* Gradient */}
                 <video
+                    ref={videoRef}
                     autoPlay
                     loop
                     muted
                     playsInline
-                    className="w-full h-full object-cover opacity-90"
+                    preload="auto"
+                    controls={false}
+                    className="w-full h-full object-cover opacity-90 cursor-pointer"
+                    onClick={(e) => {
+                        if (e.target.paused) {
+                            e.target.play();
+                        }
+                    }}
                 >
-                    <source src="https://videos.pexels.com/video-files/3191288/3191288-hd_1920_1080_25fps.mp4" type="video/mp4" />
+                    <source src={heroVideo} type="video/mp4" />
                     Your browser does not support the video tag.
                 </video>
             </div>
