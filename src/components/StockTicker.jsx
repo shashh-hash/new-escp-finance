@@ -1,17 +1,18 @@
 import React, { useState, useEffect } from 'react';
+import stockDataFile from '../data/stockData.json';
 
 export default function StockTicker() {
-    // Initialize with REAL current market values (as of Nov 30, 2025)
+    // Initialize with data from JSON file (updated daily by GitHub Action)
     const [stocks, setStocks] = useState([
-        { symbol: 'S&P 500', value: '6,849.00', change: '+0.50%', positive: true, type: 'index' },
-        { symbol: 'NASDAQ', value: '23,365.69', change: '+0.80%', positive: true, type: 'index' },
-        { symbol: 'DOW', value: '47,716.00', change: '+0.61%', positive: true, type: 'index' },
+        { symbol: 'S&P 500', value: stockDataFile.stocks.find(s => s.symbol === 'S&P 500')?.value || '6,849.00', change: stockDataFile.stocks.find(s => s.symbol === 'S&P 500')?.change || '+0.50%', positive: true, type: 'index' },
+        { symbol: 'NASDAQ', value: stockDataFile.stocks.find(s => s.symbol === 'NASDAQ')?.value || '23,365.69', change: stockDataFile.stocks.find(s => s.symbol === 'NASDAQ')?.change || '+0.80%', positive: true, type: 'index' },
+        { symbol: 'DOW', value: stockDataFile.stocks.find(s => s.symbol === 'DOW')?.value || '47,716.00', change: stockDataFile.stocks.find(s => s.symbol === 'DOW')?.change || '+0.61%', positive: true, type: 'index' },
         { symbol: 'EUR/USD', value: '1.0480', change: '-0.12%', positive: false, type: 'forex', forexKey: 'EUR' },
         { symbol: 'GBP/USD', value: '1.2580', change: '+0.05%', positive: true, type: 'forex', forexKey: 'GBP' },
         { symbol: 'USD/JPY', value: '154.20', change: '-0.25%', positive: false, type: 'forex', forexKey: 'JPY' },
-        { symbol: 'GOLD', value: '$4,256.40', change: '+1.10%', positive: true, type: 'metal' },
-        { symbol: 'SILVER', value: '$57.09', change: '+5.60%', positive: true, type: 'metal' },
-        { symbol: 'OIL', value: '$59.00', change: '-1.50%', positive: false, type: 'commodity' },
+        { symbol: 'GOLD', value: '$' + (stockDataFile.stocks.find(s => s.symbol === 'GOLD')?.value || '4,256.40'), change: stockDataFile.stocks.find(s => s.symbol === 'GOLD')?.change || '+1.10%', positive: true, type: 'metal' },
+        { symbol: 'SILVER', value: '$' + (stockDataFile.stocks.find(s => s.symbol === 'SILVER')?.value || '57.09'), change: stockDataFile.stocks.find(s => s.symbol === 'SILVER')?.change || '+5.60%', positive: true, type: 'metal' },
+        { symbol: 'OIL', value: '$' + (stockDataFile.stocks.find(s => s.symbol === 'OIL')?.value || '59.00'), change: stockDataFile.stocks.find(s => s.symbol === 'OIL')?.change || '-1.50%', positive: false, type: 'commodity' },
         { symbol: 'BTC', value: '$91,000', change: '+2.80%', positive: true, type: 'crypto' }
     ]);
 

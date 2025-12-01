@@ -1,0 +1,30 @@
+name: Update Stock Prices
+
+on:
+  schedule:
+    # Run every day at 9:00 AM UTC (4:00 AM EST)
+    - cron: '0 9 * * *'
+  workflow_dispatch: # Allow manual trigger
+
+jobs:
+  update-stocks:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          
+      - name: Update stock data
+        run: node scripts/updateStocks.js
+        
+      - name: Commit and push if changed
+        run: |
+          git config --global user.name 'GitHub Action'
+          git config --global user.email 'action@github.com'
+          git add src/data/stockData.json
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Update stock prices - $(date +'%Y-%m-%d')" && git push)
