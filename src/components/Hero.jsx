@@ -9,15 +9,22 @@ import heroVideo from '../assets/hero_bg_new.mp4';
 const Hero = memo(() => {
     const [currentSlide, setCurrentSlide] = useState(0);
     const videoRef = useRef(null);
+    const [videoPlaying, setVideoPlaying] = useState(false);
 
     useEffect(() => {
         const video = videoRef.current;
         if (!video) return;
 
-        let playAttempts = 0;
-        const maxAttempts = 5;
+        // Safari-specific: Set muted property directly on DOM element
+        video.muted = true;
+        video.defaultMuted = true;
+        video.setAttribute('muted', '');
+        video.setAttribute('playsinline', '');
 
-        const attemptPlay = () => {
+        let playAttempts = 0;
+        const maxAttempts = 10;
+
+        const attemptPlay = async () => {
             if (playAttempts >= maxAttempts) {
                 console.log('Max play attempts reached');
                 return;
@@ -26,15 +33,17 @@ const Hero = memo(() => {
             playAttempts++;
             console.log(`Play attempt ${playAttempts}`);
 
-            video.play()
-                .then(() => {
-                    console.log('Video playing successfully');
-                })
-                .catch(err => {
-                    console.error('Play failed:', err);
-                    // Retry after delay
-                    setTimeout(attemptPlay, 500);
-                });
+            try {
+                // Ensure video is muted before playing (Safari requirement)
+                video.muted = true;
+                await video.play();
+                console.log('Video playing successfully');
+                setVideoPlaying(true);
+            } catch (err) {
+                console.error('Play failed:', err);
+                // Retry after delay
+                setTimeout(attemptPlay, 300);
+            }
         };
 
         const handleCanPlay = () => {
@@ -42,8 +51,9 @@ const Hero = memo(() => {
             attemptPlay();
         };
 
-        const handleLoadedData = () => {
-            console.log('Video data loaded');
+        const handleLoadedMetadata = () => {
+            console.log('Video metadata loaded');
+            video.muted = true;
             attemptPlay();
         };
 
@@ -53,17 +63,19 @@ const Hero = memo(() => {
 
         // Add event listeners
         video.addEventListener('canplay', handleCanPlay);
-        video.addEventListener('loadeddata', handleLoadedData);
+        video.addEventListener('loadedmetadata', handleLoadedMetadata);
         video.addEventListener('error', handleError);
 
         // Force load and immediate play attempt
         video.load();
-        attemptPlay();
+
+        // Immediate play attempt for browsers that support it
+        setTimeout(() => attemptPlay(), 100);
 
         // Cleanup
         return () => {
             video.removeEventListener('canplay', handleCanPlay);
-            video.removeEventListener('loadeddata', handleLoadedData);
+            video.removeEventListener('loadedmetadata', handleLoadedMetadata);
             video.removeEventListener('error', handleError);
         };
     }, []);
@@ -123,11 +135,14 @@ const Hero = memo(() => {
                     loop
                     muted
                     playsInline
+                    webkit-playsinline="true"
+                    x-webkit-airplay="allow"
                     preload="auto"
                     controls={false}
                     className="w-full h-full object-cover opacity-90 cursor-pointer"
                     onClick={(e) => {
                         if (e.target.paused) {
+                            e.target.muted = true;
                             e.target.play();
                         }
                     }}
