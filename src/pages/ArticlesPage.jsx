@@ -6,10 +6,10 @@ import Footer from '../components/Footer';
 export default function ArticlesPage() {
     const articles = [
         {
-            title: "The Future of Sustainable Finance: ESG in 2024",
-            excerpt: "Exploring how ESG criteria are reshaping investment strategies and corporate governance in the modern financial landscape.",
-            category: "Sustainability",
-            author: "Luca Citton",
+            title: "A $10 Billion Bet: Pfizer Enters the Anti-Obesity Drug Market",
+            excerpt: "Pfizer acquires Metsera for nearly $10 billion, entering the booming anti-obesity drug market and challenging industry leaders.",
+            category: "Healthcare",
+            author: "Francesco Kaitsas",
             date: "Nov 20, 2025",
             image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=60&w=600",
             slug: "sustainable-finance-esg-2024"
