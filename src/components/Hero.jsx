@@ -15,68 +15,74 @@ const Hero = memo(() => {
         const video = videoRef.current;
         if (!video) return;
 
-        // Safari-specific: Set muted property directly on DOM element
+        // Safari-specific: Set all muted properties
         video.muted = true;
         video.defaultMuted = true;
-        video.setAttribute('muted', '');
-        video.setAttribute('playsinline', '');
+        video.volume = 0;
 
-        let playAttempts = 0;
-        const maxAttempts = 10;
-
-        const attemptPlay = async () => {
-            if (playAttempts >= maxAttempts) {
-                console.log('Max play attempts reached');
-                return;
-            }
-
-            playAttempts++;
-            console.log(`Play attempt ${playAttempts}`);
-
+        const playVideo = async () => {
             try {
-                // Ensure video is muted before playing (Safari requirement)
+                // Ensure muted before playing
                 video.muted = true;
+                video.volume = 0;
+
                 await video.play();
                 console.log('Video playing successfully');
                 setVideoPlaying(true);
             } catch (err) {
-                console.error('Play failed:', err);
-                // Retry after delay
-                setTimeout(attemptPlay, 300);
+                console.error('Autoplay failed:', err);
+                // Safari fallback: try again after a short delay
+                setTimeout(async () => {
+                    try {
+                        video.muted = true;
+                        await video.play();
+                        setVideoPlaying(true);
+                    } catch (e) {
+                        console.error('Retry failed:', e);
+                    }
+                }, 500);
             }
+        };
+
+        // Use Intersection Observer - Safari allows autoplay when element is visible
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting && video.paused) {
+                        playVideo();
+                    }
+                });
+            },
+            { threshold: 0.25 }
+        );
+
+        observer.observe(video);
+
+        // Also try to play on various events
+        const handleLoadedMetadata = () => {
+            console.log('Video metadata loaded');
+            playVideo();
         };
 
         const handleCanPlay = () => {
             console.log('Video can play');
-            attemptPlay();
+            if (video.paused) {
+                playVideo();
+            }
         };
 
-        const handleLoadedMetadata = () => {
-            console.log('Video metadata loaded');
-            video.muted = true;
-            attemptPlay();
-        };
-
-        const handleError = (e) => {
-            console.error('Video error:', e);
-        };
-
-        // Add event listeners
-        video.addEventListener('canplay', handleCanPlay);
         video.addEventListener('loadedmetadata', handleLoadedMetadata);
-        video.addEventListener('error', handleError);
+        video.addEventListener('canplay', handleCanPlay);
 
-        // Force load and immediate play attempt
+        // Initial play attempt
         video.load();
-
-        // Immediate play attempt for browsers that support it
-        setTimeout(() => attemptPlay(), 100);
+        setTimeout(() => playVideo(), 100);
 
         // Cleanup
         return () => {
-            video.removeEventListener('canplay', handleCanPlay);
+            observer.disconnect();
             video.removeEventListener('loadedmetadata', handleLoadedMetadata);
-            video.removeEventListener('error', handleError);
+            video.removeEventListener('canplay', handleCanPlay);
         };
     }, []);
 
