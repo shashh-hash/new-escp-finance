@@ -15,74 +15,28 @@ const Hero = memo(() => {
         const video = videoRef.current;
         if (!video) return;
 
-        // Safari-specific: Set all muted properties
+        // Simple, reliable autoplay
         video.muted = true;
         video.defaultMuted = true;
         video.volume = 0;
 
-        const playVideo = async () => {
-            try {
-                // Ensure muted before playing
-                video.muted = true;
-                video.volume = 0;
-
-                await video.play();
-                console.log('Video playing successfully');
-                setVideoPlaying(true);
-            } catch (err) {
-                console.error('Autoplay failed:', err);
-                // Safari fallback: try again after a short delay
-                setTimeout(async () => {
-                    try {
-                        video.muted = true;
-                        await video.play();
-                        setVideoPlaying(true);
-                    } catch (e) {
-                        console.error('Retry failed:', e);
-                    }
-                }, 500);
-            }
+        const playVideo = () => {
+            video.muted = true;
+            video.play().catch(err => {
+                console.log('Autoplay prevented:', err);
+                // Video will play when user interacts with page
+            });
         };
 
-        // Use Intersection Observer - Safari allows autoplay when element is visible
-        const observer = new IntersectionObserver(
-            (entries) => {
-                entries.forEach((entry) => {
-                    if (entry.isIntersecting && video.paused) {
-                        playVideo();
-                    }
-                });
-            },
-            { threshold: 0.25 }
-        );
-
-        observer.observe(video);
-
-        // Also try to play on various events
-        const handleLoadedMetadata = () => {
-            console.log('Video metadata loaded');
+        // Try to play when metadata is loaded
+        if (video.readyState >= 2) {
             playVideo();
-        };
+        } else {
+            video.addEventListener('loadedmetadata', playVideo, { once: true });
+        }
 
-        const handleCanPlay = () => {
-            console.log('Video can play');
-            if (video.paused) {
-                playVideo();
-            }
-        };
-
-        video.addEventListener('loadedmetadata', handleLoadedMetadata);
-        video.addEventListener('canplay', handleCanPlay);
-
-        // Initial play attempt
-        video.load();
-        setTimeout(() => playVideo(), 100);
-
-        // Cleanup
         return () => {
-            observer.disconnect();
-            video.removeEventListener('loadedmetadata', handleLoadedMetadata);
-            video.removeEventListener('canplay', handleCanPlay);
+            video.removeEventListener('loadedmetadata', playVideo);
         };
     }, []);
 
@@ -141,17 +95,9 @@ const Hero = memo(() => {
                     loop
                     muted
                     playsInline
-                    webkit-playsinline="true"
-                    x-webkit-airplay="allow"
-                    preload="auto"
-                    controls={false}
-                    className="w-full h-full object-cover opacity-90 cursor-pointer"
-                    onClick={(e) => {
-                        if (e.target.paused) {
-                            e.target.muted = true;
-                            e.target.play();
-                        }
-                    }}
+                    preload="metadata"
+                    className="w-full h-full object-cover opacity-90"
+                    style={{ backgroundColor: '#000' }}
                 >
                     <source src={heroVideo} type="video/mp4" />
                     Your browser does not support the video tag.

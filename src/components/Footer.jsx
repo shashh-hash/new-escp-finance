@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 export default function Footer() {
     return (
@@ -29,7 +30,7 @@ export default function Footer() {
                 <div className="border-t border-gray-800 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center text-xs">
                     <p>&copy; 2025 ESCP Students for Finance. All rights reserved.</p>
                     <div className="flex gap-6 mt-4 md:mt-0">
-                        <a href="/contact" className="hover:text-white transition-colors">Contact</a>
+                        <Link to="/contact" className="hover:text-white transition-colors">Contact</Link>
                     </div>
                 </div>
             </div>

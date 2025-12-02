@@ -4,117 +4,82 @@ import ReactMarkdown from 'react-markdown';
 
 export default function SearchOverlay({ isOpen, onClose }) {
     const [query, setQuery] = useState('');
-    const [results, setResults] = useState({ site: [], global: [], suggestions: [] });
+    const [results, setResults] = useState({ site: [], global: [] });
     const [loading, setLoading] = useState(false);
-    const [activeTab, setActiveTab] = useState('all');
-    const [showAIResponse, setShowAIResponse] = useState(false);
     const [aiResponse, setAIResponse] = useState('');
     const inputRef = useRef(null);
+
+    // Dynamic placeholder text
+    const placeholders = [
+        "Search articles, team, or ask anything...",
+        "Try 'ESG investing' or 'blockchain'...",
+        "Ask about finance trends...",
+        "Search for team members..."
+    ];
+    const [placeholder, setPlaceholder] = useState(placeholders[0]);
+
+    useEffect(() => {
+        if (isOpen) {
+            inputRef.current?.focus();
+            // Rotate placeholder every 3 seconds
+            const interval = setInterval(() => {
+                setPlaceholder(prev => {
+                    const currentIndex = placeholders.indexOf(prev);
+                    return placeholders[(currentIndex + 1) % placeholders.length];
+                });
+            }, 3000);
+            return () => clearInterval(interval);
+        }
+    }, [isOpen]);
 
     // Site content database
     const siteContent = {
         articles: [
             {
-                title: "The Future of Sustainable Finance: ESG in 2024",
-                excerpt: "Exploring how ESG criteria are reshaping investment strategies and corporate governance in the modern financial landscape.",
-                category: "Articles",
+                title: "A $10 Billion Bet: Pfizer Enters the Anti-Obesity Drug Market",
+                excerpt: "Pfizer acquires Metsera for nearly $10 billion, entering the booming anti-obesity drug market.",
+                category: "Healthcare",
                 url: "/articles/sustainable-finance-esg-2024",
-                keywords: ["ESG", "sustainable", "finance", "investing", "climate", "environment", "green", "impact"]
+                keywords: ["pfizer", "obesity", "healthcare", "metsera", "acquisition"]
             },
             {
                 title: "Blockchain in Banking: Beyond the Hype",
                 excerpt: "A deep dive into real-world applications of blockchain technology in traditional banking systems.",
-                category: "Articles",
+                category: "Technology",
                 url: "/articles/blockchain-banking-revolution",
-                keywords: ["blockchain", "banking", "technology", "crypto", "DeFi", "tokenization", "digital", "fintech"]
+                keywords: ["blockchain", "banking", "technology", "crypto", "DeFi"]
             },
             {
                 title: "Private Equity Trends in 2025: AI and Value Creation",
                 excerpt: "Analysis of emerging patterns in PE investments and what they mean for the future of capital markets.",
-                category: "Articles",
+                category: "Markets",
                 url: "/articles/private-equity-trends-2024",
-                keywords: ["private equity", "PE", "AI", "investment", "value creation", "venture capital"]
+                keywords: ["private equity", "PE", "AI", "investment"]
             }
         ],
         pages: [
-            { title: "About Us", url: "/about", keywords: ["about", "mission", "values", "what we do", "purpose"] },
-            { title: "Our Team", url: "/team", keywords: ["team", "members", "club", "society", "people", "leadership"] },
-            { title: "Our Mission", url: "/mission", keywords: ["mission", "vision", "goals", "purpose", "values"] },
-            { title: "Financial News", url: "/news", keywords: ["news", "updates", "markets", "latest", "headlines"] },
-            { title: "Contact", url: "/contact", keywords: ["contact", "email", "reach", "connect", "get in touch"] }
+            { title: "About Us", url: "/about", keywords: ["about", "mission"] },
+            { title: "Our Team", url: "/team", keywords: ["team", "members"] },
+            { title: "Our Mission", url: "/mission", keywords: ["mission", "vision"] },
+            { title: "Financial News", url: "/news", keywords: ["news", "updates"] },
+            { title: "Contact", url: "/contact", keywords: ["contact", "email"] }
         ],
         team: [
-            { title: "Lorenzo Sargiani", role: "Founder & President", url: "/team", keywords: ["founder", "president", "lorenzo", "sargiani", "leader"] },
-            { title: "Ines Desmaretz", role: "Vice President", url: "/team", keywords: ["vp", "vice president", "ines", "desmaretz"] },
-            { title: "Daria Iannuzzi", role: "Vice President & Head of Events", url: "/team", keywords: ["vp", "events", "daria", "iannuzzi"] },
-            { title: "Martina Proietti Silvestri", role: "Board Member & Head of Events", url: "/team", keywords: ["board", "events", "martina", "proietti", "silvestri"] },
-            { title: "Christos Gerontopoulos", role: "Board Member", url: "/team", keywords: ["board", "christos", "gerontopoulos"] },
-            { title: "Lucas Thai", role: "Board Member", url: "/team", keywords: ["board", "lucas", "thai"] },
-            { title: "Alex Toumasson", role: "Board Member", url: "/team", keywords: ["board", "alex", "toumasson"] },
-            { title: "Edoardo Cerrano", role: "Head of HR", url: "/team", keywords: ["hr", "head", "edoardo", "cerrano"] },
-            { title: "Flavio Antonuzzo", role: "Head of Strategy", url: "/team", keywords: ["strategy", "head", "flavio", "antonuzzo"] },
-            { title: "Tommaso Girani", role: "Head of Strategy", url: "/team", keywords: ["strategy", "head", "tommaso", "girani"] },
-            { title: "Luca Citton", role: "Head of Articles", url: "/team", keywords: ["articles", "head", "luca", "citton"] },
-            { title: "Francesco Kaitsas", role: "Head of Articles", url: "/team", keywords: ["articles", "head", "francesco", "kaitsas"] },
-            { title: "Adriano Cogorno", role: "Head of Research", url: "/team", keywords: ["research", "head", "adriano", "cogorno"] },
-            { title: "Giuseppe Mansueto", role: "Head of Research", url: "/team", keywords: ["research", "head", "giuseppe", "mansueto"] },
-            { title: "Valentina Petrini", role: "Head of Marketing", url: "/team", keywords: ["marketing", "head", "valentina", "petrini"] },
-            { title: "Beatrice Pellini", role: "Head of Instagram", url: "/team", keywords: ["instagram", "head", "beatrice", "pellini"] },
-            { title: "Marina Meucci", role: "Head of LinkedIn", url: "/team", keywords: ["linkedin", "head", "marina", "meucci"] },
-            { title: "Shashank Tripathi", role: "Head of Tech", url: "/team", keywords: ["tech", "head", "shashank", "tripathi", "developer"] }
+            { title: "Lorenzo Sargiani", role: "Co-Founder & President", url: "/team" },
+            { title: "Ines Desmaretz", role: "Vice President", url: "/team" },
+            { title: "Daria Iannuzzi", role: "Vice President", url: "/team" }
         ]
     };
 
-    // Rate limiting configuration
-    const RATE_LIMITS = {
-        DAILY_MAX: 50, // Max requests per user per day
-        MIN_INTERVAL: 3000, // Min time between requests (ms)
-        DEBOUNCE_TIME: 800 // Wait time after typing (ms)
-    };
-
-    // Initialize Gemini API
     const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
 
-    // Helper to check rate limits
-    const checkRateLimit = () => {
-        const now = Date.now();
-        const usageData = JSON.parse(localStorage.getItem('escp_ai_usage') || '{"count": 0, "lastRequest": 0, "date": 0}');
-
-        // Reset daily count if it's a new day
-        const today = new Date().setHours(0, 0, 0, 0);
-        if (usageData.date !== today) {
-            usageData.count = 0;
-            usageData.date = today;
-        }
-
-        // Check limits
-        if (usageData.count >= RATE_LIMITS.DAILY_MAX) {
-            return { allowed: false, reason: "Daily limit reached. Please try again tomorrow." };
-        }
-
-        if (now - usageData.lastRequest < RATE_LIMITS.MIN_INTERVAL) {
-            return { allowed: false, reason: "Please wait a moment before searching again." };
-        }
-
-        // Update usage
-        usageData.count++;
-        usageData.lastRequest = now;
-        localStorage.setItem('escp_ai_usage', JSON.stringify(usageData));
-
-        return { allowed: true };
-    };
-
-    // AI Finance Assistant responses (Fallback/Simulated)
     const getSimulatedResponse = (searchQuery) => {
         const lowerQuery = searchQuery.toLowerCase();
         const responses = {
-            'esg': "ESG (Environmental, Social, and Governance) investing focuses on companies that meet certain sustainability criteria. Key trends in 2024 include stricter regulations (EU CSRD), anti-greenwashing measures, and increased focus on impact measurement.",
+            'esg': "ESG (Environmental, Social, and Governance) investing focuses on companies that meet certain sustainability criteria. Key trends in 2024 include stricter regulations, anti-greenwashing measures, and increased focus on impact measurement.",
             'blockchain': "Blockchain is revolutionizing banking through tokenization of real-world assets, DeFi integration, and faster cross-border payments. By 2030, $16 trillion in assets could be tokenized.",
             'private equity': "Private equity in 2024 is characterized by AI adoption, operational value creation, and ESG integration. Deal activity is rebounding with focus on technology, healthcare, and infrastructure sectors.",
-            'ai': "AI is transforming finance through predictive analytics, risk management, automated trading, and portfolio optimization. In private equity, AI helps with deal sourcing and due diligence.",
-            'investing': "Smart investing in 2024 requires understanding ESG factors, technology trends, and global macro conditions. Diversification and long-term thinking are key.",
-            'career': "Finance careers span investment banking, private equity, asset management, and fintech. Key skills include financial modeling, data analysis, and market understanding.",
-            'interview': "To crack a finance interview: 1) Master technicals (accounting, valuation, DCF), 2) Know your 'Why Finance' story, 3) Follow market trends (inflation, rates), 4) Prepare stock pitches, and 5) Practice behavioral questions using STAR method."
+            'pfizer': "Pfizer recently acquired Metsera for nearly $10 billion, entering the anti-obesity drug market. This strategic move positions Pfizer to compete with industry leaders like Novo Nordisk and Eli Lilly in the growing obesity treatment market."
         };
 
         for (const [key, response] of Object.entries(responses)) {
@@ -123,54 +88,31 @@ export default function SearchOverlay({ isOpen, onClose }) {
         return null;
     };
 
-    // Call Gemini API
     const getGeminiResponse = async (query) => {
         if (!apiKey) return null;
-
         try {
-            // Dynamic import to avoid issues if package isn't installed yet
             const { GoogleGenerativeAI } = await import("@google/generative-ai");
             const genAI = new GoogleGenerativeAI(apiKey);
-            // Use gemini-1.5-flash which is faster and has better free tier availability
             const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
 
-            const prompt = `You are an expert financial analyst and educator for a prestigious university finance society.
-            Provide a comprehensive, insightful, and professional answer to the following query: "${query}".
-            
-            Guidelines:
-            1. Go beyond surface-level definitions; explain the "why" and "how".
-            2. Include current market context or real-world examples where relevant (e.g., 2024/2025 trends).
-            3. Structure your answer clearly.
-            4. Keep the tone sophisticated yet accessible to ambitious finance students.
-            5. If the query is not related to finance/economics/business, politely redirect.
-            
-            Aim for a response that demonstrates deep domain knowledge.`;
+            const prompt = `You are an expert financial analyst. Provide a concise, insightful answer to: "${query}". Keep it under 100 words, sophisticated yet accessible.`;
 
-            // Create a timeout promise
             const timeoutPromise = new Promise((_, reject) =>
-                setTimeout(() => reject(new Error("Request timed out")), 10000)
+                setTimeout(() => reject(new Error("Timeout")), 8000)
             );
 
-            // Race the API call against the timeout
-            const result = await Promise.race([
-                model.generateContent(prompt),
-                timeoutPromise
-            ]);
-
+            const result = await Promise.race([model.generateContent(prompt), timeoutPromise]);
             const response = await result.response;
             return response.text();
         } catch (error) {
-            console.error("Gemini API Error:", error);
             return null;
         }
     };
 
-    // Local Site Search
     const searchSite = (searchQuery) => {
         const lowerQuery = searchQuery.toLowerCase();
         const results = [];
 
-        // Search Articles
         siteContent.articles.forEach(article => {
             if (article.title.toLowerCase().includes(lowerQuery) ||
                 article.excerpt.toLowerCase().includes(lowerQuery) ||
@@ -179,7 +121,6 @@ export default function SearchOverlay({ isOpen, onClose }) {
             }
         });
 
-        // Search Pages
         siteContent.pages.forEach(page => {
             if (page.title.toLowerCase().includes(lowerQuery) ||
                 page.keywords.some(k => k.toLowerCase().includes(lowerQuery))) {
@@ -187,348 +128,119 @@ export default function SearchOverlay({ isOpen, onClose }) {
             }
         });
 
-        // Search Team
         siteContent.team.forEach(member => {
             if (member.title.toLowerCase().includes(lowerQuery) ||
-                member.role.toLowerCase().includes(lowerQuery) ||
-                member.keywords.some(k => k.toLowerCase().includes(lowerQuery))) {
-                results.push({ ...member, type: 'site', excerpt: `${member.role} - ESCP Finance Society` });
+                member.role.toLowerCase().includes(lowerQuery)) {
+                results.push({ ...member, type: 'site', excerpt: member.role });
             }
         });
 
         return results;
     };
 
-    // Smart suggestions based on query
-    const getSmartSuggestions = (searchQuery) => {
-        const lowerQuery = searchQuery.toLowerCase();
-        const suggestionMap = {
-            'esg': ['ESG regulations 2024', 'Sustainable investing strategies', 'Green bonds explained', 'Impact measurement'],
-            'blockchain': ['DeFi vs traditional banking', 'Asset tokenization', 'Crypto regulations', 'Smart contracts'],
-            'private': ['PE deal structures', 'Value creation strategies', 'Due diligence process', 'Exit strategies'],
-            'ai': ['AI in trading', 'Machine learning finance', 'Algorithmic investing', 'AI risk management'],
-            'market': ['Market analysis 2024', 'Stock valuation', 'Economic indicators', 'Investment opportunities'],
-            'invest': ['Portfolio diversification', 'Risk management', 'Asset allocation', 'Investment strategies'],
-            'interview': ['Technical interview questions', 'Valuation methods', 'Market trends 2024', 'Stock pitch tips']
-        };
-
-        for (const [key, sug] of Object.entries(suggestionMap)) {
-            if (lowerQuery.includes(key)) return sug;
-        }
-
-        return ['ESG investing trends', 'Blockchain in finance', 'Private equity strategies', 'Market analysis'];
-    };
-
-    // Simulated Global Search (since we don't have a real backend for this yet)
-    const searchGlobal = async (searchQuery) => {
-        // Simulate network delay
-        await new Promise(resolve => setTimeout(resolve, 500));
-
-        const lowerQuery = searchQuery.toLowerCase();
-        // Return some dummy global results if query matches keywords
-        if (lowerQuery.includes('finance') || lowerQuery.includes('market')) {
-            return [
-                { title: "Global Market Update", excerpt: "S&P 500 hits new record high as inflation cools.", source: "Bloomberg", url: "https://www.bloomberg.com", type: 'global' },
-                { title: "Fed Interest Rate Decision", excerpt: "Federal Reserve signals potential rate cuts in late 2024.", source: "Reuters", url: "https://www.reuters.com", type: 'global' }
-            ];
-        }
-        return [];
-    };
-
-    // ... existing useEffects ...
-
     const performSearch = async () => {
         if (!query.trim()) {
-            setResults({ site: [], global: [], suggestions: [] });
-            setShowAIResponse(false);
+            setResults({ site: [], global: [] });
+            setAiResponse('');
             return;
         }
 
         setLoading(true);
-        setShowAIResponse(true);
-        setAIResponse(''); // Clear previous response
+        const siteResults = searchSite(query);
+        setResults({ site: siteResults, global: [] });
 
-        try {
-            // 1. Get local results immediately
-            const siteResults = searchSite(query);
-            const suggestions = getSmartSuggestions(query);
-
-            // 4. Get global results (moved up to show faster)
-            const globalResults = await searchGlobal(query);
-
-            setResults({
-                site: siteResults,
-                global: globalResults,
-                suggestions: suggestions
-            });
-
-            // 2. Try to get AI response with BRUTE FORCE TIMEOUT
-            let aiResp = null;
-            let isTimedOut = false;
-
-            // Only try Gemini if we have a key
-            if (apiKey) {
-                const limitCheck = checkRateLimit();
-                if (limitCheck.allowed) {
-                    try {
-                        // Create a promise that rejects after 10 seconds
-                        const timeoutPromise = new Promise((_, reject) => {
-                            setTimeout(() => {
-                                isTimedOut = true;
-                                reject(new Error("Timeout"));
-                            }, 10000);
-                        });
-
-                        // Race API against timeout
-                        aiResp = await Promise.race([
-                            getGeminiResponse(query),
-                            timeoutPromise
-                        ]);
-                    } catch (err) {
-                        console.log("API Error or Timeout:", err);
-                        // Fallback will happen below
-                    }
-                }
+        // Get AI response
+        let aiResp = await getGeminiResponse(query);
+        if (!aiResp) {
+            aiResp = getSimulatedResponse(query);
+            if (!aiResp) {
+                aiResp = `I can help you explore "${query}" in the context of finance. Check the results below for relevant articles and resources.`;
             }
-
-            // 3. Fallback logic (Simulated)
-            // If no AI response, OR if it timed out, OR if no key
-            if (!aiResp || isTimedOut) {
-                console.log("Using simulated fallback (Reason: " + (isTimedOut ? "Timeout" : "No Key/Error") + ")");
-                aiResp = getSimulatedResponse(query);
-
-                if (!aiResp) {
-                    aiResp = `I can help you explore "${query}" in the context of finance. I've found relevant articles and resources below. Our site covers ESG investing, blockchain technology, private equity trends, and more.`;
-                }
-            }
-
-            setAIResponse(aiResp);
-        } catch (error) {
-            console.error("Critical Search Error:", error);
-            setAIResponse("I encountered an error while searching. Please try again.");
-        } finally {
-            setLoading(false);
         }
+        setAIResponse(aiResp);
+        setLoading(false);
     };
 
     useEffect(() => {
         const debounce = setTimeout(() => {
             if (query) performSearch();
-        }, RATE_LIMITS.DEBOUNCE_TIME); // Increased debounce time
-
+        }, 500);
         return () => clearTimeout(debounce);
     }, [query]);
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        performSearch();
-    };
-
-    const quickSearches = [
-        { q: 'ESG investing', icon: '🌱' },
-        { q: 'Blockchain finance', icon: '⛓️' },
-        { q: 'Private equity', icon: '💼' },
-        { q: 'Market trends', icon: '📈' },
-        { q: 'AI in finance', icon: '🤖' },
-        { q: 'Our team', icon: '👥' }
-    ];
-
-    const filteredResults = () => {
-        if (activeTab === 'site') return results.site;
-        if (activeTab === 'global') return results.global;
-        return [...results.site, ...results.global];
-    };
+    useEffect(() => {
+        const handleEsc = (e) => {
+            if (e.key === 'Escape') onClose();
+        };
+        if (isOpen) {
+            document.addEventListener('keydown', handleEsc);
+            return () => document.removeEventListener('keydown', handleEsc);
+        }
+    }, [isOpen, onClose]);
 
     if (!isOpen) return null;
 
     return (
-        <div className="fixed inset-0 z-[100] flex items-start justify-center pt-12 px-4">
+        <div className="fixed inset-0 z-[100] flex items-start justify-center pt-24 px-4">
             <div
-                className="absolute inset-0 bg-black/80 backdrop-blur-sm"
+                className="absolute inset-0 bg-black/60 backdrop-blur-md"
                 onClick={onClose}
             />
 
-            <div className="relative w-full max-w-4xl bg-[#042440] border border-white/10 shadow-2xl max-h-[90vh] flex flex-col">
-                {/* Header */}
-                <div className="border-b border-white/10 p-6">
-                    <div className="flex items-center gap-4 mb-4">
-                        <div className="w-10 h-10 bg-gradient-to-br from-[#C5A059] to-[#b08d4d] rounded-full flex items-center justify-center">
-                            <span className="text-2xl">🤖</span>
-                        </div>
-                        <div className="flex-1">
-                            <h2 className="text-2xl font-light text-white">Finance AI Assistant</h2>
-                            <p className="text-xs text-gray-400">Your personal finance research companion</p>
-                        </div>
-                        <button
-                            onClick={onClose}
-                            className="text-gray-400 hover:text-white transition-colors"
-                        >
-                            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                            </svg>
-                        </button>
-                    </div>
-
-                    <form onSubmit={handleSubmit} className="relative">
+            <div className="relative w-full max-w-2xl">
+                {/* Search Input */}
+                <div className="bg-[#1a1a1a]/95 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl overflow-hidden">
+                    <div className="relative">
                         <input
                             ref={inputRef}
                             type="text"
                             value={query}
                             onChange={(e) => setQuery(e.target.value)}
-                            placeholder="Ask me anything about finance..."
-                            className="w-full px-6 py-4 bg-[#051C2C] border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-[#C5A059] transition-colors text-lg rounded-lg"
+                            placeholder={placeholder}
+                            className="w-full px-6 py-5 bg-transparent text-white placeholder-gray-500 focus:outline-none text-lg"
                         />
                         {loading && (
-                            <div className="absolute right-4 top-1/2 -translate-y-1/2">
-                                <div className="animate-spin rounded-full h-5 w-5 border-2 border-[#C5A059] border-t-transparent"></div>
+                            <div className="absolute right-6 top-1/2 -translate-y-1/2">
+                                <div className="animate-spin rounded-full h-5 w-5 border-2 border-white/30 border-t-white"></div>
                             </div>
                         )}
-                    </form>
+                    </div>
 
+                    {/* Results */}
                     {query && (
-                        <div className="flex gap-2 mt-4">
-                            <button
-                                onClick={() => setActiveTab('all')}
-                                className={`px-4 py-2 text-sm rounded-full transition-colors ${activeTab === 'all'
-                                    ? 'bg-[#C5A059] text-white font-medium'
-                                    : 'text-gray-400 hover:text-white bg-white/5'
-                                    }`}
-                            >
-                                All ({results.site.length + results.global.length})
-                            </button>
-                            <button
-                                onClick={() => setActiveTab('site')}
-                                className={`px-4 py-2 text-sm rounded-full transition-colors ${activeTab === 'site'
-                                    ? 'bg-[#C5A059] text-white font-medium'
-                                    : 'text-gray-400 hover:text-white bg-white/5'
-                                    }`}
-                            >
-                                Our Site ({results.site.length})
-                            </button>
-                            <button
-                                onClick={() => setActiveTab('global')}
-                                className={`px-4 py-2 text-sm rounded-full transition-colors ${activeTab === 'global'
-                                    ? 'bg-[#C5A059] text-white font-medium'
-                                    : 'text-gray-400 hover:text-white bg-white/5'
-                                    }`}
-                            >
-                                Global ({results.global.length})
-                            </button>
-                        </div>
-                    )}
-                </div>
-
-                {/* Content */}
-                <div className="flex-1 overflow-y-auto p-6">
-                    {!query ? (
-                        <div>
-                            <h3 className="text-sm font-medium text-gray-400 mb-4 flex items-center gap-2">
-                                <span>✨</span> QUICK SEARCHES
-                            </h3>
-                            <div className="grid grid-cols-2 gap-3">
-                                {quickSearches.map((search, idx) => (
-                                    <button
-                                        key={idx}
-                                        onClick={() => setQuery(search.q)}
-                                        className="px-4 py-3 bg-[#051C2C] text-gray-300 text-sm hover:bg-white/10 transition-colors border border-white/10 rounded-lg text-left flex items-center gap-3"
-                                    >
-                                        <span className="text-2xl">{search.icon}</span>
-                                        <span>{search.q}</span>
-                                    </button>
-                                ))}
-                            </div>
-
-                            <div className="mt-8 p-4 bg-gradient-to-r from-[#C5A059]/10 to-[#b08d4d]/10 border border-[#C5A059]/20 rounded-lg">
-                                <p className="text-sm text-gray-300 leading-relaxed">
-                                    <strong className="text-[#C5A059]">💡 Tip:</strong> Ask me about ESG investing, blockchain technology, private equity trends, market analysis, or anything finance-related. I'll provide intelligent insights and relevant resources!
-                                </p>
-                            </div>
-                        </div>
-                    ) : (
-                        <div className="space-y-6">
+                        <div className="border-t border-white/10 max-h-[60vh] overflow-y-auto">
                             {/* AI Response */}
-                            {showAIResponse && aiResponse && (
-                                <div className="p-5 bg-gradient-to-r from-[#C5A059]/10 to-[#b08d4d]/10 border border-[#C5A059]/30 rounded-lg">
-                                    <div className="flex items-start gap-3">
-                                        <div className="w-8 h-8 bg-[#C5A059] rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                                            <span className="text-lg">🤖</span>
-                                        </div>
-                                        <div className="flex-1">
-                                            <h4 className="text-sm font-medium text-[#C5A059] mb-2">AI Insight</h4>
-                                            <div className="text-sm text-gray-200 leading-relaxed prose prose-invert prose-sm max-w-none">
-                                                <ReactMarkdown>{aiResponse}</ReactMarkdown>
-                                            </div>
-                                        </div>
+                            {aiResponse && (
+                                <div className="p-4 bg-white/5 border-b border-white/10">
+                                    <div className="text-sm text-gray-300 leading-relaxed">
+                                        <ReactMarkdown>{aiResponse}</ReactMarkdown>
                                     </div>
                                 </div>
                             )}
 
-                            {/* Smart Suggestions */}
-                            {results.suggestions.length > 0 && (
-                                <div>
-                                    <h4 className="text-xs font-medium text-gray-400 mb-3">RELATED TOPICS</h4>
-                                    <div className="flex flex-wrap gap-2">
-                                        {results.suggestions.map((sug, idx) => (
-                                            <button
-                                                key={idx}
-                                                onClick={() => setQuery(sug)}
-                                                className="px-3 py-1 bg-[#051C2C] text-gray-300 text-xs hover:bg-[#C5A059] hover:text-white transition-colors border border-white/10 rounded-full"
-                                            >
-                                                {sug}
-                                            </button>
-                                        ))}
-                                    </div>
-                                </div>
-                            )}
-
-                            {/* Results */}
-                            {filteredResults().length === 0 ? (
-                                <div className="text-center py-12">
-                                    <p className="text-gray-400">No results found for "{query}"</p>
-                                    <p className="text-sm text-gray-500 mt-2">Try different keywords or explore our quick searches</p>
+                            {/* Site Results */}
+                            {results.site.length > 0 ? (
+                                <div className="py-2">
+                                    {results.site.map((result, idx) => (
+                                        <Link
+                                            key={idx}
+                                            to={result.url}
+                                            onClick={onClose}
+                                            className="block px-6 py-3 hover:bg-white/5 transition-colors"
+                                        >
+                                            <h3 className="text-white font-medium mb-1">{result.title}</h3>
+                                            {result.excerpt && (
+                                                <p className="text-sm text-gray-400">{result.excerpt}</p>
+                                            )}
+                                            {result.category && (
+                                                <span className="text-xs text-gray-500 mt-1 inline-block">{result.category}</span>
+                                            )}
+                                        </Link>
+                                    ))}
                                 </div>
                             ) : (
-                                <div>
-                                    <h4 className="text-xs font-medium text-gray-400 mb-3">SEARCH RESULTS</h4>
-                                    <div className="space-y-3">
-                                        {filteredResults().map((result, idx) => (
-                                            result.type === 'global' ? (
-                                                <a
-                                                    key={idx}
-                                                    href={result.url}
-                                                    target="_blank"
-                                                    rel="noopener noreferrer"
-                                                    className="block p-4 bg-[#051C2C] hover:bg-white/5 transition-colors border border-white/10 rounded-lg group"
-                                                >
-                                                    <div className="flex items-start justify-between mb-2">
-                                                        <h3 className="text-base font-medium text-white group-hover:text-[#C5A059] transition-colors flex-1">
-                                                            {result.title}
-                                                        </h3>
-                                                        <svg className="w-4 h-4 text-gray-500 flex-shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                                                        </svg>
-                                                    </div>
-                                                    <p className="text-sm text-gray-400 mb-2">{result.excerpt}</p>
-                                                    <span className="text-xs text-[#C5A059]">{result.source}</span>
-                                                </a>
-                                            ) : (
-                                                <Link
-                                                    key={idx}
-                                                    to={result.url}
-                                                    onClick={onClose}
-                                                    className="block p-4 bg-[#051C2C] hover:bg-white/5 transition-colors border border-white/10 rounded-lg group"
-                                                >
-                                                    <h3 className="text-base font-medium text-white group-hover:text-[#C5A059] transition-colors mb-2">
-                                                        {result.title}
-                                                    </h3>
-                                                    {result.excerpt && (
-                                                        <p className="text-sm text-gray-400 mb-2">{result.excerpt}</p>
-                                                    )}
-                                                    <span className="text-xs text-[#C5A059]">{result.category}</span>
-                                                </Link>
-                                            )
-                                        ))}
-                                    </div>
+                                <div className="p-8 text-center text-gray-500">
+                                    No results found
                                 </div>
                             )}
                         </div>
@@ -536,30 +248,16 @@ export default function SearchOverlay({ isOpen, onClose }) {
                 </div>
 
                 {/* Footer */}
-                <div className="border-t border-white/10 p-4 bg-[#051C2C] flex items-center justify-between">
-                    <div className="flex items-center gap-2">
-                        <span className="text-xs text-gray-500">Powered by</span>
-                        <div className="flex items-center gap-1 px-2 py-1 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded border border-blue-500/30">
-                            <svg className="w-3 h-3 text-blue-400" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" />
-                            </svg>
-                            <span className="text-xs font-medium bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
-                                Gemini AI
-                            </span>
-                        </div>
-                        {/* Debug Indicator: Green = Key Present, Red = Key Missing */}
-                        <div
-                            className={`w-1.5 h-1.5 rounded-full ${apiKey ? 'bg-green-500' : 'bg-red-500'}`}
-                            title={apiKey ? "AI Active" : "AI Inactive (No Key)"}
-                        />
-                        {/* Visible Status for Debugging */}
-                        <span className="text-[10px] text-gray-600 ml-1">
-                            {loading ? 'Thinking...' : (aiResponse ? 'Active' : 'Ready')}
+                <div className="mt-3 flex items-center justify-center gap-2 text-xs text-gray-500">
+                    <span>Powered by</span>
+                    <div className="flex items-center gap-1 px-2 py-1 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded border border-blue-500/30">
+                        <svg className="w-3 h-3 text-blue-400" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" />
+                        </svg>
+                        <span className="text-xs font-medium bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+                            Gemini
                         </span>
                     </div>
-                    <p className="text-xs text-gray-500">
-                        Press <kbd className="px-2 py-1 bg-white/10 rounded ml-1">ESC</kbd> to close
-                    </p>
                 </div>
             </div>
         </div>
