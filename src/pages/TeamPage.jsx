@@ -9,11 +9,11 @@ export default function AboutPage() {
         {
             name: "Leadership",
             members: [
-                { name: "Lorenzo Sargiani", role: "Founder & President", img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=60&w=300" },
-                { name: "Ines Desmaretz", role: "Vice President", img: "/team/ines-desmaretz.jpg" },
-                { name: "Daria Iannuzzi", role: "Vice President", img: "/team/daria-iannuzzi.jpg" },
-                { name: "Martina Proietti Silvestri", role: "Board Member", img: "/team/martina-proietti-silvestri.jpg" },
-                { name: "Christos Gerontopoulos", role: "Board Member", img: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=60&w=300" },
+                { name: "Lorenzo Sargiani", role: "Founder & President", img: "/team/president.jpg" },
+                { name: "Ines Desmaretz", role: "Co-Founder & Vice President", img: "/team/ines-desmaretz.jpg" },
+                { name: "Daria Iannuzzi", role: "Co-Founder & Vice President", img: "/team/daria-iannuzzi.jpg" },
+                { name: "Martina Proietti Silvestri", role: "Co-Founder & Board Member", img: "/team/martina-proietti-silvestri.jpg" },
+                { name: "Christos Gerontopoulos", role: "Co-Founder & Board Member", img: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=60&w=300" },
                 { name: "Lucas Thai", role: "Board Member", img: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=60&w=300" },
                 { name: "Alex Toumasson", role: "Board Member", img: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=60&w=300" }
             ]
