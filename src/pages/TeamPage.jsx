@@ -165,7 +165,7 @@ export default function AboutPage() {
                                             <img
                                                 src={member.img}
                                                 alt={member.name}
-                                                className="w-full h-full object-cover object-[center_20%] filter grayscale hover:grayscale-0 transition-all duration-700"
+                                                className="w-full h-full object-cover filter grayscale hover:grayscale-0 transition-all duration-700"
                                                 loading="lazy"
                                             />
                                         </div>
