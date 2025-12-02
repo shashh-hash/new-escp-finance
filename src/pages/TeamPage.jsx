@@ -166,8 +166,8 @@ export default function AboutPage() {
                                                 src={member.img}
                                                 alt={member.name}
                                                 className={`w-full h-full object-cover filter grayscale hover:grayscale-0 transition-all duration-700 ${['Ines Desmaretz', 'Edoardo Cerrano', 'Emanuele Ferrara', 'Tommaso Girani', 'Adriano Cogorno', "Giorgio D'Innocenzo"].some(n => member.name.includes(n))
-                                                        ? 'object-[center_30%]'
-                                                        : ''
+                                                    ? 'object-[center_35%]'
+                                                    : ''
                                                     }`}
                                                 loading="lazy"
                                             />
