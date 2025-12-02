@@ -100,7 +100,7 @@ export default function ContactPage() {
                             <div className="space-y-6">
                                 <div>
                                     <h3 className="text-sm uppercase tracking-wider text-gray-500 mb-2">Email</h3>
-                                    <p className="text-white">contact@escpfinance.com</p>
+                                    <p className="text-white">escpstudentsforfinance@gmail.com</p>
                                 </div>
                                 <div>
                                     <h3 className="text-sm uppercase tracking-wider text-gray-500 mb-2">Location</h3>
@@ -109,9 +109,8 @@ export default function ContactPage() {
                                 <div>
                                     <h3 className="text-sm uppercase tracking-wider text-gray-500 mb-2">Social Media</h3>
                                     <div className="flex gap-4">
-                                        <a href="#" className="text-white hover:text-gray-400 transition-colors">LinkedIn</a>
-                                        <a href="#" className="text-white hover:text-gray-400 transition-colors">Instagram</a>
-                                        <a href="#" className="text-white hover:text-gray-400 transition-colors">Twitter</a>
+                                        <a href="https://www.linkedin.com/company/escp-studenst-for-finance/" target="_blank" rel="noopener noreferrer" className="text-white hover:text-gray-400 transition-colors">LinkedIn</a>
+                                        <a href="https://www.instagram.com/escpstudentsforfinance?igsh=MTh3NXBzbnplcG1sbg==" target="_blank" rel="noopener noreferrer" className="text-white hover:text-gray-400 transition-colors">Instagram</a>
                                     </div>
                                 </div>
                             </div>

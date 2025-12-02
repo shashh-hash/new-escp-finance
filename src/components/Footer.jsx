@@ -11,20 +11,21 @@ export default function Footer() {
                     </div>
 
                     <div className="flex gap-6">
-                        {['instagram', 'linkedin', 'email'].map(social => (
-                            <a key={social} href="#" className="w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center hover:bg-[#C5A059] hover:text-white transition-all">
-                                <span className="sr-only">{social}</span>
-                                <div className="w-4 h-4 bg-current rounded-sm"></div>
-                            </a>
-                        ))}
+                        <a href="https://www.instagram.com/escpstudentsforfinance?igsh=MTh3NXBzbnplcG1sbg==" target="_blank" rel="noopener noreferrer" className="w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center hover:bg-[#C5A059] hover:text-white transition-all">
+                            <span className="sr-only">Instagram</span>
+                            <div className="w-4 h-4 bg-current rounded-sm"></div>
+                        </a>
+                        <a href="https://www.linkedin.com/company/escp-studenst-for-finance/" target="_blank" rel="noopener noreferrer" className="w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center hover:bg-[#C5A059] hover:text-white transition-all">
+                            <span className="sr-only">LinkedIn</span>
+                            <div className="w-4 h-4 bg-current rounded-sm"></div>
+                        </a>
                     </div>
                 </div>
 
                 <div className="border-t border-gray-800 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center text-xs">
                     <p>&copy; 2025 ESCP Students for Finance. All rights reserved.</p>
                     <div className="flex gap-6 mt-4 md:mt-0">
-                        <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
-                        <a href="#" className="hover:text-white transition-colors">Contact</a>
+                        <a href="/contact" className="hover:text-white transition-colors">Contact</a>
                     </div>
                 </div>
             </div>

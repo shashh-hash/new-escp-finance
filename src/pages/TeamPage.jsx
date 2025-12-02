@@ -9,7 +9,7 @@ export default function AboutPage() {
         {
             name: "Leadership",
             members: [
-                { name: "Lorenzo Sargiani", role: "Founder & President", img: "/team/president.jpg" },
+                { name: "Lorenzo Sargiani", role: "Co-Founder & President", img: "/team/president.jpg" },
                 { name: "Ines Desmaretz", role: "Co-Founder & Vice President", img: "/team/ines-desmaretz.jpg" },
                 { name: "Daria Iannuzzi", role: "Co-Founder & Vice President", img: "/team/daria-iannuzzi.jpg" },
                 { name: "Martina Proietti Silvestri", role: "Co-Founder & Board Member", img: "/team/martina-proietti-silvestri.jpg" },
