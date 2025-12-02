@@ -51,7 +51,7 @@ export default function Sections() {
                     </Link>
                 </div>
                 <div className="grid md:grid-cols-2 gap-8">
-                    {articles.slice().reverse().slice(0, 2).map((article, idx) => (
+                    {articles.slice(0, 2).map((article, idx) => (
                         <Link
                             key={idx}
                             to={`/articles/${article.slug}`}
