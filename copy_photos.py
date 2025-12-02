@@ -13,7 +13,7 @@ mapping = {
     "Flavio_Antonuzzo_ Co-Head of Strategy.png": "flavio-antonuzzo.png",
     "Francesco_Maria_Liaci_Marketing Associate.jpg": "francesco-maria-liaci.jpg",
     "Frederic_Wessling_Melonari_Research_Associate.jpg": "frederic-wessling-melonari.jpg",
-    "Giorgio_D’Innocenzo.jpg": "giorgio-dinnocenzo.jpg",
+    "Giorgio_D'Innocenzo.jpg": "giorgio-dinnocenzo.jpg",
     "Giovanni_Ciccarello.jpg": "giovanni-ciccarello.jpg",
     "Giuseppe_Mansueto Co-Head of Research.png": "giuseppe-mansueto.png",
     "Inès Desmaretz_.jpg": "ines-desmaretz.jpg",
@@ -24,7 +24,14 @@ mapping = {
     "Valentina_Petrini_Head of Marketing .jpeg": "valentina-petrini.jpg",
     "Wangjingyi-Tech associate.jpg": "jingyi-wang.jpg",
     "tommaso donati_HR associate.jpeg": "tommaso-donati.jpg",
-    "tommaso girani.png": "tommaso-girani.png"
+    "tommaso girani.png": "tommaso-girani.png",
+    # New additions - missing team members
+    "Adriano_Cogorno Co-Head of Research.jpg": "adriano-cogorno.jpg",
+    "Alessandra_Boarolo HR Associate_.jpg": "alessandra-boarolo.jpg",
+    "alessio-penzo.jpg": "alessio-penzo.jpg",
+    "Carlo Giulio Rizzuto_strategy associate .jpg": "carlo-giulio-rizzuto.jpg",
+    "daria-iannuzzi.jpg": "daria-iannuzzi.jpg",
+    "carlo-giulio-rizzuto-alt.jpg": "carlo-giulio-rizzuto-alt.jpg"
 }
 
 print(f"Starting copy from {source_dir} to {dest_dir}")
