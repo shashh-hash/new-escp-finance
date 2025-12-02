@@ -10,7 +10,7 @@ export default function Sections() {
                 <div className="container mx-auto px-8 text-center">
                     <h2 className="font-serif text-3xl mb-6">Our Mission</h2>
                     <p className="text-xl max-w-3xl mx-auto leading-relaxed font-light">
-                        "To bridge the gap between academic theory and professional practice, empowering the next generation of finance leaders through education, networking, and real-world experience."
+                        "ESCP Students for Finance is an association born with the purpose of creating a network of students and young professionals interested in the different branches of finance. The association will serve the scope of preparing students with a deeper understanding of financial concepts, including investing, personal finance, and current economics events."
                     </p>
                 </div>
             </section>
@@ -24,13 +24,13 @@ export default function Sections() {
                     </p>
                     <div className="flex gap-4">
                         <div className="text-center">
-                            <span className="block text-3xl font-serif" style={{ color: 'var(--color-text)' }}>50+</span>
+                            <span className="block text-3xl font-serif" style={{ color: 'var(--color-text)' }}>40+</span>
                             <span className="text-xs uppercase tracking-widest" style={{ color: 'var(--color-text-secondary)' }}>Members</span>
                         </div>
                         <div className="w-px" style={{ backgroundColor: 'var(--color-text-secondary)', opacity: 0.3 }}></div>
                         <div className="text-center">
-                            <span className="block text-3xl font-serif" style={{ color: 'var(--color-text)' }}>10+</span>
-                            <span className="text-xs uppercase tracking-widest" style={{ color: 'var(--color-text-secondary)' }}>Events</span>
+                            <span className="block text-3xl font-serif" style={{ color: 'var(--color-text)' }}>7+</span>
+                            <span className="text-xs uppercase tracking-widest" style={{ color: 'var(--color-text-secondary)' }}>Divisions</span>
                         </div>
                     </div>
                 </div>
