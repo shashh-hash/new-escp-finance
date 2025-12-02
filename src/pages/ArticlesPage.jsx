@@ -11,7 +11,7 @@ export default function ArticlesPage() {
             category: "Healthcare",
             author: "Francesco Kaitsas",
             date: "Nov 20, 2025",
-            image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=60&w=600",
+            image: "/pfizer-article.png",
             slug: "sustainable-finance-esg-2024"
         },
         {

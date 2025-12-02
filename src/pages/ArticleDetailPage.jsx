@@ -19,7 +19,7 @@ import { QuoteBlock } from '../components/ui/QuoteBlock';
 // --- Article data (peut être mis dans un fichier séparé src/data/articles.js) ---
 
 const articles = {
-    'sustainable-finance-esg-2024': {
+  'sustainable-finance-esg-2024': {
     slug: 'sustainable-finance-esg-2024',
     title: 'A $10 Billion Bet: Pfizer Enters the Anti-Obesity Drug Market with Metsera',
     author: 'Francesco Kaitsas',
@@ -27,7 +27,7 @@ const articles = {
     category: 'Healthcare',
     readTime: '8 min read',
     image:
-      'https://images.unsplash.com/photo-1582719478250-cc99d3d44d04?auto=format&fit=crop&q=60&w=1200',
+      '/pfizer-article.png',
     content: (
       <>
         <LeadParagraph>
@@ -205,77 +205,77 @@ const articles = {
         <SectionHeading>References</SectionHeading>
 
         <ul className="text-sm text-gray-400 space-y-2">
-        <li>
-          <a
-            href="https://www.pfizer.com/news/press-release/press-release-detail/pfizer-completes-acquisition-metsera"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-[#C5A059] hover:underline"
-          >
-            Pfizer – Press release: Pfizer completes acquisition of Metsera
-          </a>
-        </li>
-        <li>
-          <a
-            href="https://www.ft.com/content/d9f58a26-5395-4acb-8dfc-d55cb53f946e"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-[#C5A059] hover:underline"
-          >
-            Financial Times – Coverage of the Metsera acquisition
-          </a>
-        </li>
-        <li>
-          <a
-            href="https://www.reuters.com/business/healthcare-pharmaceuticals/pfizer-sweetens-offer-metsera-bidding-war-against-novo-bloomberg-news-reports-2025-11-08/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-[#C5A059] hover:underline"
-          >
-            Reuters – Pfizer sweetens offer for Metsera in bidding war against Novo Nordisk
-          </a>
-        </li>
-        <li>
-          <a
-            href="https://www.cnbc.com/2025/11/08/metsera-accepts-pfizers-10-billion-bid-in-ongoing-ma-battle.html"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-[#C5A059] hover:underline"
-          >
-            CNBC – Metsera accepts Pfizer&apos;s $10 billion bid
-          </a>
-        </li>
-        <li>
-          <a
-            href="https://www.morganstanley.com/insights/articles/weight-loss-medication-market-unstoppable-growth"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-[#C5A059] hover:underline"
-          >
-            Morgan Stanley – Weight-loss medication market analysis
-          </a>
-        </li>
-        <li>
-          <a
-            href="https://finance.yahoo.com/quote/PFE/financials/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-[#C5A059] hover:underline"
-          >
-            Yahoo Finance – Pfizer (PFE) financials
-          </a>
-        </li>
-        <li>
-          <a
-            href="https://finance.yahoo.com/quote/MTSR/financials/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-[#C5A059] hover:underline"
-          >
-            Yahoo Finance – Metsera (MTSR) financials
-          </a>
-        </li>
-      </ul>
+          <li>
+            <a
+              href="https://www.pfizer.com/news/press-release/press-release-detail/pfizer-completes-acquisition-metsera"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#C5A059] hover:underline"
+            >
+              Pfizer – Press release: Pfizer completes acquisition of Metsera
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://www.ft.com/content/d9f58a26-5395-4acb-8dfc-d55cb53f946e"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#C5A059] hover:underline"
+            >
+              Financial Times – Coverage of the Metsera acquisition
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://www.reuters.com/business/healthcare-pharmaceuticals/pfizer-sweetens-offer-metsera-bidding-war-against-novo-bloomberg-news-reports-2025-11-08/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#C5A059] hover:underline"
+            >
+              Reuters – Pfizer sweetens offer for Metsera in bidding war against Novo Nordisk
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://www.cnbc.com/2025/11/08/metsera-accepts-pfizers-10-billion-bid-in-ongoing-ma-battle.html"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#C5A059] hover:underline"
+            >
+              CNBC – Metsera accepts Pfizer&apos;s $10 billion bid
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://www.morganstanley.com/insights/articles/weight-loss-medication-market-unstoppable-growth"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#C5A059] hover:underline"
+            >
+              Morgan Stanley – Weight-loss medication market analysis
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://finance.yahoo.com/quote/PFE/financials/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#C5A059] hover:underline"
+            >
+              Yahoo Finance – Pfizer (PFE) financials
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://finance.yahoo.com/quote/MTSR/financials/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#C5A059] hover:underline"
+            >
+              Yahoo Finance – Metsera (MTSR) financials
+            </a>
+          </li>
+        </ul>
       </>
     ),
   },
