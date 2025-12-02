@@ -1,6 +1,6 @@
 import React from 'react';
 
-export function ArticleMeta({ category, readTime, title, author, date }) {
+export function ArticleMeta({ category, readTime, title, author, date, series }) {
   return (
     <>
       <div className="flex items-center gap-4 mb-4">
@@ -16,6 +16,11 @@ export function ArticleMeta({ category, readTime, title, author, date }) {
           </>
         )}
       </div>
+      {series && (
+        <div className="mb-3">
+          <span className="text-sm font-light text-gray-400">{series}</span>
+        </div>
+      )}
       <h1 className="text-5xl font-light tracking-tight text-white mb-6">
         {title}
       </h1>
