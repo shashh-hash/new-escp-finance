@@ -119,7 +119,7 @@ const Hero = memo(() => {
             title: "Meet the Team",
             subtitle: "Building the future of finance at ESCP",
             cta: "View Team",
-            link: "/about"
+            link: "/team"
         },
         {
             title: "Market Momentum",

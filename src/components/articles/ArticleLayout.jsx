@@ -34,6 +34,7 @@ export function ArticleLayout({ article, relatedArticles = [] }) {
               title={article.title}
               author={article.author}
               date={article.date}
+              series={article.series}
             />
           </header>
 

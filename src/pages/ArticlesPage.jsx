@@ -9,15 +9,17 @@ export default function ArticlesPage() {
             title: "A $10 Billion Bet: Pfizer Enters the Anti-Obesity Drug Market",
             excerpt: "Pfizer acquires Metsera for nearly $10 billion, entering the booming anti-obesity drug market and challenging industry leaders.",
             category: "Healthcare",
+            series: "Market Momentum | Week 47",
             author: "Francesco Kaitsas",
             date: "Nov 20, 2025",
-            image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=60&w=600",
+            image: "/pfizer-article.png",
             slug: "sustainable-finance-esg-2024"
         },
         {
             title: "Blockchain in Banking: Beyond the Hype",
             excerpt: "A deep dive into real-world applications of blockchain technology in traditional banking systems.",
             category: "Technology",
+            series: "Market Momentum | Week 47",
             author: "Francesco Kaitsas",
             date: "Nov 18, 2025",
             image: "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?auto=format&fit=crop&q=60&w=600",
@@ -27,6 +29,7 @@ export default function ArticlesPage() {
             title: "Private Equity Trends in 2025: AI and Value Creation",
             excerpt: "Analysis of emerging patterns in PE investments and what they mean for the future of capital markets.",
             category: "Markets",
+            series: "Market Momentum | Week 47",
             author: "Francesco Baci Paci",
             date: "Nov 15, 2025",
             image: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&q=60&w=600",
@@ -63,6 +66,11 @@ export default function ArticlesPage() {
                                     <div className="mb-3">
                                         <span className="text-xs uppercase tracking-wider text-gray-500">{article.category}</span>
                                     </div>
+                                    {article.series && (
+                                        <div className="mb-2">
+                                            <span className="text-sm font-light text-gray-400">{article.series}</span>
+                                        </div>
+                                    )}
                                     <h3 className="text-xl font-medium text-white mb-3 group-hover:text-gray-300 transition-colors">
                                         {article.title}
                                     </h3>

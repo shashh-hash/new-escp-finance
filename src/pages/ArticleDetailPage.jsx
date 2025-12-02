@@ -19,15 +19,16 @@ import { QuoteBlock } from '../components/ui/QuoteBlock';
 // --- Article data (peut être mis dans un fichier séparé src/data/articles.js) ---
 
 const articles = {
-    'sustainable-finance-esg-2024': {
+  'sustainable-finance-esg-2024': {
     slug: 'sustainable-finance-esg-2024',
     title: 'A $10 Billion Bet: Pfizer Enters the Anti-Obesity Drug Market with Metsera',
     author: 'Francesco Kaitsas',
     date: 'Nov 20, 2025',
     category: 'Healthcare',
+    series: 'Market Momentum | Week 47',
     readTime: '8 min read',
     image:
-      'https://images.unsplash.com/photo-1582719478250-cc99d3d44d04?auto=format&fit=crop&q=60&w=1200',
+      '/pfizer-article.png',
     content: (
       <>
           <LeadParagraph>
@@ -259,6 +260,7 @@ const articles = {
     author: 'Francesco Kaitsas',
     date: 'Nov 18, 2025',
     category: 'Technology',
+    series: 'Market Momentum | Week 47',
     readTime: '10 min read',
     image:
       'https://images.unsplash.com/photo-1639762681485-074b7f938ba0?auto=format&fit=crop&q=60&w=1200',
@@ -431,6 +433,7 @@ const articles = {
     author: 'Francesco Baci Paci',
     date: 'Nov 15, 2025',
     category: 'Markets',
+    series: 'Market Momentum | Week 47',
     readTime: '9 min read',
     image:
       'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&q=60&w=1200',

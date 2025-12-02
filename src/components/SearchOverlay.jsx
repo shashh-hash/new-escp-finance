@@ -37,30 +37,31 @@ export default function SearchOverlay({ isOpen, onClose }) {
             }
         ],
         pages: [
-            { title: "About Us", url: "/about", keywords: ["team", "members", "club", "society", "people", "leadership"] },
+            { title: "About Us", url: "/about", keywords: ["about", "mission", "values", "what we do", "purpose"] },
+            { title: "Our Team", url: "/team", keywords: ["team", "members", "club", "society", "people", "leadership"] },
             { title: "Our Mission", url: "/mission", keywords: ["mission", "vision", "goals", "purpose", "values"] },
             { title: "Financial News", url: "/news", keywords: ["news", "updates", "markets", "latest", "headlines"] },
             { title: "Contact", url: "/contact", keywords: ["contact", "email", "reach", "connect", "get in touch"] }
         ],
         team: [
-            { title: "Lorenzo Sargiani", role: "Founder & President", url: "/about", keywords: ["founder", "president", "lorenzo", "sargiani", "leader"] },
-            { title: "Ines Desmaretz", role: "Vice President", url: "/about", keywords: ["vp", "vice president", "ines", "desmaretz"] },
-            { title: "Daria Iannuzzi", role: "Vice President & Head of Events", url: "/about", keywords: ["vp", "events", "daria", "iannuzzi"] },
-            { title: "Martina Proietti Silvestri", role: "Board Member & Head of Events", url: "/about", keywords: ["board", "events", "martina", "proietti", "silvestri"] },
-            { title: "Christos Gerontopoulos", role: "Board Member", url: "/about", keywords: ["board", "christos", "gerontopoulos"] },
-            { title: "Lucas Thai", role: "Board Member", url: "/about", keywords: ["board", "lucas", "thai"] },
-            { title: "Alex Toumasson", role: "Board Member", url: "/about", keywords: ["board", "alex", "toumasson"] },
-            { title: "Edoardo Cerrano", role: "Head of HR", url: "/about", keywords: ["hr", "head", "edoardo", "cerrano"] },
-            { title: "Flavio Antonuzzo", role: "Head of Strategy", url: "/about", keywords: ["strategy", "head", "flavio", "antonuzzo"] },
-            { title: "Tommaso Girani", role: "Head of Strategy", url: "/about", keywords: ["strategy", "head", "tommaso", "girani"] },
-            { title: "Luca Citton", role: "Head of Articles", url: "/about", keywords: ["articles", "head", "luca", "citton"] },
-            { title: "Francesco Kaitsas", role: "Head of Articles", url: "/about", keywords: ["articles", "head", "francesco", "kaitsas"] },
-            { title: "Adriano Cogorno", role: "Head of Research", url: "/about", keywords: ["research", "head", "adriano", "cogorno"] },
-            { title: "Giuseppe Mansueto", role: "Head of Research", url: "/about", keywords: ["research", "head", "giuseppe", "mansueto"] },
-            { title: "Valentina Petrini", role: "Head of Marketing", url: "/about", keywords: ["marketing", "head", "valentina", "petrini"] },
-            { title: "Beatrice Pellini", role: "Head of Instagram", url: "/about", keywords: ["instagram", "head", "beatrice", "pellini"] },
-            { title: "Marina Meucci", role: "Head of LinkedIn", url: "/about", keywords: ["linkedin", "head", "marina", "meucci"] },
-            { title: "Shashank Tripathi", role: "Head of Tech", url: "/about", keywords: ["tech", "head", "shashank", "tripathi", "developer"] }
+            { title: "Lorenzo Sargiani", role: "Founder & President", url: "/team", keywords: ["founder", "president", "lorenzo", "sargiani", "leader"] },
+            { title: "Ines Desmaretz", role: "Vice President", url: "/team", keywords: ["vp", "vice president", "ines", "desmaretz"] },
+            { title: "Daria Iannuzzi", role: "Vice President & Head of Events", url: "/team", keywords: ["vp", "events", "daria", "iannuzzi"] },
+            { title: "Martina Proietti Silvestri", role: "Board Member & Head of Events", url: "/team", keywords: ["board", "events", "martina", "proietti", "silvestri"] },
+            { title: "Christos Gerontopoulos", role: "Board Member", url: "/team", keywords: ["board", "christos", "gerontopoulos"] },
+            { title: "Lucas Thai", role: "Board Member", url: "/team", keywords: ["board", "lucas", "thai"] },
+            { title: "Alex Toumasson", role: "Board Member", url: "/team", keywords: ["board", "alex", "toumasson"] },
+            { title: "Edoardo Cerrano", role: "Head of HR", url: "/team", keywords: ["hr", "head", "edoardo", "cerrano"] },
+            { title: "Flavio Antonuzzo", role: "Head of Strategy", url: "/team", keywords: ["strategy", "head", "flavio", "antonuzzo"] },
+            { title: "Tommaso Girani", role: "Head of Strategy", url: "/team", keywords: ["strategy", "head", "tommaso", "girani"] },
+            { title: "Luca Citton", role: "Head of Articles", url: "/team", keywords: ["articles", "head", "luca", "citton"] },
+            { title: "Francesco Kaitsas", role: "Head of Articles", url: "/team", keywords: ["articles", "head", "francesco", "kaitsas"] },
+            { title: "Adriano Cogorno", role: "Head of Research", url: "/team", keywords: ["research", "head", "adriano", "cogorno"] },
+            { title: "Giuseppe Mansueto", role: "Head of Research", url: "/team", keywords: ["research", "head", "giuseppe", "mansueto"] },
+            { title: "Valentina Petrini", role: "Head of Marketing", url: "/team", keywords: ["marketing", "head", "valentina", "petrini"] },
+            { title: "Beatrice Pellini", role: "Head of Instagram", url: "/team", keywords: ["instagram", "head", "beatrice", "pellini"] },
+            { title: "Marina Meucci", role: "Head of LinkedIn", url: "/team", keywords: ["linkedin", "head", "marina", "meucci"] },
+            { title: "Shashank Tripathi", role: "Head of Tech", url: "/team", keywords: ["tech", "head", "shashank", "tripathi", "developer"] }
         ]
     };
 
