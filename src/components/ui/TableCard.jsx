@@ -22,7 +22,7 @@ export function TableCard({
       )}
 
       <div className="w-full overflow-x-auto">
-        <table className="w-full text-sm">
+        <table className="w-full text-sm min-w-full">
           {header && (
             <thead>
               <tr className="border-b border-white/10">
@@ -48,7 +48,7 @@ export function TableCard({
                 }
               >
                 {row.map((cell, cellIdx) => (
-                  <td key={cellIdx} className="py-3 pr-4 whitespace-nowrap">
+                  <td key={cellIdx} className="py-3 pr-4">
                     {cell}
                   </td>
                 ))}
