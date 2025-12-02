@@ -21,12 +21,11 @@ export default function SearchOverlay({ isOpen, onClose }) {
     useEffect(() => {
         if (isOpen) {
             inputRef.current?.focus();
-            // Rotate placeholder every 3 seconds
+            // Rotate placeholder every 3 seconds with animation
+            let index = 0;
             const interval = setInterval(() => {
-                setPlaceholder(prev => {
-                    const currentIndex = placeholders.indexOf(prev);
-                    return placeholders[(currentIndex + 1) % placeholders.length];
-                });
+                index = (index + 1) % placeholders.length;
+                setPlaceholder(placeholders[index]);
             }, 3000);
             return () => clearInterval(interval);
         }
@@ -197,7 +196,12 @@ export default function SearchOverlay({ isOpen, onClose }) {
                             value={query}
                             onChange={(e) => setQuery(e.target.value)}
                             placeholder={placeholder}
-                            className="w-full px-6 py-5 bg-transparent text-white placeholder-gray-500 focus:outline-none text-lg"
+                            className="w-full px-6 py-5 bg-transparent text-white placeholder-gray-500 focus:outline-none text-lg transition-all duration-500"
+                            style={{
+                                '::placeholder': {
+                                    transition: 'opacity 0.5s ease-in-out'
+                                }
+                            }}
                         />
                         {loading && (
                             <div className="absolute right-6 top-1/2 -translate-y-1/2">

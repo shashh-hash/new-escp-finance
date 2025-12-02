@@ -41,7 +41,7 @@ export default function Sections() {
 
             {/* Latest Articles */}
             <section className="container mx-auto px-8 py-16 border-t border-gray-200">
-                <div className="flex justify-between items-baseline mb-8">
+                <div className="flex justify-between items-baseline mb-2">
                     <h2 className="font-serif text-3xl">Latest Articles</h2>
                     <Link
                         to="/articles"
@@ -50,6 +50,7 @@ export default function Sections() {
                         View all →
                     </Link>
                 </div>
+                <p className="text-gray-400 text-sm mb-8">Market Momentum | Week 47</p>
                 <div className="grid md:grid-cols-2 gap-8">
                     {articles.slice(0, 2).map((article, idx) => (
                         <Link
