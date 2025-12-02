@@ -50,7 +50,7 @@ export default function Sections() {
                         View all →
                     </Link>
                 </div>
-                <p className="text-gray-400 text-sm mb-8">Market Momentum | Week 47</p>
+
                 <div className="grid md:grid-cols-2 gap-8">
                     {articles.slice(0, 2).map((article, idx) => (
                         <Link
@@ -69,6 +69,9 @@ export default function Sections() {
                                 />
                             </div>
                             <span className="text-gray-400 text-xs block mb-2">{article.date}</span>
+                            {article.series && (
+                                <span className="text-gray-400 text-sm block mb-2">{article.series}</span>
+                            )}
                             <h3 className="font-serif text-xl group-hover:text-white transition-colors leading-tight">
                                 {article.title}
                             </h3>
