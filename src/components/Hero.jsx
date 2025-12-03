@@ -15,28 +15,52 @@ const Hero = memo(() => {
         const video = videoRef.current;
         if (!video) return;
 
-        // Simple, reliable autoplay
+        // Ensure video is muted for autoplay
         video.muted = true;
         video.defaultMuted = true;
         video.volume = 0;
 
-        const playVideo = () => {
+        const attemptPlay = () => {
             video.muted = true;
-            video.play().catch(err => {
-                console.log('Autoplay prevented:', err);
-                // Video will play when user interacts with page
-            });
+            const playPromise = video.play();
+
+            if (playPromise !== undefined) {
+                playPromise
+                    .then(() => {
+                        console.log('Video autoplay successful');
+                    })
+                    .catch(err => {
+                        console.log('Autoplay prevented, will try on user interaction:', err);
+                        // Fallback: play on any user interaction
+                        const playOnInteraction = () => {
+                            video.muted = true;
+                            video.play();
+                            document.removeEventListener('click', playOnInteraction);
+                            document.removeEventListener('touchstart', playOnInteraction);
+                            document.removeEventListener('scroll', playOnInteraction);
+                        };
+                        document.addEventListener('click', playOnInteraction, { once: true });
+                        document.addEventListener('touchstart', playOnInteraction, { once: true });
+                        document.addEventListener('scroll', playOnInteraction, { once: true });
+                    });
+            }
         };
 
-        // Try to play when metadata is loaded
-        if (video.readyState >= 2) {
-            playVideo();
-        } else {
-            video.addEventListener('loadedmetadata', playVideo, { once: true });
+        // Try multiple approaches
+        // 1. Immediate play if ready
+        if (video.readyState >= 3) {
+            attemptPlay();
         }
 
+        // 2. Play when can play
+        video.addEventListener('canplay', attemptPlay, { once: true });
+
+        // 3. Play when loaded metadata
+        video.addEventListener('loadedmetadata', attemptPlay, { once: true });
+
         return () => {
-            video.removeEventListener('loadedmetadata', playVideo);
+            video.removeEventListener('canplay', attemptPlay);
+            video.removeEventListener('loadedmetadata', attemptPlay);
         };
     }, []);
 
