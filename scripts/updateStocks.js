@@ -1,5 +1,5 @@
-const fs = require('fs');
-const https = require('https');
+import fs from 'fs';
+import https from 'https';
 
 // Function to fetch data from URL
 function fetchData(url) {

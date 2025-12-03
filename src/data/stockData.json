@@ -1,47 +1,33 @@
 {
-    "lastUpdated": "2025-12-01T09:35:00Z",
-    "stocks": [
-        {
-            "symbol": "S&P 500",
-            "value": "6849.00",
-            "change": "+0.50%",
-            "positive": true,
-            "type": "index"
-        },
-        {
-            "symbol": "NASDAQ",
-            "value": "23365.69",
-            "change": "+0.80%",
-            "positive": true,
-            "type": "index"
-        },
-        {
-            "symbol": "DOW",
-            "value": "47716.00",
-            "change": "+0.61%",
-            "positive": true,
-            "type": "index"
-        },
-        {
-            "symbol": "GOLD",
-            "value": "4256.40",
-            "change": "+1.10%",
-            "positive": true,
-            "type": "metal"
-        },
-        {
-            "symbol": "SILVER",
-            "value": "57.09",
-            "change": "+5.60%",
-            "positive": true,
-            "type": "metal"
-        },
-        {
-            "symbol": "OIL",
-            "value": "59.00",
-            "change": "-1.50%",
-            "positive": false,
-            "type": "commodity"
-        }
-    ]
+  "lastUpdated": "2025-12-03T13:58:35.248Z",
+  "stocks": [
+    {
+      "symbol": "S&P 500",
+      "value": "6849.00",
+      "change": "+0.50%",
+      "positive": true,
+      "type": "index"
+    },
+    {
+      "symbol": "NASDAQ",
+      "value": "23365.69",
+      "change": "+0.80%",
+      "positive": true,
+      "type": "index"
+    },
+    {
+      "symbol": "DOW",
+      "value": "47716.00",
+      "change": "+0.61%",
+      "positive": true,
+      "type": "index"
+    },
+    {
+      "symbol": "OIL",
+      "value": "59.00",
+      "change": "-1.50%",
+      "positive": false,
+      "type": "commodity"
+    }
+  ]
 }
