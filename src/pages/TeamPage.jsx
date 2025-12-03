@@ -76,7 +76,7 @@ export default function AboutPage() {
         {
             name: "Instagram",
             members: [
-                { name: "Beatrice Pellini", role: "Head of Instagram", img: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&q=60&w=300" },
+                { name: "Beatrice Pelini", role: "Head of Instagram", img: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&q=60&w=300" },
                 { name: "Camilla Barra", role: "Instagram Associate", img: "/team/camilla-barra.jpg" },
                 { name: "Federico Valente", role: "Instagram Associate", img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=60&w=300" }
             ]
@@ -161,13 +161,14 @@ export default function AboutPage() {
                                         style={{
                                             animation: `fadeIn 0.4s ease-out ${index * 0.04}s both`
                                         }}>
-                                        <div className="aspect-square mb-3 sm:mb-4 overflow-hidden bg-[#042440] rounded-lg">
+                                        <div className={`aspect-square mb-3 sm:mb-4 overflow-hidden rounded-lg ${member.name === 'Marina Meucci' ? 'bg-white' : 'bg-[#042440]'
+                                            }`}>
                                             <img
                                                 src={member.img}
                                                 alt={member.name}
                                                 className={`w-full h-full object-cover filter grayscale hover:grayscale-0 transition-all duration-700 ${['Ines Desmaretz', 'Edoardo Cerrano', 'Emanuele Ferrara', 'Tommaso Girani', 'Adriano Cogorno', "Giorgio D'Innocenzo"].some(n => member.name.includes(n))
-                                                    ? 'object-[center_35%]'
-                                                    : ''
+                                                        ? 'object-[center_35%]'
+                                                        : ''
                                                     }`}
                                                 loading="lazy"
                                             />

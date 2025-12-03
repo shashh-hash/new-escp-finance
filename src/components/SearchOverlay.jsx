@@ -191,16 +191,12 @@ export default function SearchOverlay({ isOpen, onClose }) {
                 <div className="bg-[#1a1a1a]/95 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl overflow-hidden">
                     <div className="relative">
                         <input
-                            key={placeholder} // Force re-render on placeholder change for animation
                             ref={inputRef}
                             type="text"
                             value={query}
                             onChange={(e) => setQuery(e.target.value)}
                             placeholder={placeholder}
-                            className="w-full px-6 py-5 bg-transparent text-white focus:outline-none text-lg animate-fadeIn"
-                            style={{
-                                animation: 'fadeIn 0.5s ease-in-out'
-                            }}
+                            className="w-full px-6 py-5 bg-transparent text-white placeholder-gray-500 focus:outline-none text-lg transition-opacity duration-500"
                         />
                         {loading && (
                             <div className="absolute right-6 top-1/2 -translate-y-1/2">
