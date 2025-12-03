@@ -1,33 +1,54 @@
 {
-  "lastUpdated": "2025-12-03T14:02:42.743Z",
+  "lastUpdated": "2025-12-03T14:12:00.000Z",
   "stocks": [
     {
       "symbol": "S&P 500",
-      "value": "6849.00",
-      "change": "+0.50%",
+      "value": "6840.00",
+      "change": "+0.16%",
       "positive": true,
       "type": "index"
     },
     {
       "symbol": "NASDAQ",
-      "value": "23365.69",
-      "change": "+0.80%",
+      "value": "23413.67",
+      "change": "+0.15%",
       "positive": true,
       "type": "index"
     },
     {
       "symbol": "DOW",
-      "value": "47716.00",
-      "change": "+0.61%",
+      "value": "47474.46",
+      "change": "+0.12%",
       "positive": true,
       "type": "index"
     },
     {
       "symbol": "OIL",
-      "value": "59.00",
-      "change": "-1.50%",
-      "positive": false,
+      "value": "58.67",
+      "change": "+0.27%",
+      "positive": true,
       "type": "commodity"
+    },
+    {
+      "symbol": "GOLD",
+      "value": "4253.60",
+      "change": "+1.08%",
+      "positive": true,
+      "type": "metal"
+    },
+    {
+      "symbol": "SILVER",
+      "value": "58.72",
+      "change": "+0.98%",
+      "positive": true,
+      "type": "metal"
+    },
+    {
+      "symbol": "BTC",
+      "value": "92,809",
+      "change": "+4.12%",
+      "positive": true,
+      "type": "crypto"
     }
   ]
 }
