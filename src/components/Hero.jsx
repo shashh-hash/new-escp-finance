@@ -95,7 +95,9 @@ const Hero = memo(() => {
                     loop
                     muted
                     playsInline
-                    preload="metadata"
+                    preload="auto"
+                    fetchpriority="high"
+                    poster="/hero-poster.jpg"
                     className="w-full h-full object-cover opacity-90"
                     style={{ backgroundColor: '#000' }}
                 >
