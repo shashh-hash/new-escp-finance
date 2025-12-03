@@ -71,9 +71,9 @@ const articles = {
               ['Buyer', 'Pfizer Inc.'],
               ['Target', 'Metsera'],
               ['Headline value', '$10 billion (approx.)'],
-              //['Initial Pfizer offer (Sept.)', '$7.3 billion'],
-            // ['Final per-share price', '$86.25 per share (cash)'],
-              //['Premium vs. last close', '3.69% vs. $83.18'],
+              ['Initial Pfizer offer (Sept.)', '$7.3 billion'],
+              ['Final per-share price', '$86.25 per share (cash)'],
+              ['Premium vs. last close', '3.69% vs. $83.18'],
               ['Base price', '$65.60'],
               ['Contingent value price (CVR)', 'Up to $20.65']
             ]}
