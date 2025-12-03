@@ -2,6 +2,8 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 
+import { articles, teamSections } from '../data/siteData';
+
 export default function SearchOverlay({ isOpen, onClose }) {
     const [query, setQuery] = useState('');
     const [results, setResults] = useState({ site: [], global: [] });
@@ -31,31 +33,22 @@ export default function SearchOverlay({ isOpen, onClose }) {
         }
     }, [isOpen]);
 
+    // Flatten team members from all sections
+    const allTeamMembers = teamSections.flatMap(section =>
+        section.members.map(member => ({
+            ...member,
+            title: member.name, // Map name to title for consistency
+            url: '/team'
+        }))
+    );
+
     // Site content database
     const siteContent = {
-        articles: [
-            {
-                title: "A $10 Billion Bet: Pfizer Enters the Anti-Obesity Drug Market",
-                excerpt: "Pfizer acquires Metsera for nearly $10 billion, entering the booming anti-obesity drug market.",
-                category: "Healthcare",
-                url: "/articles/sustainable-finance-esg-2024",
-                keywords: ["pfizer", "obesity", "healthcare", "metsera", "acquisition"]
-            },
-            {
-                title: "Blockchain in Banking: Beyond the Hype",
-                excerpt: "A deep dive into real-world applications of blockchain technology in traditional banking systems.",
-                category: "Technology",
-                url: "/articles/blockchain-banking-revolution",
-                keywords: ["blockchain", "banking", "technology", "crypto", "DeFi"]
-            },
-            {
-                title: "Private Equity Trends in 2025: AI and Value Creation",
-                excerpt: "Analysis of emerging patterns in PE investments and what they mean for the future of capital markets.",
-                category: "Markets",
-                url: "/articles/private-equity-trends-2024",
-                keywords: ["private equity", "PE", "AI", "investment"]
-            }
-        ],
+        articles: articles.map(article => ({
+            ...article,
+            url: `/articles/${article.slug}`,
+            keywords: [article.category, ...(article.keywords || [])]
+        })),
         pages: [
             { title: "About Us", url: "/about", keywords: ["about", "mission"] },
             { title: "Our Team", url: "/team", keywords: ["team", "members"] },
@@ -63,11 +56,7 @@ export default function SearchOverlay({ isOpen, onClose }) {
             { title: "Financial News", url: "/news", keywords: ["news", "updates"] },
             { title: "Contact", url: "/contact", keywords: ["contact", "email"] }
         ],
-        team: [
-            { title: "Lorenzo Sargiani", role: "Co-Founder & President", url: "/team" },
-            { title: "Ines Desmaretz", role: "Vice President", url: "/team" },
-            { title: "Daria Iannuzzi", role: "Vice President", url: "/team" }
-        ]
+        team: allTeamMembers
     };
 
     const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
@@ -115,7 +104,7 @@ export default function SearchOverlay({ isOpen, onClose }) {
         siteContent.articles.forEach(article => {
             if (article.title.toLowerCase().includes(lowerQuery) ||
                 article.excerpt.toLowerCase().includes(lowerQuery) ||
-                article.keywords.some(k => k.toLowerCase().includes(lowerQuery))) {
+                (article.keywords && article.keywords.some(k => k.toLowerCase().includes(lowerQuery)))) {
                 results.push({ ...article, type: 'site' });
             }
         });
@@ -140,7 +129,7 @@ export default function SearchOverlay({ isOpen, onClose }) {
     const performSearch = async () => {
         if (!query.trim()) {
             setResults({ site: [], global: [] });
-            setAiResponse('');
+            setAIResponse('');
             return;
         }
 
@@ -152,8 +141,9 @@ export default function SearchOverlay({ isOpen, onClose }) {
         let aiResp = await getGeminiResponse(query);
         if (!aiResp) {
             aiResp = getSimulatedResponse(query);
-            if (!aiResp) {
-                aiResp = `I can help you explore "${query}" in the context of finance. Check the results below for relevant articles and resources.`;
+            if (!aiResp && siteResults.length === 0) {
+                // Only show generic AI response if no site results found either
+                // aiResp = `I can help you explore "${query}" in the context of finance. Check the results below for relevant articles and resources.`;
             }
         }
         setAIResponse(aiResp);
@@ -238,9 +228,11 @@ export default function SearchOverlay({ isOpen, onClose }) {
                                     ))}
                                 </div>
                             ) : (
-                                <div className="p-8 text-center text-gray-500">
-                                    No results found
-                                </div>
+                                !loading && !aiResponse && (
+                                    <div className="p-8 text-center text-gray-500">
+                                        No results found
+                                    </div>
+                                )
                             )}
                         </div>
                     )}
