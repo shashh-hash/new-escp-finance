@@ -10,7 +10,14 @@ const Hero = memo(() => {
     const [currentSlide, setCurrentSlide] = useState(0);
     const videoRef = useRef(null);
     const [videoLoaded, setVideoLoaded] = useState(false);
+    const [mountVideo, setMountVideo] = useState(false);
 
+    useEffect(() => {
+        // Delay mounting video element to ensure initial static paint happens first
+        // This prevents Safari from blocking the poster while initializing the video
+        const timer = setTimeout(() => setMountVideo(true), 50);
+        return () => clearTimeout(timer);
+    }, []);
 
     const settings = {
         dots: true,
@@ -74,29 +81,31 @@ const Hero = memo(() => {
                 />
 
                 {/* Video - Loads After (z-3) */}
-                <video
-                    ref={videoRef}
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                    preload="auto"
-                    onLoadedData={() => {
-                        const video = videoRef.current;
-                        if (video) {
-                            video.muted = true;
-                            const p = video.play();
-                            if (p && p.catch) p.catch(() => { });
-                        }
-                        // Add small delay to ensure Safari renders first frame before showing
-                        setTimeout(() => setVideoLoaded(true), 100);
-                    }}
-                    className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 z-[3] ${videoLoaded ? 'opacity-90 visible' : 'opacity-0 invisible'}`}
-                    style={{ backgroundColor: 'transparent' }}
-                >
-                    <source src={heroVideo} type="video/mp4" />
-                    Your browser does not support the video tag.
-                </video>
+                {mountVideo && (
+                    <video
+                        ref={videoRef}
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
+                        preload="auto"
+                        onLoadedData={() => {
+                            const video = videoRef.current;
+                            if (video) {
+                                video.muted = true;
+                                const p = video.play();
+                                if (p && p.catch) p.catch(() => { });
+                            }
+                            // Add small delay to ensure Safari renders first frame before showing
+                            setTimeout(() => setVideoLoaded(true), 100);
+                        }}
+                        className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 z-[3] ${videoLoaded ? 'opacity-90 visible' : 'opacity-0 invisible'}`}
+                        style={{ backgroundColor: 'transparent' }}
+                    >
+                        <source src={heroVideo} type="video/mp4" />
+                        Your browser does not support the video tag.
+                    </video>
+                )}
 
                 {/* Overlays - On top of everything (z-4) */}
                 <div className="absolute inset-0 bg-black/50 z-[4]"></div>
