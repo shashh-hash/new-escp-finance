@@ -4,7 +4,7 @@ import Slider from 'react-slick';
 import { motion, AnimatePresence } from 'framer-motion';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import heroVideo from '../assets/hero_bg_new.mp4';
+import heroVideo from '../assets/hero_bg_compressed.mp4';
 
 const Hero = memo(() => {
     const [currentSlide, setCurrentSlide] = useState(0);
