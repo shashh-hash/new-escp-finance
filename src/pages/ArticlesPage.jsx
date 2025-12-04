@@ -6,10 +6,21 @@ import Footer from '../components/Footer';
 export default function ArticlesPage() {
     const articles = [
         {
+            title: "S&P Downgrades Tether’s Assets to Lowest Level",
+            excerpt:
+                "S&P lowers its assessment of USDT’s reserves amid rising exposure to volatile assets and ongoing transparency concerns.",
+            category: "Crypto & Stablecoins",
+            series: "Market Momentum | Week 2",
+            author: "Francesco Baci Paci & Giovanni Ciccarello",
+            date: "Nov 26, 2025",
+            image: "/Article-Cover-Website-SP500.webp",
+            slug: "tether-sp-downgrade-2025"
+        },
+        {
             title: "A $10 Billion Bet: Pfizer Enters the Anti-Obesity Drug Market",
             excerpt: "Pfizer acquires Metsera for nearly $10 billion, entering the booming anti-obesity drug market and challenging industry leaders.",
             category: "Healthcare",
-            series: "Market Momentum | Week 47",
+            series: "Market Momentum | Week 1",
             author: "Francesco Kaitsas",
             date: "Nov 20, 2025",
             image: "/pfizer-article.png",
