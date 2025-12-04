@@ -108,7 +108,15 @@ const Hero = memo(() => {
                 <div className="absolute inset-0 bg-black/50 z-10"></div> {/* Overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/30 z-10"></div> {/* Gradient */}
 
-                {/* Poster Background - Shows Instantly */}
+                {/* Instant CSS Gradient Fallback - Shows IMMEDIATELY (no network request) */}
+                <div
+                    className="absolute inset-0 w-full h-full"
+                    style={{
+                        background: 'linear-gradient(135deg, #051C2C 0%, #0A2540 50%, #000000 100%)'
+                    }}
+                />
+
+                {/* Poster Background - Loads from network */}
                 <div
                     className="absolute inset-0 w-full h-full bg-cover bg-center"
                     style={{ backgroundImage: 'url(/hero-poster.jpg)' }}
