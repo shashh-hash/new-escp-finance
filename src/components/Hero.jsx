@@ -91,7 +91,7 @@ const Hero = memo(() => {
             title: "ESCP Students for Finance",
             subtitle: "Discover a new chapter at the Turin Campus",
             cta: "Read Our Mission",
-            link: "/mission"
+            link: "/about"
         },
         {
             title: "Meet the Team",
