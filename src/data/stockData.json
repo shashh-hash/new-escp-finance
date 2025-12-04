@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2025-12-03T14:12:00.000Z",
+  "lastUpdated": "2025-12-04T09:46:57.322Z",
   "stocks": [
     {
       "symbol": "S&P 500",
@@ -28,27 +28,6 @@
       "change": "+0.27%",
       "positive": true,
       "type": "commodity"
-    },
-    {
-      "symbol": "GOLD",
-      "value": "4253.60",
-      "change": "+1.08%",
-      "positive": true,
-      "type": "metal"
-    },
-    {
-      "symbol": "SILVER",
-      "value": "58.72",
-      "change": "+0.98%",
-      "positive": true,
-      "type": "metal"
-    },
-    {
-      "symbol": "BTC",
-      "value": "92,809",
-      "change": "+4.12%",
-      "positive": true,
-      "type": "crypto"
     }
   ]
 }
