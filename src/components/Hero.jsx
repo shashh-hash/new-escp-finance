@@ -14,10 +14,42 @@ const Hero = memo(() => {
 
     useEffect(() => {
         // Delay mounting video element to ensure initial static paint happens first
-        // This prevents Safari from blocking the poster while initializing the video
         const timer = setTimeout(() => setMountVideo(true), 50);
         return () => clearTimeout(timer);
     }, []);
+
+    // Retry playback if it fails or stalls
+    useEffect(() => {
+        if (mountVideo && videoRef.current) {
+            const video = videoRef.current;
+
+            const handleTouch = () => {
+                if (video.paused) {
+                    video.play().catch(() => { });
+                }
+            };
+
+            // Try to play immediately
+            video.play().catch(() => { });
+
+            // Retry after 1s if still paused
+            const retryTimer = setTimeout(() => {
+                if (video.paused) {
+                    video.play().catch(() => { });
+                }
+            }, 1000);
+
+            // Add touch listener for mobile/Safari strict autoplay policies
+            window.addEventListener('touchstart', handleTouch, { once: true });
+            window.addEventListener('click', handleTouch, { once: true });
+
+            return () => {
+                clearTimeout(retryTimer);
+                window.removeEventListener('touchstart', handleTouch);
+                window.removeEventListener('click', handleTouch);
+            };
+        }
+    }, [mountVideo]);
 
     const settings = {
         dots: true,
@@ -65,7 +97,7 @@ const Hero = memo(() => {
     return (
         <section
             className="relative w-full h-[85vh] min-h-[600px] overflow-hidden"
-            style={{ backgroundColor: '#051C2C' }} // Force brand blue background
+            style={{ backgroundColor: '#003366' }} // Lighter blue base
         >
             {/* Background Video (Fixed) */}
             <div className="absolute inset-0 w-full h-full z-0">
@@ -73,7 +105,7 @@ const Hero = memo(() => {
                 <div
                     className="absolute inset-0 w-full h-full z-[1]"
                     style={{
-                        background: 'linear-gradient(135deg, #1A3A5A 0%, #0F3050 50%, #051C2C 100%)' // Much brighter blue for visibility
+                        background: 'linear-gradient(135deg, #004080 0%, #003366 50%, #002244 100%)' // Very bright blue gradient
                     }}
                 />
 
@@ -94,7 +126,6 @@ const Hero = memo(() => {
                         preload="auto"
                         onPlaying={() => {
                             // Only show video when it is ACTUALLY playing
-                            // This prevents showing a frozen first frame
                             setVideoLoaded(true);
                         }}
                         onLoadedData={() => {
@@ -115,7 +146,7 @@ const Hero = memo(() => {
                 )}
 
                 {/* Overlays - On top of everything (z-4) */}
-                <div className="absolute inset-0 bg-black/50 z-[4]"></div>
+                <div className="absolute inset-0 bg-black/40 z-[4]"></div> {/* Reduced opacity from 50 to 40 */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/30 z-[4]"></div>
             </div>
 
