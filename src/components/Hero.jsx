@@ -4,7 +4,6 @@ import Slider from 'react-slick';
 import { motion, AnimatePresence } from 'framer-motion';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import heroVideo from '../assets/hero_bg_compressed.mp4';
 
 const Hero = memo(() => {
     const [currentSlide, setCurrentSlide] = useState(0);
@@ -13,9 +12,8 @@ const Hero = memo(() => {
     const [mountVideo, setMountVideo] = useState(false);
 
     useEffect(() => {
-        // Delay mounting video element to ensure initial static paint happens first
-        const timer = setTimeout(() => setMountVideo(true), 50);
-        return () => clearTimeout(timer);
+        // Mount immediately after hydration to start loading
+        setMountVideo(true);
     }, []);
 
     // Retry playback if it fails or stalls
@@ -137,10 +135,10 @@ const Hero = memo(() => {
                                 if (p && p.catch) p.catch(() => { });
                             }
                         }}
-                        className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 z-[3] ${videoLoaded ? 'opacity-90 visible' : 'opacity-0 invisible'}`}
+                        className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 z-[3] ${videoLoaded ? 'opacity-90 visible' : 'opacity-0 invisible'}`}
                         style={{ backgroundColor: 'transparent' }}
                     >
-                        <source src={heroVideo} type="video/mp4" />
+                        <source src="/hero-video.mp4" type="video/mp4" />
                         Your browser does not support the video tag.
                     </video>
                 )}
