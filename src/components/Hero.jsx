@@ -58,22 +58,23 @@ const Hero = memo(() => {
     return (
         <section className="relative w-full h-[85vh] min-h-[600px] overflow-hidden bg-black">
             {/* Background Video (Fixed) */}
+            {/* Background Video (Fixed) */}
             <div className="absolute inset-0 w-full h-full z-0">
-                {/* Instant CSS Gradient Fallback - Shows IMMEDIATELY (no network request) */}
+                {/* Instant CSS Gradient Fallback - Shows IMMEDIATELY (z-1) */}
                 <div
-                    className="absolute inset-0 w-full h-full z-0"
+                    className="absolute inset-0 w-full h-full z-[1]"
                     style={{
-                        background: 'linear-gradient(135deg, #051C2C 0%, #0A2540 50%, #000000 100%)'
+                        background: 'linear-gradient(135deg, #0A2540 0%, #0F3050 50%, #051C2C 100%)' // Brighter blue
                     }}
                 />
 
-                {/* Poster Background - Loads from network */}
+                {/* Poster Background - Loads from network (z-2) */}
                 <div
-                    className="absolute inset-0 w-full h-full bg-cover bg-center z-0"
+                    className="absolute inset-0 w-full h-full bg-cover bg-center z-[2]"
                     style={{ backgroundImage: 'url(/hero-poster.jpg)' }}
                 />
 
-                {/* Video - Loads After */}
+                {/* Video - Loads After (z-3) */}
                 <video
                     ref={videoRef}
                     autoPlay        // <-- important for Safari
@@ -90,16 +91,16 @@ const Hero = memo(() => {
                         }
                         setVideoLoaded(true);  // triggers fade-in
                     }}
-                    className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 z-0 ${videoLoaded ? 'opacity-90' : 'opacity-0'}`}
+                    className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 z-[3] ${videoLoaded ? 'opacity-90' : 'opacity-0'}`}
                     style={{ backgroundColor: 'transparent' }}
                 >
                     <source src={heroVideo} type="video/mp4" />
                     Your browser does not support the video tag.
                 </video>
 
-                {/* Overlays - On top of everything */}
-                <div className="absolute inset-0 bg-black/50 z-10"></div>
-                <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/30 z-10"></div>
+                {/* Overlays - On top of everything (z-4) */}
+                <div className="absolute inset-0 bg-black/50 z-[4]"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/30 z-[4]"></div>
             </div>
 
             {/* Slider Content (Z-20) */}
