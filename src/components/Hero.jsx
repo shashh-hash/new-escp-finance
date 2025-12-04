@@ -63,14 +63,17 @@ const Hero = memo(() => {
     ];
 
     return (
-        <section className="relative w-full h-[85vh] min-h-[600px] overflow-hidden bg-[#051C2C]">
+        <section
+            className="relative w-full h-[85vh] min-h-[600px] overflow-hidden"
+            style={{ backgroundColor: '#051C2C' }} // Force brand blue background
+        >
             {/* Background Video (Fixed) */}
             <div className="absolute inset-0 w-full h-full z-0">
                 {/* Instant CSS Gradient Fallback - Shows IMMEDIATELY (z-1) */}
                 <div
                     className="absolute inset-0 w-full h-full z-[1]"
                     style={{
-                        background: 'linear-gradient(135deg, #0A2540 0%, #0F3050 50%, #051C2C 100%)'
+                        background: 'linear-gradient(135deg, #1A3A5A 0%, #0F3050 50%, #051C2C 100%)' // Much brighter blue for visibility
                     }}
                 />
 
@@ -89,15 +92,19 @@ const Hero = memo(() => {
                         muted
                         playsInline
                         preload="auto"
+                        onPlaying={() => {
+                            // Only show video when it is ACTUALLY playing
+                            // This prevents showing a frozen first frame
+                            setVideoLoaded(true);
+                        }}
                         onLoadedData={() => {
+                            // Attempt play when data is loaded
                             const video = videoRef.current;
                             if (video) {
                                 video.muted = true;
                                 const p = video.play();
                                 if (p && p.catch) p.catch(() => { });
                             }
-                            // Add small delay to ensure Safari renders first frame before showing
-                            setTimeout(() => setVideoLoaded(true), 100);
                         }}
                         className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 z-[3] ${videoLoaded ? 'opacity-90 visible' : 'opacity-0 invisible'}`}
                         style={{ backgroundColor: 'transparent' }}
