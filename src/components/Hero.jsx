@@ -56,15 +56,14 @@ const Hero = memo(() => {
     ];
 
     return (
-        <section className="relative w-full h-[85vh] min-h-[600px] overflow-hidden bg-black">
-            {/* Background Video (Fixed) */}
+        <section className="relative w-full h-[85vh] min-h-[600px] overflow-hidden bg-[#051C2C]">
             {/* Background Video (Fixed) */}
             <div className="absolute inset-0 w-full h-full z-0">
                 {/* Instant CSS Gradient Fallback - Shows IMMEDIATELY (z-1) */}
                 <div
                     className="absolute inset-0 w-full h-full z-[1]"
                     style={{
-                        background: 'linear-gradient(135deg, #0A2540 0%, #0F3050 50%, #051C2C 100%)' // Brighter blue
+                        background: 'linear-gradient(135deg, #0A2540 0%, #0F3050 50%, #051C2C 100%)'
                     }}
                 />
 
@@ -77,21 +76,21 @@ const Hero = memo(() => {
                 {/* Video - Loads After (z-3) */}
                 <video
                     ref={videoRef}
-                    autoPlay        // <-- important for Safari
+                    autoPlay
                     loop
                     muted
                     playsInline
-                    preload="auto" // <-- or "metadata" if you're worried about bandwidth
-                    onCanPlay={() => {
+                    preload="auto"
+                    onLoadedData={() => {
                         const video = videoRef.current;
                         if (video) {
-                            video.muted = true; // safety
+                            video.muted = true;
                             const p = video.play();
-                            if (p && p.catch) p.catch(() => { }); // ignore autoplay errors
+                            if (p && p.catch) p.catch(() => { });
                         }
-                        setVideoLoaded(true);  // triggers fade-in
+                        setVideoLoaded(true);
                     }}
-                    className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 z-[3] ${videoLoaded ? 'opacity-90' : 'opacity-0'}`}
+                    className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 z-[3] ${videoLoaded ? 'opacity-90 visible' : 'opacity-0 invisible'}`}
                     style={{ backgroundColor: 'transparent' }}
                 >
                     <source src={heroVideo} type="video/mp4" />
