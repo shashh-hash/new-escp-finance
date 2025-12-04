@@ -11,52 +11,6 @@ const Hero = memo(() => {
     const videoRef = useRef(null);
     const [videoLoaded, setVideoLoaded] = useState(false);
 
-    useEffect(() => {
-        // Lazy load video after page is interactive
-        const loadVideo = () => {
-            const video = videoRef.current;
-            if (!video || videoLoaded) return;
-
-            // Set video source to trigger loading
-            video.muted = true;
-            video.defaultMuted = true;
-            video.volume = 0;
-
-            // Load and play video
-            video.load();
-            setVideoLoaded(true);
-
-            const attemptPlay = () => {
-                video.muted = true;
-                const playPromise = video.play();
-
-                if (playPromise !== undefined) {
-                    playPromise
-                        .then(() => {
-                            console.log('Video loaded and playing');
-                        })
-                        .catch(err => {
-                            console.log('Autoplay prevented:', err);
-                        });
-                }
-            };
-
-            video.addEventListener('canplay', attemptPlay, { once: true });
-        };
-
-        // Delay video loading until page is interactive
-        if (document.readyState === 'complete') {
-            // Page already loaded
-            setTimeout(loadVideo, 500);
-        } else {
-            // Wait for page load
-            window.addEventListener('load', () => setTimeout(loadVideo, 500));
-        }
-
-        return () => {
-            window.removeEventListener('load', loadVideo);
-        };
-    }, [videoLoaded]);
 
     const settings = {
         dots: true,
@@ -122,10 +76,20 @@ const Hero = memo(() => {
                 {/* Video - Loads After */}
                 <video
                     ref={videoRef}
+                    autoPlay        // <-- important for Safari
                     loop
                     muted
                     playsInline
-                    preload="none"
+                    preload="auto" // <-- or "metadata" if you're worried about bandwidth
+                    onCanPlay={() => {
+                        const video = videoRef.current;
+                        if (video) {
+                            video.muted = true; // safety
+                            const p = video.play();
+                            if (p && p.catch) p.catch(() => { }); // ignore autoplay errors
+                        }
+                        setVideoLoaded(true);  // triggers fade-in
+                    }}
                     className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 z-0 ${videoLoaded ? 'opacity-90' : 'opacity-0'}`}
                     style={{ backgroundColor: 'transparent' }}
                 >
