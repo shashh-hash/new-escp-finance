@@ -68,11 +68,11 @@ export const teamSections = [
     {
         name: "Leadership",
         members: [
-            { name: "Lorenzo Sargiani", role: "Founder & President", img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=60&w=300" },
-            { name: "Ines Desmaretz", role: "Vice President", img: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=60&w=300" },
-            { name: "Daria Iannuzzi", role: "Vice President", img: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&q=60&w=300" },
-            { name: "Martina Proietti Silvestri", role: "Board Member", img: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=60&w=300" },
-            { name: "Christos Gerontopoulos", role: "Board Member", img: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=60&w=300" },
+            { name: "Lorenzo Sargiani", role: "Founder & President", img: "/team/president.jpg" },
+            { name: "Ines Desmaretz", role: "Vice President", img: "/team/ines-desmaretz.jpg" },
+            { name: "Daria Iannuzzi", role: "Vice President", img: "/team/daria-iannuzzi.jpg" },
+            { name: "Martina Proietti Silvestri", role: "Board Member", img: "/team/martina-proietti-silvestri.jpg" },
+            { name: "Christos Gerontopoulos", role: "Board Member", img: "/team/christos-gerontopoulos.jpg" },
             { name: "Lucas Thai", role: "Board Member", img: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=60&w=300" },
             { name: "Alex Toumasson", role: "Board Member", img: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=60&w=300" }
         ]
@@ -80,72 +80,72 @@ export const teamSections = [
     {
         name: "HR",
         members: [
-            { name: "Edoardo Cerrano", role: "Head of HR", img: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=60&w=300" },
-            { name: "Alessandra Boarolo", role: "HR Associate", img: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&q=60&w=300" },
-            { name: "Tommaso Donati", role: "HR Associate", img: "https://images.unsplash.com/photo-1463453091185-61582044d556?auto=format&fit=crop&q=60&w=300" },
-            { name: "Rodolfo Barberis", role: "HR Associate", img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=60&w=300" },
-            { name: "Emanuele Ferrara", role: "HR Associate", img: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=60&w=300" }
+            { name: "Edoardo Cerrano", role: "Head of HR", img: "/team/edoardo-cerrano.jpg" },
+            { name: "Alessandra Boarolo", role: "HR Associate", img: "/team/alessandra-boarolo.jpg" },
+            { name: "Tommaso Donati", role: "HR Associate", img: "/team/tommaso-donati.jpg" },
+            { name: "Rodolfo Barberis", role: "HR Associate", img: "/team/rodolfo-barberis.jpg" },
+            { name: "Emanuele Ferrara", role: "HR Associate", img: "/team/emanuele-ferrara.jpg" }
         ]
     },
     {
         name: "Strategy",
         members: [
-            { name: "Flavio Antonuzzo", role: "Head of Strategy", img: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=60&w=300" },
-            { name: "Tommaso Girani", role: "Head of Strategy", img: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=60&w=300" },
-            { name: "Carlo Giulio Rizzuto", role: "Strategy Associate", img: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=60&w=300" }
+            { name: "Flavio Antonuzzo", role: "Head of Strategy", img: "/team/flavio-antonuzzo.png" },
+            { name: "Tommaso Girani", role: "Head of Strategy", img: "/team/tommaso-girani.png" },
+            { name: "Carlo Giulio Rizzuto", role: "Strategy Associate", img: "/team/carlo-giulio-rizzuto.jpg" }
         ]
     },
     {
         name: "Articles",
         members: [
             { name: "Luca Citton", role: "Head of Articles", img: "https://images.unsplash.com/photo-1463453091185-61582044d556?auto=format&fit=crop&q=60&w=300" },
-            { name: "Francesco Kaitsas", role: "Head of Articles", img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=60&w=300" },
+            { name: "Francesco Kaitsas", role: "Head of Articles", img: "/team/francesco-kaitsas.jpg" },
             { name: "Francesco Baci Paci", role: "Articles Associate", img: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=60&w=300" },
             { name: "Federico Furioso", role: "Articles Associate", img: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=60&w=300" },
-            { name: "Giovanni Ciccarello", role: "Articles Associate", img: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=60&w=300" },
+            { name: "Giovanni Ciccarello", role: "Articles Associate", img: "/team/giovanni-ciccarello.jpg" },
             { name: "Giorgio Gheorghis Tsingros", role: "Articles Associate", img: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=60&w=300" }
         ]
     },
     {
         name: "Research",
         members: [
-            { name: "Adriano Cogorno", role: "Head of Research", img: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&q=60&w=300" },
-            { name: "Giuseppe Mansueto", role: "Head of Research", img: "https://images.unsplash.com/photo-1463453091185-61582044d556?auto=format&fit=crop&q=60&w=300" },
-            { name: "Giorgio D'Innocenzo", role: "Research Associate", img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=60&w=300" },
-            { name: "Davide Biselli", role: "Research Associate", img: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=60&w=300" },
-            { name: "Frederic Wessling Melonari", role: "Research Associate", img: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=60&w=300" },
-            { name: "Federico Tempestini", role: "Research Associate", img: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=60&w=300" }
+            { name: "Adriano Cogorno", role: "Head of Research", img: "/team/adriano-cogorno.jpg" },
+            { name: "Giuseppe Mansueto", role: "Head of Research", img: "/team/giuseppe-mansueto.png" },
+            { name: "Giorgio D'Innocenzo", role: "Research Associate", img: "/team/giorgio-dinnocenzo.jpg" },
+            { name: "Davide Biselli", role: "Research Associate", img: "/team/davide-biselli.jpg" },
+            { name: "Frederic Wessling Melonari", role: "Research Associate", img: "/team/frederic-wessling-melonari.jpg" },
+            { name: "Federico Tempestini", role: "Research Associate", img: "/team/federico-tempestini.jpg" }
         ]
     },
     {
         name: "Events",
         members: [
-            { name: "Daria Iannuzzi", role: "Head of Events", img: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&q=60&w=300" },
-            { name: "Martina Proietti Silvestri", role: "Head of Events", img: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=60&w=300" },
+            { name: "Daria Iannuzzi", role: "Head of Events", img: "/team/daria-iannuzzi.jpg" },
+            { name: "Martina Proietti Silvestri", role: "Head of Events", img: "/team/martina-proietti-silvestri.jpg" },
             { name: "Armand Vahé Francesco Gaidc", role: "Events Associate", img: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=60&w=300" }
         ]
     },
     {
         name: "Marketing",
         members: [
-            { name: "Valentina Petrini", role: "Head of Marketing", img: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=60&w=300" },
-            { name: "Alessio Penzo", role: "Marketing Associate", img: "https://images.unsplash.com/photo-1463453091185-61582044d556?auto=format&fit=crop&q=60&w=300" }
+            { name: "Valentina Petrini", role: "Head of Marketing", img: "/team/valentina-petrini.jpg" },
+            { name: "Alessio Penzo", role: "Marketing Associate", img: "/team/alessio-penzo.jpg" }
         ]
     },
     {
         name: "Instagram",
         members: [
             { name: "Beatrice Pelini", role: "Head of Instagram", img: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&q=60&w=300" },
-            { name: "Camilla Barra", role: "Instagram Associate", img: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=60&w=300" },
+            { name: "Camilla Barra", role: "Instagram Associate", img: "/team/camilla-barra.jpg" },
             { name: "Federico Valente", role: "Instagram Associate", img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=60&w=300" }
         ]
     },
     {
         name: "LinkedIn",
         members: [
-            { name: "Marina Meucci", role: "Head of LinkedIn", img: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&q=60&w=300" },
+            { name: "Marina Meucci", role: "Head of LinkedIn", img: "/team/marina-meucci.png" },
             { name: "Giulio Bonifacio", role: "LinkedIn Associate", img: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=60&w=300" },
-            { name: "Francesco Maria Liaci", role: "LinkedIn Associate", img: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=60&w=300" }
+            { name: "Francesco Maria Liaci", role: "LinkedIn Associate", img: "/team/francesco-maria-liaci.jpg" }
         ]
     },
     {
@@ -153,7 +153,7 @@ export const teamSections = [
         members: [
             { name: "Shashank Tripathi", role: "Head of Tech", img: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=60&w=300" },
             { name: "Augustin Mons", role: "Tech Associate", img: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=60&w=300" },
-            { name: "Jingyi Wang", role: "Tech Associate", img: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&q=60&w=300" }
+            { name: "Jingyi Wang", role: "Tech Associate", img: "/team/jingyi-wang.jpg" }
         ]
     }
 ];
