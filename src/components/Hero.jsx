@@ -88,7 +88,8 @@ const Hero = memo(() => {
                             const p = video.play();
                             if (p && p.catch) p.catch(() => { });
                         }
-                        setVideoLoaded(true);
+                        // Add small delay to ensure Safari renders first frame before showing
+                        setTimeout(() => setVideoLoaded(true), 100);
                     }}
                     className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 z-[3] ${videoLoaded ? 'opacity-90 visible' : 'opacity-0 invisible'}`}
                     style={{ backgroundColor: 'transparent' }}
