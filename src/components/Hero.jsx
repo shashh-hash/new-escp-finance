@@ -9,60 +9,54 @@ import heroVideo from '../assets/hero_bg_compressed.mp4';
 const Hero = memo(() => {
     const [currentSlide, setCurrentSlide] = useState(0);
     const videoRef = useRef(null);
-    const [videoPlaying, setVideoPlaying] = useState(false);
+    const [videoLoaded, setVideoLoaded] = useState(false);
 
     useEffect(() => {
-        const video = videoRef.current;
-        if (!video) return;
+        // Lazy load video after page is interactive
+        const loadVideo = () => {
+            const video = videoRef.current;
+            if (!video || videoLoaded) return;
 
-        // Ensure video is muted for autoplay
-        video.muted = true;
-        video.defaultMuted = true;
-        video.volume = 0;
-
-        const attemptPlay = () => {
+            // Set video source to trigger loading
             video.muted = true;
-            const playPromise = video.play();
+            video.defaultMuted = true;
+            video.volume = 0;
 
-            if (playPromise !== undefined) {
-                playPromise
-                    .then(() => {
-                        console.log('Video autoplay successful');
-                    })
-                    .catch(err => {
-                        console.log('Autoplay prevented, will try on user interaction:', err);
-                        // Fallback: play on any user interaction
-                        const playOnInteraction = () => {
-                            video.muted = true;
-                            video.play();
-                            document.removeEventListener('click', playOnInteraction);
-                            document.removeEventListener('touchstart', playOnInteraction);
-                            document.removeEventListener('scroll', playOnInteraction);
-                        };
-                        document.addEventListener('click', playOnInteraction, { once: true });
-                        document.addEventListener('touchstart', playOnInteraction, { once: true });
-                        document.addEventListener('scroll', playOnInteraction, { once: true });
-                    });
-            }
+            // Load and play video
+            video.load();
+            setVideoLoaded(true);
+
+            const attemptPlay = () => {
+                video.muted = true;
+                const playPromise = video.play();
+
+                if (playPromise !== undefined) {
+                    playPromise
+                        .then(() => {
+                            console.log('Video loaded and playing');
+                        })
+                        .catch(err => {
+                            console.log('Autoplay prevented:', err);
+                        });
+                }
+            };
+
+            video.addEventListener('canplay', attemptPlay, { once: true });
         };
 
-        // Try multiple approaches
-        // 1. Immediate play if ready
-        if (video.readyState >= 3) {
-            attemptPlay();
+        // Delay video loading until page is interactive
+        if (document.readyState === 'complete') {
+            // Page already loaded
+            setTimeout(loadVideo, 500);
+        } else {
+            // Wait for page load
+            window.addEventListener('load', () => setTimeout(loadVideo, 500));
         }
 
-        // 2. Play when can play
-        video.addEventListener('canplay', attemptPlay, { once: true });
-
-        // 3. Play when loaded metadata
-        video.addEventListener('loadedmetadata', attemptPlay, { once: true });
-
         return () => {
-            video.removeEventListener('canplay', attemptPlay);
-            video.removeEventListener('loadedmetadata', attemptPlay);
+            window.removeEventListener('load', loadVideo);
         };
-    }, []);
+    }, [videoLoaded]);
 
     const settings = {
         dots: true,
@@ -115,11 +109,10 @@ const Hero = memo(() => {
                 <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/30 z-10"></div> {/* Gradient */}
                 <video
                     ref={videoRef}
-                    autoPlay
                     loop
                     muted
                     playsInline
-                    preload="metadata"
+                    preload="none"
                     poster="/hero-poster.jpg"
                     className="w-full h-full object-cover opacity-90"
                     style={{ backgroundColor: '#000' }}
