@@ -107,15 +107,22 @@ const Hero = memo(() => {
             <div className="absolute inset-0 w-full h-full z-0">
                 <div className="absolute inset-0 bg-black/50 z-10"></div> {/* Overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/30 z-10"></div> {/* Gradient */}
+
+                {/* Poster Background - Shows Instantly */}
+                <div
+                    className="absolute inset-0 w-full h-full bg-cover bg-center"
+                    style={{ backgroundImage: 'url(/hero-poster.jpg)' }}
+                />
+
+                {/* Video - Loads After */}
                 <video
                     ref={videoRef}
                     loop
                     muted
                     playsInline
                     preload="none"
-                    poster="/hero-poster.jpg"
-                    className="w-full h-full object-cover opacity-90"
-                    style={{ backgroundColor: '#000' }}
+                    className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${videoLoaded ? 'opacity-90' : 'opacity-0'}`}
+                    style={{ backgroundColor: 'transparent' }}
                 >
                     <source src={heroVideo} type="video/mp4" />
                     Your browser does not support the video tag.
