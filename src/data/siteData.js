@@ -9,7 +9,7 @@ export const articles = [
         category: "Crypto & Stablecoins",
         series: "Market Momentum | Week 2",
         author: "Francesco Baci Paci & Giovanni Ciccarello",
-        date: "Nov 26, 2025",
+        date: "Dec 5, 2025",
         image: "/Article-Cover-Website-SP500.webp",
         slug: "tether-sp-downgrade-2025"
     },
@@ -19,7 +19,7 @@ export const articles = [
         category: "Healthcare",
         series: "Market Momentum | Week 1",
         author: "Francesco Kaitsas",
-        date: "Nov 20, 2025",
+        date: "Nov 28, 2025",
         image: "/pfizer-article.png",
         slug: "sustainable-finance-esg-2024"
     }
