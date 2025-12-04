@@ -105,12 +105,9 @@ const Hero = memo(() => {
         <section className="relative w-full h-[85vh] min-h-[600px] overflow-hidden bg-black">
             {/* Background Video (Fixed) */}
             <div className="absolute inset-0 w-full h-full z-0">
-                <div className="absolute inset-0 bg-black/50 z-10"></div> {/* Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/30 z-10"></div> {/* Gradient */}
-
                 {/* Instant CSS Gradient Fallback - Shows IMMEDIATELY (no network request) */}
                 <div
-                    className="absolute inset-0 w-full h-full"
+                    className="absolute inset-0 w-full h-full z-0"
                     style={{
                         background: 'linear-gradient(135deg, #051C2C 0%, #0A2540 50%, #000000 100%)'
                     }}
@@ -118,7 +115,7 @@ const Hero = memo(() => {
 
                 {/* Poster Background - Loads from network */}
                 <div
-                    className="absolute inset-0 w-full h-full bg-cover bg-center"
+                    className="absolute inset-0 w-full h-full bg-cover bg-center z-0"
                     style={{ backgroundImage: 'url(/hero-poster.jpg)' }}
                 />
 
@@ -129,12 +126,16 @@ const Hero = memo(() => {
                     muted
                     playsInline
                     preload="none"
-                    className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${videoLoaded ? 'opacity-90' : 'opacity-0'}`}
+                    className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 z-0 ${videoLoaded ? 'opacity-90' : 'opacity-0'}`}
                     style={{ backgroundColor: 'transparent' }}
                 >
                     <source src={heroVideo} type="video/mp4" />
                     Your browser does not support the video tag.
                 </video>
+
+                {/* Overlays - On top of everything */}
+                <div className="absolute inset-0 bg-black/50 z-10"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/30 z-10"></div>
             </div>
 
             {/* Slider Content (Z-20) */}
