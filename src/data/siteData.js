@@ -151,7 +151,7 @@ export const teamSections = [
     {
         name: "Tech",
         members: [
-            { name: "Shashank Tripathi", role: "Head of Tech", img: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=60&w=300" },
+            { name: "Shashank Tripathi", role: "Head of Tech", img: "/team/shashank-tripathi.jpg" },
             { name: "Augustin Mons", role: "Tech Associate", img: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=60&w=300" },
             { name: "Jingyi Wang", role: "Tech Associate", img: "/team/jingyi-wang.jpg" }
         ]
