@@ -9,16 +9,10 @@ const Hero = memo(() => {
     const [currentSlide, setCurrentSlide] = useState(0);
     const videoRef = useRef(null);
     const [videoLoaded, setVideoLoaded] = useState(false);
-    const [mountVideo, setMountVideo] = useState(false);
-
-    useEffect(() => {
-        // Mount immediately after hydration to start loading
-        setMountVideo(true);
-    }, []);
 
     // Retry playback if it fails or stalls
     useEffect(() => {
-        if (mountVideo && videoRef.current) {
+        if (videoRef.current) {
             const video = videoRef.current;
 
             const handleTouch = () => {
@@ -47,7 +41,7 @@ const Hero = memo(() => {
                 window.removeEventListener('click', handleTouch);
             };
         }
-    }, [mountVideo]);
+    }, []);
 
     const settings = {
         dots: true,
@@ -114,34 +108,32 @@ const Hero = memo(() => {
                 />
 
                 {/* Video - Loads After (z-3) */}
-                {mountVideo && (
-                    <video
-                        ref={videoRef}
-                        autoPlay
-                        loop
-                        muted
-                        playsInline
-                        preload="auto"
-                        onPlaying={() => {
-                            // Only show video when it is ACTUALLY playing
-                            setVideoLoaded(true);
-                        }}
-                        onLoadedData={() => {
-                            // Attempt play when data is loaded
-                            const video = videoRef.current;
-                            if (video) {
-                                video.muted = true;
-                                const p = video.play();
-                                if (p && p.catch) p.catch(() => { });
-                            }
-                        }}
-                        className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 z-[3] ${videoLoaded ? 'opacity-90 visible' : 'opacity-0 invisible'}`}
-                        style={{ backgroundColor: 'transparent' }}
-                    >
-                        <source src="/hero-video.mp4" type="video/mp4" />
-                        Your browser does not support the video tag.
-                    </video>
-                )}
+                <video
+                    ref={videoRef}
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    preload="auto"
+                    onPlaying={() => {
+                        // Only show video when it is ACTUALLY playing
+                        setVideoLoaded(true);
+                    }}
+                    onLoadedData={() => {
+                        // Attempt play when data is loaded
+                        const video = videoRef.current;
+                        if (video) {
+                            video.muted = true;
+                            const p = video.play();
+                            if (p && p.catch) p.catch(() => { });
+                        }
+                    }}
+                    className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 z-[3] ${videoLoaded ? 'opacity-90 visible' : 'opacity-0 invisible'}`}
+                    style={{ backgroundColor: 'transparent' }}
+                >
+                    <source src="/hero-video.mp4" type="video/mp4" />
+                    Your browser does not support the video tag.
+                </video>
 
                 {/* Overlays - On top of everything (z-4) */}
                 <div className="absolute inset-0 bg-black/40 z-[4]"></div> {/* Reduced opacity from 50 to 40 */}
