@@ -148,7 +148,7 @@ const articles = {
               rel="noopener noreferrer"
               className="text-[#C5A059] hover:underline"
             >
-              https://www.ft.com/content/974926ba-d295-4679-a4ed-7846b7f4242e
+              Financial Times – Coverage of Tether S&P Downgrade
             </a>
           </li>
           <li>
@@ -158,7 +158,7 @@ const articles = {
               rel="noopener noreferrer"
               className="text-[#C5A059] hover:underline"
             >
-              https://www.idnfinancials.com/news/59149/bitcoin-exposure-rises-sp-downgrades-usdt
+              IDN Financials – Bitcoin exposure rises, S&P downgrades USDT
             </a>
           </li>
           <li>
@@ -168,7 +168,7 @@ const articles = {
               rel="noopener noreferrer"
               className="text-[#C5A059] hover:underline"
             >
-              https://www.reuters.com/business/finance/tethers-stablecoin-downgraded-weak-sp-assessment-2025-11-26/
+              Reuters – Tether's stablecoin downgraded to 'weak' S&P assessment
             </a>
           </li>
           <li>
@@ -178,7 +178,7 @@ const articles = {
               rel="noopener noreferrer"
               className="text-[#C5A059] hover:underline"
             >
-              https://finance.yahoo.com/news/p-downgrades-tether-lowest-rating-221830375.html
+              Yahoo Finance – S&P downgrades Tether to lowest rating
             </a>
           </li>
         </ul>
@@ -199,215 +199,215 @@ const articles = {
       '/pfizer-article.png',
     content: (
       <>
-          <LeadParagraph>
-            A 10 billion dollar transaction insert Pfizer in the business of Anti-Obesity drugs
-          </LeadParagraph>
+        <LeadParagraph>
+          A 10 billion dollar transaction insert Pfizer in the business of Anti-Obesity drugs
+        </LeadParagraph>
 
-          <BodyParagraph>
-            The American Pharmaceutical company Pfizer had completed the acquisition of the obesity drugs
-            start-up Metsera for nearly 10 billion dollars overcoming its strongest competitor the Danish
-            company Novo Nordisk. Pfizer is the fourth Pharma Company for revenues in 2024, with 63.5
-            billion dollars in revenues and 45.7 billion dollars in gross profit in 2024. At the date of
-            this Article publication, its shares have a value of nearly 22 dollars and its market cap is
-            142.37 billion dollars placing it at the 11th place in market cap ranking for Pharma companies.
-          </BodyParagraph>
+        <BodyParagraph>
+          The American Pharmaceutical company Pfizer had completed the acquisition of the obesity drugs
+          start-up Metsera for nearly 10 billion dollars overcoming its strongest competitor the Danish
+          company Novo Nordisk. Pfizer is the fourth Pharma Company for revenues in 2024, with 63.5
+          billion dollars in revenues and 45.7 billion dollars in gross profit in 2024. At the date of
+          this Article publication, its shares have a value of nearly 22 dollars and its market cap is
+          142.37 billion dollars placing it at the 11th place in market cap ranking for Pharma companies.
+        </BodyParagraph>
 
-          <SectionHeading>The M&amp;A Battle for Metsera</SectionHeading>
+        <SectionHeading>The M&amp;A Battle for Metsera</SectionHeading>
 
-          <BodyParagraph>
-            This strife for Metsera acquisition started nearly two months ago at the end of September with
-            the first offer made by Pfizer of 7.3 billion dollars. Afterward, an unexpected offer was
-            performed by the Danish Pharma company at the end of October and after a period of legal
-            challenges the bidding was won by the American company with a deal worth 2.7 billion dollars
-            more than the previous agreement from September. On the 7th of November, the New-York based
-            company announced the acquisition of Metsera. From a technical point of view, Pfizer bought all
-            the outstanding Metsera shares for 86.25 dollars per share in cash. This price was a premium of
-            3.69% to Metsera’s Friday, the 7th of November, close that was 83.18 dollars per share. This
-            amount was composed of a base of 65.60 dollars per share in cash, that represented a value of
-            nearly 7.0 billion dollars. To this amount, they could add a contingent value right (CVR), a
-            contractual right should certain future events or milestones be met, of up to 20.65 dollars per
-            share if they were to achieve three specified clinical and regulatory milestones. After the
-            acquisition Metsera became a subsidiary of Pfizer causing an end to the trading of Metsera
-            shares on the NASDAQ Global Select Market.
-          </BodyParagraph>
+        <BodyParagraph>
+          This strife for Metsera acquisition started nearly two months ago at the end of September with
+          the first offer made by Pfizer of 7.3 billion dollars. Afterward, an unexpected offer was
+          performed by the Danish Pharma company at the end of October and after a period of legal
+          challenges the bidding was won by the American company with a deal worth 2.7 billion dollars
+          more than the previous agreement from September. On the 7th of November, the New-York based
+          company announced the acquisition of Metsera. From a technical point of view, Pfizer bought all
+          the outstanding Metsera shares for 86.25 dollars per share in cash. This price was a premium of
+          3.69% to Metsera’s Friday, the 7th of November, close that was 83.18 dollars per share. This
+          amount was composed of a base of 65.60 dollars per share in cash, that represented a value of
+          nearly 7.0 billion dollars. To this amount, they could add a contingent value right (CVR), a
+          contractual right should certain future events or milestones be met, of up to 20.65 dollars per
+          share if they were to achieve three specified clinical and regulatory milestones. After the
+          acquisition Metsera became a subsidiary of Pfizer causing an end to the trading of Metsera
+          shares on the NASDAQ Global Select Market.
+        </BodyParagraph>
 
-          <TableCard
-            title="Key Terms of the Metsera Acquisition"
-            className="mb-8"
-            header={['Item', 'Detail']}
-            rows={[
-              ['Buyer', 'Pfizer Inc.'],
-              ['Target', 'Metsera'],
-              ['Headline value', '$10 billion (approx.)'],
-              ['Initial Pfizer offer (Sept.)', '$7.3 billion'],
-              ['Final per-share price', '$86.25 per share (cash)'],
-              ['Premium vs. last close', '3.69% vs. $83.18'],
-              ['Base price', '$65.60'],
-              ['Contingent value price (CVR)', 'Up to $20.65']
-            ]}
-          />
+        <TableCard
+          title="Key Terms of the Metsera Acquisition"
+          className="mb-8"
+          header={['Item', 'Detail']}
+          rows={[
+            ['Buyer', 'Pfizer Inc.'],
+            ['Target', 'Metsera'],
+            ['Headline value', '$10 billion (approx.)'],
+            ['Initial Pfizer offer (Sept.)', '$7.3 billion'],
+            ['Final per-share price', '$86.25 per share (cash)'],
+            ['Premium vs. last close', '3.69% vs. $83.18'],
+            ['Base price', '$65.60'],
+            ['Contingent value price (CVR)', 'Up to $20.65']
+          ]}
+        />
 
-          <SectionHeading>Metsera&apos;s Pipeline</SectionHeading>
+        <SectionHeading>Metsera&apos;s Pipeline</SectionHeading>
 
-          <BodyParagraph>
-            From a medical point of view, this M&amp;A movement allowed Pfizer to expand its portfolio with
-            various drugs. The first is MET-097i, a weekly and monthly injectable GLP-1 receptor agonist
-            (RA) ready to begin Phase 3 research phase. Then Metsera is also developing a Phase 1 drug
-            MET-233i, a monthly amylin analog, to be used both in monotherapy and in combination with the
-            previous cited drug. Finally, they have an oral GLP-1 RA still in Phase 1 development and a
-            preclinical drug composed by a nutrient-stimulated hormone. Citi for the financial part and
-            Wachtell, Lipton, Rosen &amp; Katz for the legal one advised Pfizer for this transaction.
-          </BodyParagraph>
+        <BodyParagraph>
+          From a medical point of view, this M&amp;A movement allowed Pfizer to expand its portfolio with
+          various drugs. The first is MET-097i, a weekly and monthly injectable GLP-1 receptor agonist
+          (RA) ready to begin Phase 3 research phase. Then Metsera is also developing a Phase 1 drug
+          MET-233i, a monthly amylin analog, to be used both in monotherapy and in combination with the
+          previous cited drug. Finally, they have an oral GLP-1 RA still in Phase 1 development and a
+          preclinical drug composed by a nutrient-stimulated hormone. Citi for the financial part and
+          Wachtell, Lipton, Rosen &amp; Katz for the legal one advised Pfizer for this transaction.
+        </BodyParagraph>
 
-          <TableCard
-            title="Metsera Obesity &amp; Metabolic Pipeline"
-            className="mb-8"
-            header={['Asset', 'Type', 'Indication / Use', 'Stage']}
-            rows={[
-              [
-                'MET-097i',
-                'Injectable GLP-1 receptor agonist (weekly & monthly)',
-                'Obesity',
-                'Ready to begin Phase 3',
-              ],
-              [
-                'MET-233i',
-                'Monthly amylin analog',
-                'Monotherapy & combination with MET-097i',
-                'Phase 1',
-              ],
-              ['Oral GLP-1 RA', 'Oral GLP-1 receptor agonist', 'Obesity / metabolic diseases', 'Phase 1'],
-              [
-                'Preclinical asset',
-                'Nutrient-stimulated hormone–based drug',
-                'Metabolic disorders',
-                'Preclinical',
-              ],
-            ]}
-          />
+        <TableCard
+          title="Metsera Obesity &amp; Metabolic Pipeline"
+          className="mb-8"
+          header={['Asset', 'Type', 'Indication / Use', 'Stage']}
+          rows={[
+            [
+              'MET-097i',
+              'Injectable GLP-1 receptor agonist (weekly & monthly)',
+              'Obesity',
+              'Ready to begin Phase 3',
+            ],
+            [
+              'MET-233i',
+              'Monthly amylin analog',
+              'Monotherapy & combination with MET-097i',
+              'Phase 1',
+            ],
+            ['Oral GLP-1 RA', 'Oral GLP-1 receptor agonist', 'Obesity / metabolic diseases', 'Phase 1'],
+            [
+              'Preclinical asset',
+              'Nutrient-stimulated hormone–based drug',
+              'Metabolic disorders',
+              'Preclinical',
+            ],
+          ]}
+        />
 
-          <SectionHeading>Strategic Rationale</SectionHeading>
+        <SectionHeading>Strategic Rationale</SectionHeading>
 
-          <BodyParagraph>
-            Even though it will take some time for Metsera drugs to enter effectively into the market and
-            its obesity treatments still are in an early-stage development, confirming its unproven
-            efficiency, many are the reasons for this acquisition. Firstly, Leerink Partners analyst David
-            Risinger projected that Metsera’s two top drugs, MET-097i and MET-233i might reach $5 billion in
-            combined peak sales. Secondly, they will put Pfizer into a market whose value will reach 150
-            billion dollars at its peak in the next decade in accordance with projections of a Morgan Stanley
-            Research. Nevertheless, Courtney Breen, a Bernstein analyst, stated that this high price was full
-            of optimism, reinforcing the fact that Pfizer must reach 11 billion dollars in revenue by 2040,
-            nearly doubling Metsera’s current projections.
-          </BodyParagraph>
+        <BodyParagraph>
+          Even though it will take some time for Metsera drugs to enter effectively into the market and
+          its obesity treatments still are in an early-stage development, confirming its unproven
+          efficiency, many are the reasons for this acquisition. Firstly, Leerink Partners analyst David
+          Risinger projected that Metsera’s two top drugs, MET-097i and MET-233i might reach $5 billion in
+          combined peak sales. Secondly, they will put Pfizer into a market whose value will reach 150
+          billion dollars at its peak in the next decade in accordance with projections of a Morgan Stanley
+          Research. Nevertheless, Courtney Breen, a Bernstein analyst, stated that this high price was full
+          of optimism, reinforcing the fact that Pfizer must reach 11 billion dollars in revenue by 2040,
+          nearly doubling Metsera’s current projections.
+        </BodyParagraph>
 
-          <SectionHeading>Metsera’s Financial Profile</SectionHeading>
+        <SectionHeading>Metsera’s Financial Profile</SectionHeading>
 
-          <BodyParagraph>
-            Concerning the acquired start-up, the Metsera Company was founded in 2022 and it has always been
-            highly focused in development of treatment for obesity and metabolic diseases. Its financial
-            statements of the past two years showed a net loss of 47.2 million dollars in 2023 that
-            increased to 209.1 million dollars in 2024. This can be explained by the completely absence of
-            revenues and an high expense in Research and Development. Its total assets increased to 450.9
-            million in 2024, whose 80% is Cash and Cash Receivables. Moreover, its debt to equity ratio was
-            nearly 0.6 for 2024. At the end of 2024, they increase cash amount of 278.1 million caused mainly
-            by stock issuance due to the negative cash from operating activity of 100 million dollars.
-          </BodyParagraph>
+        <BodyParagraph>
+          Concerning the acquired start-up, the Metsera Company was founded in 2022 and it has always been
+          highly focused in development of treatment for obesity and metabolic diseases. Its financial
+          statements of the past two years showed a net loss of 47.2 million dollars in 2023 that
+          increased to 209.1 million dollars in 2024. This can be explained by the completely absence of
+          revenues and an high expense in Research and Development. Its total assets increased to 450.9
+          million in 2024, whose 80% is Cash and Cash Receivables. Moreover, its debt to equity ratio was
+          nearly 0.6 for 2024. At the end of 2024, they increase cash amount of 278.1 million caused mainly
+          by stock issuance due to the negative cash from operating activity of 100 million dollars.
+        </BodyParagraph>
 
-          <TableCard
-            title="Metsera Key Financials (2023–2024)"
-            className="mb-8"
-            header={['Metric', '2023', '2024']}
-            rows={[
-              ['Net loss', '$47.2M', '$209.1M'],
-              ['Total assets', '-', '$450.9M'],
-              ['Share of cash in total assets', '-', '≈80%'],
-              ['Debt-to-equity ratio', '-', '≈0.6'],
-            ]}
-          />
+        <TableCard
+          title="Metsera Key Financials (2023–2024)"
+          className="mb-8"
+          header={['Metric', '2023', '2024']}
+          rows={[
+            ['Net loss', '$47.2M', '$209.1M'],
+            ['Total assets', '-', '$450.9M'],
+            ['Share of cash in total assets', '-', '≈80%'],
+            ['Debt-to-equity ratio', '-', '≈0.6'],
+          ]}
+        />
 
-          <BodyParagraph>
-            In conclusion, this acquisition worth 10 billion dollars allows Pfizer to enter the obesity drug
-            market getting closer to two leader Pharma companies in this market, Eli Lilly and Company and
-            Novo Nordisk.
-          </BodyParagraph>
+        <BodyParagraph>
+          In conclusion, this acquisition worth 10 billion dollars allows Pfizer to enter the obesity drug
+          market getting closer to two leader Pharma companies in this market, Eli Lilly and Company and
+          Novo Nordisk.
+        </BodyParagraph>
 
-          <BodyParagraph>Written by Francesco Kaitsas</BodyParagraph>
+        <BodyParagraph>Written by Francesco Kaitsas</BodyParagraph>
 
-          <SectionHeading>References</SectionHeading>
+        <SectionHeading>References</SectionHeading>
 
-          <ul className="text-sm text-gray-400 space-y-2">
-            <li>
-              <a
-                href="https://www.pfizer.com/news/press-release/press-release-detail/pfizer-completes-acquisition-metsera"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-[#C5A059] hover:underline"
-              >
-                Pfizer – Press release: Pfizer completes acquisition of Metsera
-              </a>
-            </li>
-            <li>
-              <a
-                href="https://www.ft.com/content/d9f58a26-5395-4acb-8dfc-d55cb53f946e"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-[#C5A059] hover:underline"
-              >
-                Financial Times – Coverage of the Metsera acquisition
-              </a>
-            </li>
-            <li>
-              <a
-                href="https://www.reuters.com/business/healthcare-pharmaceuticals/pfizer-sweetens-offer-metsera-bidding-war-against-novo-bloomberg-news-reports-2025-11-08/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-[#C5A059] hover:underline"
-              >
-                Reuters – Pfizer sweetens offer for Metsera in bidding war against Novo Nordisk
-              </a>
-            </li>
-            <li>
-              <a
-                href="https://www.cnbc.com/2025/11/08/metsera-accepts-pfizers-10-billion-bid-in-ongoing-ma-battle.html"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-[#C5A059] hover:underline"
-              >
-                CNBC – Metsera accepts Pfizer&apos;s $10 billion bid
-              </a>
-            </li>
-            <li>
-              <a
-                href="https://www.morganstanley.com/insights/articles/weight-loss-medication-market-unstoppable-growth"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-[#C5A059] hover:underline"
-              >
-                Morgan Stanley – Weight-loss medication market analysis
-              </a>
-            </li>
-            <li>
-              <a
-                href="https://finance.yahoo.com/quote/PFE/financials/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-[#C5A059] hover:underline"
-              >
-                Yahoo Finance – Pfizer (PFE) financials
-              </a>
-            </li>
-            <li>
-              <a
-                href="https://finance.yahoo.com/quote/MTSR/financials/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-[#C5A059] hover:underline"
-              >
-                Yahoo Finance – Metsera (MTSR) financials
-              </a>
-            </li>
-          </ul>
-        </>
+        <ul className="text-sm text-gray-400 space-y-2">
+          <li>
+            <a
+              href="https://www.pfizer.com/news/press-release/press-release-detail/pfizer-completes-acquisition-metsera"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#C5A059] hover:underline"
+            >
+              Pfizer – Press release: Pfizer completes acquisition of Metsera
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://www.ft.com/content/d9f58a26-5395-4acb-8dfc-d55cb53f946e"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#C5A059] hover:underline"
+            >
+              Financial Times – Coverage of the Metsera acquisition
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://www.reuters.com/business/healthcare-pharmaceuticals/pfizer-sweetens-offer-metsera-bidding-war-against-novo-bloomberg-news-reports-2025-11-08/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#C5A059] hover:underline"
+            >
+              Reuters – Pfizer sweetens offer for Metsera in bidding war against Novo Nordisk
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://www.cnbc.com/2025/11/08/metsera-accepts-pfizers-10-billion-bid-in-ongoing-ma-battle.html"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#C5A059] hover:underline"
+            >
+              CNBC – Metsera accepts Pfizer&apos;s $10 billion bid
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://www.morganstanley.com/insights/articles/weight-loss-medication-market-unstoppable-growth"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#C5A059] hover:underline"
+            >
+              Morgan Stanley – Weight-loss medication market analysis
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://finance.yahoo.com/quote/PFE/financials/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#C5A059] hover:underline"
+            >
+              Yahoo Finance – Pfizer (PFE) financials
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://finance.yahoo.com/quote/MTSR/financials/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#C5A059] hover:underline"
+            >
+              Yahoo Finance – Metsera (MTSR) financials
+            </a>
+          </li>
+        </ul>
+      </>
 
     ),
   },
