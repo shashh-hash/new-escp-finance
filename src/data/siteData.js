@@ -144,7 +144,7 @@ export const teamSections = [
         name: "LinkedIn",
         members: [
             { name: "Marina Meucci", role: "Head of LinkedIn", img: "/team/marina-meucci.png" },
-            { name: "Giulio Bonifacio", role: "LinkedIn Associate", img: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=60&w=300" },
+            { name: "Giulio Bonifacio", role: "LinkedIn Associate", img: "/team/giulio-bonifacio.jpg" },
             { name: "Francesco Maria Liaci", role: "LinkedIn Associate", img: "/team/francesco-maria-liaci.jpg" }
         ]
     },
