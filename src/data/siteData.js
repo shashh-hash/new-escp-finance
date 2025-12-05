@@ -68,13 +68,11 @@ export const teamSections = [
     {
         name: "Leadership",
         members: [
-            { name: "Lorenzo Sargiani", role: "Founder & President", img: "/team/president.jpg" },
-            { name: "Ines Desmaretz", role: "Vice President", img: "/team/ines-desmaretz.jpg" },
-            { name: "Daria Iannuzzi", role: "Vice President", img: "/team/daria-iannuzzi.jpg" },
-            { name: "Martina Proietti Silvestri", role: "Board Member", img: "/team/martina-proietti-silvestri.jpg" },
-            { name: "Christos Gerontopoulos", role: "Board Member", img: "/team/christos-gerontopoulos.jpg" },
-            { name: "Lucas Thai", role: "Board Member", img: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=60&w=300" },
-            { name: "Alex Toumasson", role: "Board Member", img: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=60&w=300" }
+            { name: "Lorenzo Sargiani", role: "Co-Founder & President", img: "/team/president.jpg" },
+            { name: "Ines Desmaretz", role: "Co-Founder & Vice President", img: "/team/ines-desmaretz.jpg" },
+            { name: "Daria Iannuzzi", role: "Co-Founder & Vice President", img: "/team/daria-iannuzzi.jpg" },
+            { name: "Martina Proietti Silvestri", role: "Co-Founder & Board Member", img: "/team/martina-proietti-silvestri.jpg" },
+            { name: "Christos Gerontopoulos", role: "Co-Founder & Board Member", img: "/team/christos-gerontopoulos.jpg" }
         ]
     },
     {
@@ -98,9 +96,7 @@ export const teamSections = [
     {
         name: "Articles",
         members: [
-            { name: "Luca Citton", role: "Head of Articles", img: "https://images.unsplash.com/photo-1463453091185-61582044d556?auto=format&fit=crop&q=60&w=300" },
             { name: "Francesco Kaitsas", role: "Head of Articles", img: "/team/francesco-kaitsas.jpg" },
-            { name: "Francesco Baci Paci", role: "Articles Associate", img: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=60&w=300" },
             { name: "Federico Furioso", role: "Articles Associate", img: "/team/federico-furioso.jpg" },
             { name: "Giovanni Ciccarello", role: "Articles Associate", img: "/team/giovanni-ciccarello.jpg" },
             { name: "Giorgio Gheorghis Tsingros", role: "Articles Associate", img: "/team/giorgio-gheorghis-tsingros.jpg" }

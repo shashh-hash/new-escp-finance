@@ -79,7 +79,7 @@ export default function AboutPage() {
                                                 className={`w-full h-full object-cover filter grayscale hover:grayscale-0 transition-all duration-700 ${['Ines Desmaretz', 'Edoardo Cerrano', 'Emanuele Ferrara', 'Tommaso Girani', 'Adriano Cogorno', "Giorgio D'Innocenzo"].some(n => member.name.includes(n))
                                                     ? 'object-[center_35%]'
                                                     : ''
-                                                    } ${member.name === 'Shashank Tripathi' ? 'scale-125 object-[center_90%]' : ''} ${member.name === 'Marina Meucci' ? 'scale-150 object-[center_90%]' : ''}`}
+                                                    } ${member.name === 'Shashank Tripathi' ? 'scale-125 object-[center_90%]' : ''} ${member.name === 'Marina Meucci' ? 'scale-150 object-[center_98%]' : ''} ${member.name === 'Beatrice Pelini' ? 'scale-125 object-[center_90%]' : ''} ${member.name === 'Daria Iannuzzi' ? 'scale-125 object-[center_90%]' : ''} ${member.name === 'Alessandra Boarolo' ? 'scale-125 object-[center_98%]' : ''}`}
                                                 loading="lazy"
                                             />
                                         </div>
