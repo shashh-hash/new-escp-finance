@@ -35,7 +35,7 @@ export default function Sections() {
                     </div>
                 </div>
                 <div className="relative h-[400px] bg-gray-200">
-                    <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=80" alt="Team working" className="absolute inset-0 w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500" />
+                    <img src="/team-photo.jpg" alt="ESCP Finance Society Team" className="absolute inset-0 w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500" />
                 </div>
             </section>
 
