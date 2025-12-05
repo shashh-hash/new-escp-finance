@@ -3,30 +3,9 @@ import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 
+import { articles } from '../data/siteData';
+
 export default function ArticlesPage() {
-    const articles = [
-        {
-            title: "S&P Downgrades Tether’s Assets to Lowest Level",
-            excerpt:
-                "S&P lowers its assessment of USDT’s reserves amid rising exposure to volatile assets and ongoing transparency concerns.",
-            category: "Crypto & Stablecoins",
-            series: "Market Momentum | Week 2",
-            author: "Francesco Baci Paci & Giovanni Ciccarello",
-            date: "Dec 5, 2025",
-            image: "/Article-Cover-Website-SP500.webp",
-            slug: "tether-sp-downgrade-2025"
-        },
-        {
-            title: "A $10 Billion Bet: Pfizer Enters the Anti-Obesity Drug Market",
-            excerpt: "Pfizer acquires Metsera for nearly $10 billion, entering the booming anti-obesity drug market and challenging industry leaders.",
-            category: "Healthcare",
-            series: "Market Momentum | Week 1",
-            author: "Francesco Kaitsas",
-            date: "Nov 28, 2025",
-            image: "/pfizer-article.png",
-            slug: "sustainable-finance-esg-2024"
-        }
-    ];
 
     return (
         <div className="min-h-screen flex flex-col bg-[#051C2C]">
