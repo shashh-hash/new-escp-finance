@@ -137,7 +137,7 @@ export const teamSections = [
         members: [
             { name: "Beatrice Pelini", role: "Head of Instagram", img: "/team/beatrice-pelini.png" },
             { name: "Camilla Barra", role: "Instagram Associate", img: "/team/camilla-barra.jpg" },
-            { name: "Federico Valente", role: "Instagram Associate", img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=60&w=300" }
+            { name: "Federico Valente", role: "Instagram Associate", img: "/team/federico-valente.jpg" }
         ]
     },
     {
