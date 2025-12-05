@@ -122,7 +122,7 @@ export const teamSections = [
         members: [
             { name: "Daria Iannuzzi", role: "Head of Events", img: "/team/daria-iannuzzi.jpg" },
             { name: "Martina Proietti Silvestri", role: "Head of Events", img: "/team/martina-proietti-silvestri.jpg" },
-            { name: "Armand Vahé Francesco Gaidc", role: "Events Associate", img: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=60&w=300" }
+            { name: "Armand Vahé Francesco Gaidc", role: "Events Associate", img: "/team/armand-vahe-francesco-gaidc.jpg" }
         ]
     },
     {
