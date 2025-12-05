@@ -1,31 +1,31 @@
 {
-  "lastUpdated": "2025-12-05T09:40:49.874Z",
+  "lastUpdated": "2025-12-05T16:45:00.000Z",
   "stocks": [
     {
       "symbol": "S&P 500",
-      "value": "6840.00",
-      "change": "+0.16%",
+      "value": "6872.45",
+      "change": "+0.47%",
       "positive": true,
       "type": "index"
     },
     {
       "symbol": "NASDAQ",
-      "value": "23413.67",
-      "change": "+0.15%",
+      "value": "23550.12",
+      "change": "+0.58%",
       "positive": true,
       "type": "index"
     },
     {
       "symbol": "DOW",
-      "value": "47474.46",
-      "change": "+0.12%",
+      "value": "47610.20",
+      "change": "+0.29%",
       "positive": true,
       "type": "index"
     },
     {
       "symbol": "OIL",
-      "value": "58.67",
-      "change": "+0.27%",
+      "value": "59.12",
+      "change": "+0.77%",
       "positive": true,
       "type": "commodity"
     }

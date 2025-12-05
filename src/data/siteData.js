@@ -28,30 +28,30 @@ export const articles = [
 // News data
 export const newsItems = [
     {
-        title: "ECB Raises Interest Rates to Combat Inflation",
+        title: "Global Markets Rally as Inflation Hits 2-Year Low",
         source: "Financial Times",
-        date: "Nov 22, 2025",
-        category: "Central Banking",
-        excerpt: "The European Central Bank announced a 25 basis point rate hike, bringing the key interest rate to 4.75%.",
-        image: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&q=60&w=600",
+        date: "Dec 05, 2025",
+        category: "Markets",
+        excerpt: "Major indices hit record highs as new data shows global inflation cooling faster than unexpected, prompting optimism for rate cuts.",
+        image: "/news/markets-rally.png",
         url: "https://www.ft.com"
     },
     {
-        title: "Tech Stocks Rally on AI Optimism",
+        title: "Quantum Leap: Major Breakthrough in Commercial Quantum Computing",
         source: "Bloomberg",
-        date: "Nov 21, 2025",
-        category: "Markets",
-        excerpt: "Major technology indices surged as investors bet on continued AI-driven growth in the sector.",
-        image: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&q=60&w=600",
+        date: "Dec 04, 2025",
+        category: "Tech",
+        excerpt: "Tech giants announce a joint breakthrough in qubit stability, potentially accelerating the timeline for commercial quantum advantage.",
+        image: "/news/quantum-tech.png",
         url: "https://www.bloomberg.com"
     },
     {
-        title: "Private Equity Firms Eye European Opportunities",
+        title: "COP30 Discussion Heats Up: Nations Pledge Trillions for Green Transition",
         source: "Reuters",
-        date: "Nov 20, 2025",
-        category: "Private Equity",
-        excerpt: "Major PE firms are increasing their focus on European mid-market companies amid favorable valuations.",
-        image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=60&w=600",
+        date: "Dec 03, 2025",
+        category: "Energy",
+        excerpt: "World leaders agree on a historic funding package to accelerate the transition to renewable energy in developing nations.",
+        image: "https://images.unsplash.com/photo-1466611653911-95081537e5b7?auto=format&fit=crop&q=60&w=600",
         url: "https://www.reuters.com"
     }
 ];
