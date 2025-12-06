@@ -126,7 +126,7 @@ export default function Header() {
 
                 {/* Menu Content */}
                 <div
-                    className={`relative bg-[#0D2137] border-t border-white/10 transition-transform duration-300 ${isMenuOpen ? 'translate-y-0' : '-translate-y-full'}`}>
+                    className={`relative bg-[#0D2137] transition-transform duration-300 ${isMenuOpen ? 'translate-y-0' : '-translate-y-full'}`}>
                     <nav className="container mx-auto px-4 py-6">
                         <ul className="space-y-1">
                             {mainNavItems.map((item) => (
