@@ -40,35 +40,49 @@ const articles = {
         <BodyParagraph>
           S&amp;P Global Ratings has downgraded the reserves backing Tether’s stablecoin USDT to its
           lowest assessment level, raising new concerns about the stability of the world’s largest
-          digital dollar token. Tether issues USDT, a cryptocurrency designed to stay equal in value
-          to the U.S. dollar through a mechanism known as a “peg”, which means that one USDT should
-          always be redeemable for one dollar. With around $184 billion outstanding, USDT plays a
-          central role in the global crypto ecosystem, particularly in emerging markets where access
-          to real dollars is limited. The downgrade represents a crucial moment in how traditional
-          financial institutions assess the risks behind Tether’s reserve structure.
+          digital dollar token.
+        </BodyParagraph>
+        <BodyParagraph>
+          Tether issues USDT, a cryptocurrency designed to stay equal in value to the U.S. dollar
+          through a mechanism known as a “peg”, which means that one USDT should always be
+          redeemable for one dollar.
+        </BodyParagraph>
+        <BodyParagraph>
+          With around $184 billion outstanding, USDT plays a central role in the global crypto
+          ecosystem, particularly in emerging markets where access to real dollars is limited. The
+          downgrade represents a crucial moment in how traditional financial institutions assess the
+          risks behind Tether’s reserve structure.
         </BodyParagraph>
 
         <SectionHeading>Rising Risk Exposure and Transparency Gaps</SectionHeading>
         <BodyParagraph>
           S&amp;P lowered its rating from 4 (constrained) to 5 (weak), citing two main issues: a
           rising share of high-risk assets in Tether’s reserves and persistent gaps in transparency.
+        </BodyParagraph>
+        <BodyParagraph>
           According to the agency, assets such as bitcoin, gold, secured loans and corporate bonds
           accounted for 24% of Tether’s reserves at the end of September, compared with 17% a year
           earlier. Bitcoin alone represents 5.6% while Tether’s surplus reserves amount to only 3.9%.
+        </BodyParagraph>
+        <BodyParagraph>
           S&amp;P warned that if bitcoin or other volatile assets fall sharply, the reserves could
           temporarily become insufficient to fully back all USDT in circulation, making it harder to
           maintain the “peg”. The rating agency also noted that Tether provides little information
           about the reliability of the banks and custodians holding its reserves and offers few
-          details on how it values its more complex investments. Despite these concerns, most of
-          Tether’s reserves remain in high-quality assets such as U.S. Treasuries and cash
-          equivalents which currently make up around 77% of the total. S&amp;P acknowledged that USDT
-          has shown strong stability during major stress events, including crypto market crashes and
-          exchange failures. However, the agency stated that the growing share of higher-risk assets
-          makes USDT more vulnerable to market swings, and the downgrade comes at a time when the
-          crypto sector is already under pressure, with bitcoin down roughly 30% since early October.
-          Analysts added that worries about Tether’s reserves have increased uncertainty in the
-          market, as further declines in bitcoin could weaken the value of the assets backing the
-          stablecoin.
+          details on how it values its more complex investments.
+        </BodyParagraph>
+        <BodyParagraph>
+          Despite these concerns, most of Tether’s reserves remain in high-quality assets such as
+          U.S. Treasuries and cash equivalents which currently make up around 77% of the total. S&amp;P
+          acknowledged that USDT has shown strong stability during major stress events, including
+          crypto market crashes and exchange failures.
+        </BodyParagraph>
+        <BodyParagraph>
+          However, the agency stated that the growing share of higher-risk assets makes USDT more
+          vulnerable to market swings, and the downgrade comes at a time when the crypto sector is
+          already under pressure, with bitcoin down roughly 30% since early October. Analysts added
+          that worries about Tether’s reserves have increased uncertainty in the market, as further
+          declines in bitcoin could weaken the value of the assets backing the stablecoin.
         </BodyParagraph>
 
         <SectionHeading>Tether Pushes Back Against S&amp;P’s Framework</SectionHeading>
@@ -76,13 +90,18 @@ const articles = {
           Tether strongly disagreed with S&amp;P’s assessment, saying that the agency uses a
           traditional finance framework that does not reflect how digital assets operate. The company
           pointed to its history of maintaining stability through market turbulence and highlighted
-          its real-time reserve reporting and quarterly attestations by BDO Italy. That said, Tether
-          still does not provide full independent audits, which remains a key concern for analysts
-          and regulators. Paolo Ardoino, Tether’s CEO, criticized the downgrade even more directly,
-          writing that the company “wears your loathing with pride”. He argued that legacy
-          credit-rating models are outdated and that Tether’s “overcapitalized” structure challenges
-          traditional finance, although analysts noted that these statements did not address the
-          specific transparency gaps raised by S&amp;P.
+          its real-time reserve reporting and quarterly attestations by BDO Italy.
+        </BodyParagraph>
+        <BodyParagraph>
+          That said, Tether still does not provide full independent audits, which remains a key
+          concern for analysts and regulators.
+        </BodyParagraph>
+        <BodyParagraph>
+          Paolo Ardoino, Tether’s CEO, criticized the downgrade even more directly, writing that the
+          company “wears your loathing with pride”. He argued that legacy credit-rating models are
+          outdated and that Tether’s “overcapitalized” structure challenges traditional finance,
+          although analysts noted that these statements did not address the specific transparency
+          gaps raised by S&amp;P.
         </BodyParagraph>
         <QuoteBlock>
           « Paolo Ardoino, Tether’s CEO, criticized the downgrade even more directly, writing that
@@ -93,12 +112,16 @@ const articles = {
           Additional questions have emerged regarding Tether’s expansion into other sectors such as
           energy, data, finance and education. S&amp;P said it is unclear whether these operations
           are financially separate from the stablecoin business, which may introduce additional risks
-          compared with more regulated competitors like Circle, the issuer of USDC. Regulation is
-          also tightening in the U.S. through the new GENIUS Act, which requires stablecoins to be
-          backed entirely by short-dated U.S. Treasuries and other liquid assets. This framework
-          aligns more closely with the reserve structure of other issuers, while Tether continues to
-          hold secured loans (still 8% of reserves, or over $14 billion, according to BDO Italy)
-          despite earlier promises to eliminate them.
+          compared with more regulated competitors like Circle, the issuer of USDC.
+        </BodyParagraph>
+        <BodyParagraph>
+          Regulation is also tightening in the U.S. through the new GENIUS Act, which requires
+          stablecoins to be backed entirely by short-dated U.S. Treasuries and other liquid assets.
+        </BodyParagraph>
+        <BodyParagraph>
+          This framework aligns more closely with the reserve structure of other issuers, while
+          Tether continues to hold secured loans (still 8% of reserves, or over $14 billion,
+          according to BDO Italy) despite earlier promises to eliminate them.
         </BodyParagraph>
 
         <SectionHeading>Growing Scrutiny on the USDT Model</SectionHeading>
