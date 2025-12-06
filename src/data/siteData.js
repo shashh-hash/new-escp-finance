@@ -72,7 +72,9 @@ export const teamSections = [
             { name: "Ines Desmaretz", role: "Co-Founder & Vice President", img: "/team/ines-desmaretz.jpg" },
             { name: "Daria Iannuzzi", role: "Co-Founder & Vice President", img: "/team/daria-iannuzzi.jpg" },
             { name: "Martina Proietti Silvestri", role: "Co-Founder & Board Member", img: "/team/martina-proietti-silvestri.jpg" },
-            { name: "Christos Gerontopoulos", role: "Co-Founder & Board Member", img: "/team/christos-gerontopoulos.jpg" }
+            { name: "Christos Gerontopoulos", role: "Co-Founder & Board Member", img: "/team/christos-gerontopoulos.jpg" },
+            { name: "Lucas Thai", role: "Board Member", img: "/team/lucas-thai.jpg" },
+            { name: "Alex Toumasson", role: "Board Member", img: "/team/alex-toumasson.jpg" }
         ]
     },
     {

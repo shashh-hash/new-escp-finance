@@ -1,5 +1,6 @@
 import React from 'react';
 import { HashRouter, Routes, Route } from 'react-router-dom';
+import ScrollToTop from './components/ScrollToTop';
 import { ThemeProvider } from './context/ThemeContext';
 import HomePage from './pages/HomePage';
 import AboutPage from './pages/AboutPage';
@@ -13,6 +14,7 @@ function App() {
   return (
     <ThemeProvider>
       <HashRouter>
+        <ScrollToTop />
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/about" element={<AboutPage />} />
