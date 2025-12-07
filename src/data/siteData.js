@@ -101,7 +101,8 @@ export const teamSections = [
             { name: "Francesco Kaitsas", role: "Head of Articles", img: "/team/francesco-kaitsas.jpg" },
             { name: "Federico Furioso", role: "Articles Associate", img: "/team/federico-furioso.jpg" },
             { name: "Giovanni Ciccarello", role: "Articles Associate", img: "/team/giovanni-ciccarello.jpg" },
-            { name: "Giorgio Gheorghis Tsingros", role: "Articles Associate", img: "/team/giorgio-gheorghis-tsingros.jpg" }
+            { name: "Giorgio Gheorghis Tsingros", role: "Articles Associate", img: "/team/giorgio-gheorghis-tsingros.jpg" },
+            { name: "Francesco Baci Paci", role: "Articles Associate", img: "/team/francesco-baci-paci.jpg" }
         ]
     },
     {
