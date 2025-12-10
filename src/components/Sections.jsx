@@ -65,7 +65,7 @@ export default function Sections() {
                                 <img
                                     src={article.image}
                                     alt={article.title}
-                                    className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
+                                    className="w-full h-full object-cover transform group-hover:scale-105 transition-all duration-700 grayscale group-hover:grayscale-0"
                                 />
                             </div>
                             <span className="text-gray-400 text-xs block mb-2">{article.date}</span>
@@ -107,7 +107,7 @@ export default function Sections() {
                                 <img
                                     src={news.image}
                                     alt={news.title}
-                                    className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
+                                    className="w-full h-full object-cover transform group-hover:scale-105 transition-all duration-700 grayscale group-hover:grayscale-0"
                                 />
                             </div>
                             <span className="text-gray-400 text-xs block mb-2">{news.source} • {news.date}</span>

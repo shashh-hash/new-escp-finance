@@ -10,7 +10,7 @@ export const articles = [
         series: "Market Momentum | Week 48",
         author: "Francesco Baci Paci & Giovanni Ciccarello",
         date: "Dec 5, 2025",
-        image: "/Article-Cover-Website-SP500.webp",
+        image: "https://images.unsplash.com/photo-1639322537228-ad7117a394bc?auto=format&fit=crop&q=80&w=800",
         slug: "tether-sp-downgrade-2025"
     },
     {
@@ -20,7 +20,7 @@ export const articles = [
         series: "Market Momentum | Week 47",
         author: "Francesco Kaitsas",
         date: "Nov 28, 2025",
-        image: "/pfizer-article.png",
+        image: "https://images.unsplash.com/photo-1576086213369-97a306d36557?auto=format&fit=crop&q=80&w=800",
         slug: "sustainable-finance-esg-2024"
     }
 ];
@@ -33,7 +33,7 @@ export const newsItems = [
         date: "Dec 05, 2025",
         category: "Markets",
         excerpt: "Major indices hit record highs as new data shows global inflation cooling faster than unexpected, prompting optimism for rate cuts.",
-        image: "/news/markets-rally.png",
+        image: "https://images.unsplash.com/photo-1611974765215-0534230290da?auto=format&fit=crop&q=80&w=800",
         url: "https://www.ft.com"
     },
     {
@@ -42,7 +42,7 @@ export const newsItems = [
         date: "Dec 04, 2025",
         category: "Tech",
         excerpt: "Tech giants announce a joint breakthrough in qubit stability, potentially accelerating the timeline for commercial quantum advantage.",
-        image: "/news/quantum-tech.png",
+        image: "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?auto=format&fit=crop&q=80&w=800",
         url: "https://www.bloomberg.com"
     },
     {
@@ -51,7 +51,7 @@ export const newsItems = [
         date: "Dec 03, 2025",
         category: "Energy",
         excerpt: "World leaders agree on a historic funding package to accelerate the transition to renewable energy in developing nations.",
-        image: "https://images.unsplash.com/photo-1466611653911-95081537e5b7?auto=format&fit=crop&q=60&w=600",
+        image: "https://images.unsplash.com/photo-1497435334941-8c899ee9e8e9?auto=format&fit=crop&q=80&w=800",
         url: "https://www.reuters.com"
     }
 ];
@@ -68,11 +68,11 @@ export const teamSections = [
     {
         name: "Leadership",
         members: [
-            { name: "Lorenzo Sargiani", role: "Co-Founder & President", img: "/team/president.jpg" },
-            { name: "Ines Desmaretz", role: "Co-Founder & Vice President", img: "/team/ines-desmaretz.jpg" },
-            { name: "Daria Iannuzzi", role: "Co-Founder & Vice President", img: "/team/daria-iannuzzi.jpg" },
-            { name: "Martina Proietti Silvestri", role: "Co-Founder & Board Member", img: "/team/martina-proietti-silvestri.jpg" },
-            { name: "Christos Gerontopoulos", role: "Co-Founder & Board Member", img: "/team/christos-gerontopoulos.jpg" },
+            { name: "Lorenzo Sargiani", role: "President & Co-Founder", img: "/team/president.jpg" },
+            { name: "Ines Desmaretz", role: "Vice President & Co-Founder", img: "/team/ines-desmaretz.jpg" },
+            { name: "Daria Iannuzzi", role: "Vice President & Co-Founder", img: "/team/daria-iannuzzi.jpg" },
+            { name: "Martina Proietti Silvestri", role: "Board Member & Co-Founder", img: "/team/martina-proietti-silvestri.jpg" },
+            { name: "Christos Gerontopoulos", role: "Board Member & Co-Founder", img: "/team/christos-gerontopoulos.jpg" },
             { name: "Lucas Thai", role: "Board Member", img: "/team/lucas-thai.jpg" },
             { name: "Alex Toumasson", role: "Board Member", img: "/team/alex-toumasson.jpg" }
         ]
