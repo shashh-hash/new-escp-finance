@@ -33,7 +33,7 @@ export const newsItems = [
         date: "Dec 05, 2025",
         category: "Markets",
         excerpt: "Major indices hit record highs as new data shows global inflation cooling faster than unexpected, prompting optimism for rate cuts.",
-        image: "https://images.unsplash.com/photo-1611974765215-0534230290da?auto=format&fit=crop&q=80&w=800",
+        image: "/news/global-markets.jpg",
         url: "https://www.ft.com"
     },
     {
@@ -42,7 +42,7 @@ export const newsItems = [
         date: "Dec 04, 2025",
         category: "Tech",
         excerpt: "Tech giants announce a joint breakthrough in qubit stability, potentially accelerating the timeline for commercial quantum advantage.",
-        image: "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?auto=format&fit=crop&q=80&w=800",
+        image: "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?auto=format&fit=crop&q=80&w=800", // Keep this or find a better abstract tech one? This one is already quite geometric/aesthetic. Let's keep it or swap for something more "Pinterest".
         url: "https://www.bloomberg.com"
     },
     {
@@ -51,7 +51,7 @@ export const newsItems = [
         date: "Dec 03, 2025",
         category: "Energy",
         excerpt: "World leaders agree on a historic funding package to accelerate the transition to renewable energy in developing nations.",
-        image: "https://images.unsplash.com/photo-1497435334941-8c899ee9e8e9?auto=format&fit=crop&q=80&w=800",
+        image: "https://images.unsplash.com/photo-1470115636492-6d2b56f9146d?auto=format&fit=crop&q=80&w=800", // Minimalist wind turbine/nature
         url: "https://www.reuters.com"
     }
 ];

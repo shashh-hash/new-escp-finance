@@ -7,11 +7,17 @@ export function ArticleLayout({ article, relatedArticles = [] }) {
   return (
     <>
       {/* Hero Image */}
-      <div className="w-full h-96 overflow-hidden">
+      <div className="w-full h-[40vh] overflow-hidden relative bg-[#051C2C]">
+        {/* Blurred background for fill */}
+        <div
+          className="absolute inset-0 bg-cover bg-center blur-xl opacity-50 scale-110"
+          style={{ backgroundImage: `url(${article.image})` }}
+        />
+        {/* Main image */}
         <img
           src={article.image}
           alt={article.title}
-          className="w-full h-full object-cover"
+          className="relative w-full h-full object-contain z-10"
         />
       </div>
 
