@@ -6,21 +6,6 @@ import { RelatedArticlesSection } from './RelatedArticlesSection';
 export function ArticleLayout({ article, relatedArticles = [] }) {
   return (
     <>
-      {/* Hero Image */}
-      <div className="w-full h-[40vh] overflow-hidden relative bg-[#051C2C]">
-        {/* Blurred background for fill */}
-        <div
-          className="absolute inset-0 bg-cover bg-center blur-xl opacity-50 scale-110"
-          style={{ backgroundImage: `url(${article.image})` }}
-        />
-        {/* Main image */}
-        <img
-          src={article.image}
-          alt={article.title}
-          className="relative w-full h-full object-contain z-10"
-        />
-      </div>
-
       {/* Article Content */}
       <article className="flex-1 py-16">
         <div className="container mx-auto px-8 max-w-4xl">
