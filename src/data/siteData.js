@@ -20,7 +20,7 @@ export const articles = [
         series: "Market Momentum | Week 47",
         author: "Francesco Kaitsas",
         date: "Nov 28, 2025",
-        image: "https://images.unsplash.com/photo-1576086213369-97a306d36557?auto=format&fit=crop&q=80&w=800",
+        image: "/pfizer-building.jpg",
         slug: "sustainable-finance-esg-2024"
     }
 ];
