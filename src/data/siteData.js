@@ -10,7 +10,7 @@ export const articles = [
         series: "Market Momentum | Week 48",
         author: "Francesco Baci Paci & Giovanni Ciccarello",
         date: "Dec 5, 2025",
-        image: "https://images.unsplash.com/photo-1639322537228-ad7117a394bc?auto=format&fit=crop&q=80&w=800",
+        image: "/sp500-wallstreet.jpg",
         slug: "tether-sp-downgrade-2025"
     },
     {
