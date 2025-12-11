@@ -59,7 +59,7 @@ export default function SearchOverlay({ isOpen, onClose }) {
         team: allTeamMembers
     };
 
-    const apiKey = import.meta.env.VITE_GEMINI_API_KEY || 'AIzaSyC84cje12KDinjbml3Tq0mIjns_cq0BSDQ';
+    const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
 
     const getSimulatedResponse = (searchQuery) => {
         const lowerQuery = searchQuery.toLowerCase();

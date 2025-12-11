@@ -1,5 +1,6 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -441,8 +442,29 @@ export default function ArticleDetailPage() {
 
   const relatedArticles = siteArticles.filter((a) => a.slug !== slug);
 
+  const currentUrl = window.location.href;
+
   return (
     <div className="min-h-screen flex flex-col bg-[#051C2C]">
+      <Helmet>
+        <title>{article.title} | ESCP Finance Society</title>
+        <meta name="description" content={article.excerpt} />
+
+        {/* Open Graph / Facebook / LinkedIn */}
+        <meta property="og:type" content="article" />
+        <meta property="og:url" content={currentUrl} />
+        <meta property="og:title" content={article.title} />
+        <meta property="og:description" content={article.excerpt} />
+        <meta property="og:image" content={article.image} />
+
+        {/* Twitter */}
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:url" content={currentUrl} />
+        <meta property="twitter:title" content={article.title} />
+        <meta property="twitter:description" content={article.excerpt} />
+        <meta property="twitter:image" content={article.image} />
+      </Helmet>
+
       <Header />
       <ArticleLayout article={article} relatedArticles={relatedArticles} />
       <Footer />
