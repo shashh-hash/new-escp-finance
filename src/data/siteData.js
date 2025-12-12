@@ -3,6 +3,17 @@
 // Articles data
 export const articles = [
     {
+        title: "Bending Spoons Acquires Eventbrite in a Landmark $500 Million Transaction",
+        excerpt:
+            "The Milan-based tech company makes a bold $500M move to acquire Eventbrite, signaling a new era of European tech consolidation.",
+        category: "Tech & M&A",
+        series: "Market Momentum | Week 3",
+        author: "Luca Citton & Federico Furioso",
+        date: "Dec 12, 2025",
+        image: "/Bending-Spoons-Eventbrite.png",
+        slug: "bending-spoons-eventbrite-2025"
+    },
+    {
         title: "S&P Downgrades Tether’s Assets to Lowest Level",
         excerpt:
             "S&P lowers its assessment of USDT’s reserves amid rising exposure to volatile assets and ongoing transparency concerns.",
