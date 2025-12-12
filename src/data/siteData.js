@@ -7,7 +7,7 @@ export const articles = [
         excerpt:
             "The Milan-based tech company makes a bold $500M move to acquire Eventbrite, signaling a new era of European tech consolidation.",
         category: "Tech & M&A",
-        series: "Market Momentum | Week 3",
+        series: "Market Momentum | Week 49",
         author: "Luca Citton & Federico Furioso",
         date: "Dec 12, 2025",
         image: "/Bending-Spoons-Eventbrite.png",

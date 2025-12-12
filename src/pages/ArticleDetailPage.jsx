@@ -151,32 +151,33 @@ const articleContents = {
         <ul className="text-sm text-gray-400 space-y-2">
           <li>
             <a
-              href="https://investor.eventbrite.com"
+              href="https://investor.eventbrite.com/press-releases/press-releases-details/2025/Eventbrite-Enters-into-Definitive-Agreement-to-Be-Acquired-by-Bending-Spoons-for-Roughly-500-Million-to-Accelerate-Eventbrites-Next-Phase-of-Growth/"
               target="_blank"
               rel="noopener noreferrer"
               className="text-[#C5A059] hover:underline"
             >
-              investor.eventbrite.com
+              Eventbride - Eventbrite Enters into Definitive Agreement to Be Acquired by Bending Spoons for Roughly $500 Million to Accelerate Eventbrite’s Next Phase of Growth
+
             </a>
           </li>
           <li>
             <a
-              href="https://www.investing.com"
+              href="https://www.investing.com/news/company-news/bending-spoons-to-acquire-eventbrite-for-500-million-in-allcash-deal-93CH-4385829"
               target="_blank"
               rel="noopener noreferrer"
               className="text-[#C5A059] hover:underline"
             >
-              investing.com
+              Investing - Bending Spoons to acquire Eventbrite for $500 million in all-cash deal
             </a>
           </li>
           <li>
             <a
-              href="https://www.eu-startups.com"
+              href="https://www.eu-startups.com/2025/12/italys-trailblazer-bending-spoons-adds-eventbrite-to-portfolio-in-e430-million-all-cash-acquisition/"
               target="_blank"
               rel="noopener noreferrer"
               className="text-[#C5A059] hover:underline"
             >
-              eu-startups.com
+              EU-Startups - Italy’s Bending Spoons adds Eventbrite to portfolio in €430 million all-cash acquisition
             </a>
           </li>
         </ul>
