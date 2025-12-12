@@ -16,6 +16,7 @@ const ContactPage = lazy(() => import('./pages/ContactPage'));
 function App() {
   return (
     <ThemeProvider>
+      {/* HashRouter keeps routes working when deployed under /escp-finance/ */}
       <HashRouter>
         <ScrollToTop />
         <Suspense fallback={<Loading />}>
