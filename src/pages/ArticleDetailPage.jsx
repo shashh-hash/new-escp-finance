@@ -25,16 +25,13 @@ const articleContents = {
   'bending-spoons-eventbrite-2025':  (
       <>
         {/* Original text, unchanged */}
-        <LeadParagraph>
-          Bending Spoons Acquires Eventbrite in a Landmark $500 Million Transaction
-        </LeadParagraph>
 
         <SectionHeading>A High-Profile Deal Shaking the Tech Sector</SectionHeading>
         <BodyParagraph>
           Bending Spoons’ latest move has stirred significant attention across both the tech and financial
           sectors. The Milan-based company, already known for its bold and strategic acquisition approach,
           has agreed to acquire Eventbrite for $500 million in cash, marking one of its most high-profile
-          deals to date. The offer of $4.50 per share represents an 81–82% premiumover the current market
+          deals to date. The offer of $4.50 per share represents an 81–82% premium over the current market
           price, signaling strong confidence in Eventbrite’s long-term potential despite the platform’s
           recent challenges and periods of underperformance. Analysts and investors alike have interpreted
           the deal as a statement of intent by Bending Spoons to solidify its position in the global events
@@ -156,7 +153,7 @@ const articleContents = {
               rel="noopener noreferrer"
               className="text-[#C5A059] hover:underline"
             >
-              Eventbride - Eventbrite Enters into Definitive Agreement to Be Acquired by Bending Spoons for Roughly $500 Million to Accelerate Eventbrite’s Next Phase of Growth
+              Eventbrite - Eventbrite Enters into Definitive Agreement to Be Acquired by Bending Spoons for Roughly $500 Million to Accelerate Eventbrite’s Next Phase of Growth
 
             </a>
           </li>
