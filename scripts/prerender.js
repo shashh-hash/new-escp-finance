@@ -10,6 +10,13 @@ const __dirname = path.dirname(__filename);
 const DIST_DIR = path.resolve(__dirname, '../dist');
 const INDEX_HTML = path.resolve(DIST_DIR, 'index.html');
 
+// Prefer explicit SITE_URL, otherwise use Vercel-provided URL, fallback to local
+const rawSiteUrl = process.env.SITE_URL
+    || (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'http://localhost:4173');
+
+// Trim whitespace/newlines and drop trailing slashes
+const SITE_URL = rawSiteUrl.trim().replace(/\/+$/, '');
+
 async function prerender() {
     console.log('Starting prerender...');
 
@@ -40,13 +47,15 @@ async function prerender() {
       <title>${article.title} | ESCP Finance Society</title>
       <meta name="description" content="${article.excerpt.replace(/"/g, '&quot;')}" />
       <meta property="og:type" content="article" />
+      <meta property="og:url" content="${SITE_URL}/articles/${slug}" />
       <meta property="og:title" content="${article.title.replace(/"/g, '&quot;')}" />
       <meta property="og:description" content="${article.excerpt.replace(/"/g, '&quot;')}" />
-      <meta property="og:image" content="https://escp-students-for-finance.github.io/new-escp-finance${article.image}" />
+      <meta property="og:image" content="${SITE_URL}${article.image}" />
       <meta property="twitter:card" content="summary_large_image" />
+      <meta property="twitter:url" content="${SITE_URL}/articles/${slug}" />
       <meta property="twitter:title" content="${article.title.replace(/"/g, '&quot;')}" />
       <meta property="twitter:description" content="${article.excerpt.replace(/"/g, '&quot;')}" />
-      <meta property="twitter:image" content="https://escp-students-for-finance.github.io/new-escp-finance${article.image}" />
+      <meta property="twitter:image" content="${SITE_URL}${article.image}" />
     `;
 
         // Inject into <head>
