@@ -7,20 +7,20 @@ export const articles = [
         excerpt:
             "S&P lowers its assessment of USDT’s reserves amid rising exposure to volatile assets and ongoing transparency concerns.",
         category: "Crypto & Stablecoins",
-        series: "Market Momentum | Week 2",
+        series: "Market Momentum | Week 48",
         author: "Francesco Baci Paci & Giovanni Ciccarello",
         date: "Dec 5, 2025",
-        image: "/Article-Cover-Website-SP500.webp",
+        image: "/sp500-wallstreet.jpg",
         slug: "tether-sp-downgrade-2025"
     },
     {
         title: "A $10 Billion Bet: Pfizer Enters the Anti-Obesity Drug Market",
         excerpt: "Pfizer acquires Metsera for nearly $10 billion, entering the booming anti-obesity drug market and challenging industry leaders.",
         category: "Healthcare",
-        series: "Market Momentum | Week 1",
+        series: "Market Momentum | Week 47",
         author: "Francesco Kaitsas",
         date: "Nov 28, 2025",
-        image: "/pfizer-article.png",
+        image: "/pfizer-building.jpg",
         slug: "sustainable-finance-esg-2024"
     }
 ];
@@ -28,30 +28,30 @@ export const articles = [
 // News data
 export const newsItems = [
     {
-        title: "ECB Raises Interest Rates to Combat Inflation",
+        title: "Global Markets Rally as Inflation Hits 2-Year Low",
         source: "Financial Times",
-        date: "Nov 22, 2025",
-        category: "Central Banking",
-        excerpt: "The European Central Bank announced a 25 basis point rate hike, bringing the key interest rate to 4.75%.",
-        image: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&q=60&w=600",
+        date: "Dec 05, 2025",
+        category: "Markets",
+        excerpt: "Major indices hit record highs as new data shows global inflation cooling faster than unexpected, prompting optimism for rate cuts.",
+        image: "/news/global-markets.jpg",
         url: "https://www.ft.com"
     },
     {
-        title: "Tech Stocks Rally on AI Optimism",
+        title: "Quantum Leap: Major Breakthrough in Commercial Quantum Computing",
         source: "Bloomberg",
-        date: "Nov 21, 2025",
-        category: "Markets",
-        excerpt: "Major technology indices surged as investors bet on continued AI-driven growth in the sector.",
-        image: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&q=60&w=600",
+        date: "Dec 04, 2025",
+        category: "Tech",
+        excerpt: "Tech giants announce a joint breakthrough in qubit stability, potentially accelerating the timeline for commercial quantum advantage.",
+        image: "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?auto=format&fit=crop&q=80&w=800", // Keep this or find a better abstract tech one? This one is already quite geometric/aesthetic. Let's keep it or swap for something more "Pinterest".
         url: "https://www.bloomberg.com"
     },
     {
-        title: "Private Equity Firms Eye European Opportunities",
+        title: "COP30 Discussion Heats Up: Nations Pledge Trillions for Green Transition",
         source: "Reuters",
-        date: "Nov 20, 2025",
-        category: "Private Equity",
-        excerpt: "Major PE firms are increasing their focus on European mid-market companies amid favorable valuations.",
-        image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=60&w=600",
+        date: "Dec 03, 2025",
+        category: "Energy",
+        excerpt: "World leaders agree on a historic funding package to accelerate the transition to renewable energy in developing nations.",
+        image: "https://images.unsplash.com/photo-1470115636492-6d2b56f9146d?auto=format&fit=crop&q=80&w=800", // Minimalist wind turbine/nature
         url: "https://www.reuters.com"
     }
 ];
@@ -68,13 +68,13 @@ export const teamSections = [
     {
         name: "Leadership",
         members: [
-            { name: "Lorenzo Sargiani", role: "Founder & President", img: "/team/president.jpg" },
-            { name: "Ines Desmaretz", role: "Vice President", img: "/team/ines-desmaretz.jpg" },
-            { name: "Daria Iannuzzi", role: "Vice President", img: "/team/daria-iannuzzi.jpg" },
-            { name: "Martina Proietti Silvestri", role: "Board Member", img: "/team/martina-proietti-silvestri.jpg" },
-            { name: "Christos Gerontopoulos", role: "Board Member", img: "/team/christos-gerontopoulos.jpg" },
-            { name: "Lucas Thai", role: "Board Member", img: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=60&w=300" },
-            { name: "Alex Toumasson", role: "Board Member", img: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=60&w=300" }
+            { name: "Lorenzo Sargiani", role: "President & Co-Founder", img: "/team/president.jpg" },
+            { name: "Ines Desmaretz", role: "Vice President & Co-Founder", img: "/team/ines-desmaretz.jpg" },
+            { name: "Daria Iannuzzi", role: "Vice President & Co-Founder", img: "/team/daria-iannuzzi.jpg" },
+            { name: "Martina Proietti Silvestri", role: "Board Member & Co-Founder", img: "/team/martina-proietti-silvestri.jpg" },
+            { name: "Christos Gerontopoulos", role: "Board Member & Co-Founder", img: "/team/christos-gerontopoulos.jpg" },
+            { name: "Lucas Thai", role: "Board Member", img: "/team/lucas-thai.jpg" },
+            { name: "Alex Toumasson", role: "Board Member", img: "/team/alex-toumasson.jpg" }
         ]
     },
     {
@@ -98,12 +98,11 @@ export const teamSections = [
     {
         name: "Articles",
         members: [
-            { name: "Luca Citton", role: "Head of Articles", img: "https://images.unsplash.com/photo-1463453091185-61582044d556?auto=format&fit=crop&q=60&w=300" },
             { name: "Francesco Kaitsas", role: "Head of Articles", img: "/team/francesco-kaitsas.jpg" },
-            { name: "Francesco Baci Paci", role: "Articles Associate", img: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=60&w=300" },
-            { name: "Federico Furioso", role: "Articles Associate", img: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=60&w=300" },
+            { name: "Federico Furioso", role: "Articles Associate", img: "/team/federico-furioso.jpg" },
             { name: "Giovanni Ciccarello", role: "Articles Associate", img: "/team/giovanni-ciccarello.jpg" },
-            { name: "Giorgio Gheorghis Tsingros", role: "Articles Associate", img: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=60&w=300" }
+            { name: "Giorgio Gheorghis Tsingros", role: "Articles Associate", img: "/team/giorgio-gheorghis-tsingros.jpg" },
+            { name: "Francesco Baci Paci", role: "Articles Associate", img: "/team/francesco-baci-paci.jpg" }
         ]
     },
     {
@@ -122,7 +121,7 @@ export const teamSections = [
         members: [
             { name: "Daria Iannuzzi", role: "Head of Events", img: "/team/daria-iannuzzi.jpg" },
             { name: "Martina Proietti Silvestri", role: "Head of Events", img: "/team/martina-proietti-silvestri.jpg" },
-            { name: "Armand Vahé Francesco Gaidc", role: "Events Associate", img: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=60&w=300" }
+            { name: "Armand Vahé Francesco Gaidc", role: "Events Associate", img: "/team/armand-vahe-francesco-gaidc.jpg" }
         ]
     },
     {
@@ -135,24 +134,24 @@ export const teamSections = [
     {
         name: "Instagram",
         members: [
-            { name: "Beatrice Pelini", role: "Head of Instagram", img: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&q=60&w=300" },
+            { name: "Beatrice Pelini", role: "Head of Instagram", img: "/team/beatrice-pelini.png" },
             { name: "Camilla Barra", role: "Instagram Associate", img: "/team/camilla-barra.jpg" },
-            { name: "Federico Valente", role: "Instagram Associate", img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=60&w=300" }
+            { name: "Federico Valente", role: "Instagram Associate", img: "/team/federico-valente.jpg" }
         ]
     },
     {
         name: "LinkedIn",
         members: [
             { name: "Marina Meucci", role: "Head of LinkedIn", img: "/team/marina-meucci.png" },
-            { name: "Giulio Bonifacio", role: "LinkedIn Associate", img: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=60&w=300" },
+            { name: "Giulio Bonifacio", role: "LinkedIn Associate", img: "/team/giulio-bonifacio.jpg" },
             { name: "Francesco Maria Liaci", role: "LinkedIn Associate", img: "/team/francesco-maria-liaci.jpg" }
         ]
     },
     {
         name: "Tech",
         members: [
-            { name: "Shashank Tripathi", role: "Head of Tech", img: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=60&w=300" },
-            { name: "Augustin Mons", role: "Tech Associate", img: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=60&w=300" },
+            { name: "Shashank Tripathi", role: "Head of Tech", img: "/team/shashank-tripathi.jpg" },
+            { name: "Augustin Mons", role: "Tech Associate", img: "/team/augustin-mons.png" },
             { name: "Jingyi Wang", role: "Tech Associate", img: "/team/jingyi-wang.jpg" }
         ]
     }

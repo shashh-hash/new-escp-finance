@@ -15,11 +15,7 @@ export default defineConfig({
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api\/forex/, ''),
       },
-      '/api/metals': {
-        target: 'https://api.metals.dev',
-        changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api\/metals/, ''),
-      },
+
       '/api/crypto': {
         target: 'https://api.coingecko.com',
         changeOrigin: true,

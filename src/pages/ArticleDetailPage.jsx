@@ -16,6 +16,7 @@ import { StatGrid, StatCard } from '../components/ui/StatGrid';
 import { ProgressBarCard, ProgressBarRow } from '../components/ui/ProgressBarCard';
 import { QuoteBlock } from '../components/ui/QuoteBlock';
 
+import { articles as siteArticles } from '../data/siteData';
 // --- Article data (peut être mis dans un fichier séparé src/data/articles.js) ---
 
 const articles = {
@@ -28,7 +29,7 @@ const articles = {
   series: 'Market Momentum | Week 3',
   readTime: '7 min read',
   image:
-    '/Bending-Spoons-Eventbrite.png',
+    'Bending-Spoons-Eventbrite.png',
     content: (
       <>
         {/* Original text, unchanged */}
@@ -154,6 +155,7 @@ const articles = {
         <BodyParagraph>Written by Luca Citton & Federico Furioso</BodyParagraph>
 
         <SectionHeading>References</SectionHeading>
+
 
         <ul className="text-sm text-gray-400 space-y-2">
           <li>

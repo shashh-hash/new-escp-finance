@@ -143,7 +143,7 @@ export default function SearchOverlay({ isOpen, onClose }) {
             aiResp = getSimulatedResponse(query);
             if (!aiResp && siteResults.length === 0) {
                 // Only show generic AI response if no site results found either
-                // aiResp = `I can help you explore "${query}" in the context of finance. Check the results below for relevant articles and resources.`;
+                aiResp = `I can help you explore "${query}" in the context of finance. Check the results below for relevant articles and resources.`;
             }
         }
         setAIResponse(aiResp);

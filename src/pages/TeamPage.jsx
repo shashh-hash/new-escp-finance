@@ -1,13 +1,22 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 
 import { teamSections } from '../data/siteData';
 
 export default function AboutPage() {
-    const [activeTab, setActiveTab] = useState(0);
-
+    const [searchParams, setSearchParams] = useSearchParams();
     const sections = teamSections;
+
+    // Get active tab from URL or default to 0 (Leadership)
+    const activeSectionName = searchParams.get('section');
+    const activeTab = sections.findIndex(s => s.name === activeSectionName);
+    const validActiveTab = activeTab !== -1 ? activeTab : 0;
+
+    const handleTabChange = (index) => {
+        setSearchParams({ section: sections[index].name });
+    };
 
     return (
         <div className="min-h-screen flex flex-col bg-[#051C2C]">
@@ -28,8 +37,8 @@ export default function AboutPage() {
                         {sections.map((section, index) => (
                             <button
                                 key={index}
-                                onClick={() => setActiveTab(index)}
-                                className={`flex-shrink-0 px-4 py-2 text-sm font-medium rounded-full transition-all touch-manipulation ${activeTab === index
+                                onClick={() => handleTabChange(index)}
+                                className={`flex-shrink-0 px-4 py-2 text-sm font-medium rounded-full transition-all touch-manipulation ${validActiveTab === index
                                     ? 'bg-[#D4AF37] text-white'
                                     : 'bg-white/5 text-gray-400 hover:text-white hover:bg-white/10'
                                     }`}>
@@ -50,8 +59,8 @@ export default function AboutPage() {
                                 {sections.map((section, index) => (
                                     <button
                                         key={index}
-                                        onClick={() => setActiveTab(index)}
-                                        className={`w-full text-left px-4 py-3 text-sm transition-all ${activeTab === index
+                                        onClick={() => handleTabChange(index)}
+                                        className={`w-full text-left px-4 py-3 text-sm transition-all ${validActiveTab === index
                                             ? 'text-white bg-white/5 border-l-2 border-white'
                                             : 'text-gray-500 hover:text-gray-300 border-l-2 border-transparent hover:border-gray-700'
                                             }`}>
@@ -64,14 +73,14 @@ export default function AboutPage() {
                         {/* Main Content */}
                         <main className="flex-1 pb-12">
                             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
-                                {sections[activeTab].members.map((member, index) => (
+                                {sections[validActiveTab].members.map((member, index) => (
                                     <div
                                         key={index}
                                         className="group"
                                         style={{
                                             animation: `fadeIn 0.4s ease-out ${index * 0.04}s both`
                                         }}>
-                                        <div className={`aspect-square mb-3 sm:mb-4 overflow-hidden rounded-lg ${member.name === 'Marina Meucci' ? 'bg-white' : 'bg-[#042440]'
+                                        <div className={`aspect-square mb-3 sm:mb-4 overflow-hidden rounded-lg ${['Marina Meucci', 'Lucas Thai', 'Alex Toumasson'].includes(member.name) ? 'bg-white' : 'bg-[#042440]'
                                             }`}>
                                             <img
                                                 src={member.img}
@@ -79,7 +88,7 @@ export default function AboutPage() {
                                                 className={`w-full h-full object-cover filter grayscale hover:grayscale-0 transition-all duration-700 ${['Ines Desmaretz', 'Edoardo Cerrano', 'Emanuele Ferrara', 'Tommaso Girani', 'Adriano Cogorno', "Giorgio D'Innocenzo"].some(n => member.name.includes(n))
                                                     ? 'object-[center_35%]'
                                                     : ''
-                                                    }`}
+                                                    } ${member.name === 'Shashank Tripathi' ? 'scale-125 object-[center_90%]' : ''} ${member.name === 'Marina Meucci' ? 'scale-150 object-[center_98%]' : ''} ${member.name === 'Beatrice Pelini' ? 'scale-125 object-[center_90%]' : ''} ${member.name === 'Daria Iannuzzi' ? 'scale-125 object-[center_90%]' : ''} ${member.name === 'Alessandra Boarolo' ? 'scale-125 object-[center_98%]' : ''}`}
                                                 loading="lazy"
                                             />
                                         </div>

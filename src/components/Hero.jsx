@@ -4,64 +4,43 @@ import Slider from 'react-slick';
 import { motion, AnimatePresence } from 'framer-motion';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import heroVideo from '../assets/hero_bg_new.mp4';
 
 const Hero = memo(() => {
     const [currentSlide, setCurrentSlide] = useState(0);
     const videoRef = useRef(null);
-    const [videoPlaying, setVideoPlaying] = useState(false);
+    const [videoLoaded, setVideoLoaded] = useState(false);
 
+    // Retry playback if it fails or stalls
     useEffect(() => {
-        const video = videoRef.current;
-        if (!video) return;
+        if (videoRef.current) {
+            const video = videoRef.current;
 
-        // Ensure video is muted for autoplay
-        video.muted = true;
-        video.defaultMuted = true;
-        video.volume = 0;
+            const handleTouch = () => {
+                if (video.paused) {
+                    video.play().catch(() => { });
+                }
+            };
 
-        const attemptPlay = () => {
-            video.muted = true;
-            const playPromise = video.play();
+            // Try to play immediately
+            video.play().catch(() => { });
 
-            if (playPromise !== undefined) {
-                playPromise
-                    .then(() => {
-                        console.log('Video autoplay successful');
-                    })
-                    .catch(err => {
-                        console.log('Autoplay prevented, will try on user interaction:', err);
-                        // Fallback: play on any user interaction
-                        const playOnInteraction = () => {
-                            video.muted = true;
-                            video.play();
-                            document.removeEventListener('click', playOnInteraction);
-                            document.removeEventListener('touchstart', playOnInteraction);
-                            document.removeEventListener('scroll', playOnInteraction);
-                        };
-                        document.addEventListener('click', playOnInteraction, { once: true });
-                        document.addEventListener('touchstart', playOnInteraction, { once: true });
-                        document.addEventListener('scroll', playOnInteraction, { once: true });
-                    });
-            }
-        };
+            // Retry after 1s if still paused
+            const retryTimer = setTimeout(() => {
+                if (video.paused) {
+                    video.play().catch(() => { });
+                }
+            }, 1000);
 
-        // Try multiple approaches
-        // 1. Immediate play if ready
-        if (video.readyState >= 3) {
-            attemptPlay();
+            // Add touch listener for mobile/Safari strict autoplay policies
+            window.addEventListener('touchstart', handleTouch, { once: true });
+            window.addEventListener('click', handleTouch, { once: true });
+
+            return () => {
+                clearTimeout(retryTimer);
+                window.removeEventListener('touchstart', handleTouch);
+                window.removeEventListener('click', handleTouch);
+            };
         }
-
-        // 2. Play when can play
-        video.addEventListener('canplay', attemptPlay, { once: true });
-
-        // 3. Play when loaded metadata
-        video.addEventListener('loadedmetadata', attemptPlay, { once: true });
-
-        return () => {
-            video.removeEventListener('canplay', attemptPlay);
-            video.removeEventListener('loadedmetadata', attemptPlay);
-        };
     }, []);
 
     const settings = {
@@ -108,11 +87,27 @@ const Hero = memo(() => {
     ];
 
     return (
-        <section className="relative w-full h-[85vh] min-h-[600px] overflow-hidden bg-black">
+        <section
+            className="relative w-full h-[85vh] min-h-[600px] overflow-hidden"
+            style={{ backgroundColor: '#003366' }} // Lighter blue base
+        >
             {/* Background Video (Fixed) */}
             <div className="absolute inset-0 w-full h-full z-0">
-                <div className="absolute inset-0 bg-black/50 z-10"></div> {/* Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/30 z-10"></div> {/* Gradient */}
+                {/* Instant CSS Gradient Fallback - Shows IMMEDIATELY (z-1) */}
+                <div
+                    className="absolute inset-0 w-full h-full z-[1]"
+                    style={{
+                        background: 'linear-gradient(135deg, #004080 0%, #003366 50%, #002244 100%)' // Very bright blue gradient
+                    }}
+                />
+
+                {/* Poster Background - Loads from network (z-2) */}
+                <div
+                    className="absolute inset-0 w-full h-full bg-cover bg-center z-[2]"
+                    style={{ backgroundImage: 'url(/hero-poster.jpg)' }}
+                />
+
+                {/* Video - Loads After (z-3) */}
                 <video
                     ref={videoRef}
                     autoPlay
@@ -120,14 +115,29 @@ const Hero = memo(() => {
                     muted
                     playsInline
                     preload="auto"
-                    fetchpriority="high"
-                    poster="/hero-poster.jpg"
-                    className="w-full h-full object-cover opacity-90"
-                    style={{ backgroundColor: '#000' }}
+                    onPlaying={() => {
+                        // Only show video when it is ACTUALLY playing
+                        setVideoLoaded(true);
+                    }}
+                    onLoadedData={() => {
+                        // Attempt play when data is loaded
+                        const video = videoRef.current;
+                        if (video) {
+                            video.muted = true;
+                            const p = video.play();
+                            if (p && p.catch) p.catch(() => { });
+                        }
+                    }}
+                    className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 z-[3] ${videoLoaded ? 'opacity-90 visible' : 'opacity-0 invisible'}`}
+                    style={{ backgroundColor: 'transparent' }}
                 >
-                    <source src={heroVideo} type="video/mp4" />
+                    <source src="/hero-video.mp4" type="video/mp4" />
                     Your browser does not support the video tag.
                 </video>
+
+                {/* Overlays - On top of everything (z-4) */}
+                <div className="absolute inset-0 bg-black/40 z-[4]"></div> {/* Reduced opacity from 50 to 40 */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/30 z-[4]"></div>
             </div>
 
             {/* Slider Content (Z-20) */}
