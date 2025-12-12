@@ -147,9 +147,6 @@ const articleContents = {
         <BodyParagraph>Written by Luca Citton & Federico Furioso</BodyParagraph>
 
         <SectionHeading>References</SectionHeading>
-        <BodyParagraph>
-          investor.eventbrite.com, investing.com, eu-startups.com
-        </BodyParagraph>
 
         <ul className="text-sm text-gray-400 space-y-2">
           <li>
