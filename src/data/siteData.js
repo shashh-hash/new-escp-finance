@@ -21,7 +21,7 @@ export const articles = [
         series: "Market Momentum | Week 48",
         author: "Francesco Baci Paci & Giovanni Ciccarello",
         date: "Dec 5, 2025",
-        image: "/Article-Cover-Website-SP500.webp",
+        image: "/Article-Cover-Website-SP500.jpeg",
         slug: "tether-sp-downgrade-2025"
     },
     {
@@ -31,7 +31,7 @@ export const articles = [
         series: "Market Momentum | Week 47",
         author: "Francesco Kaitsas",
         date: "Nov 28, 2025",
-        image: "/pfizer-article.png",
+        image: "/pfizer-article.jpeg",
         slug: "sustainable-finance-esg-2024"
     }
 ];
