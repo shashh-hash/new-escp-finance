@@ -19,6 +19,178 @@ import { QuoteBlock } from '../components/ui/QuoteBlock';
 // --- Article data (peut être mis dans un fichier séparé src/data/articles.js) ---
 
 const articles = {
+  'bending-spoons-eventbrite-2025': {
+  slug: 'bending-spoons-eventbrite-2025',
+  title: 'Bending Spoons Acquires Eventbrite in a Landmark $500 Million Transaction',
+  author: 'Luca Citton & Federico Furioso',
+  date: 'Dec 12, 2025',
+  category: 'Tech & M&A',
+  series: 'Market Momentum | Week 3',
+  readTime: '7 min read',
+  image:
+    '/Bending-Spoons-Eventbrite.png',
+    content: (
+      <>
+        {/* Original text, unchanged */}
+        <LeadParagraph>
+          Bending Spoons Acquires Eventbrite in a Landmark $500 Million Transaction
+        </LeadParagraph>
+
+        <SectionHeading>A High-Profile Deal Shaking the Tech Sector</SectionHeading>
+        <BodyParagraph>
+          Bending Spoons’ latest move has stirred significant attention across both the tech and financial
+          sectors. The Milan-based company, already known for its bold and strategic acquisition approach,
+          has agreed to acquire Eventbrite for $500 million in cash, marking one of its most high-profile
+          deals to date. The offer of $4.50 per share represents an 81–82% premiumover the current market
+          price, signaling strong confidence in Eventbrite’s long-term potential despite the platform’s
+          recent challenges and periods of underperformance. Analysts and investors alike have interpreted
+          the deal as a statement of intent by Bending Spoons to solidify its position in the global events
+          economy and to leverage its technological capabilities to revitalize mature digital brands.
+        </BodyParagraph>
+
+        <StatGrid className="mb-8" columns="md:grid-cols-3">
+          <StatCard value="$500M" label="Acquisition value" helper="Cash transaction" />
+          <StatCard value="$4.50" label="Per-share offer" helper="Cash offer for Eventbrite" />
+          <StatCard value="81–82%" label="Premium" helper="Above market price" />
+        </StatGrid>
+
+        <SectionHeading>Eventbrite's Journey and Recent Challenges</SectionHeading>
+        <BodyParagraph>
+          Eventbrite, which once boasted a valuation exceeding $1.7 billion during its 2018 IPO, has long
+          been seen as a pioneer of the experience economy. The platform’s original mission was to
+          democratize event management, enabling organizers of all sizes to host, manage, and monetize
+          events seamlessly. However, in the years following its public debut, Eventbrite faced multiple
+          headwinds. Declining volumes of live events, increasing competition from emerging digital
+          solutions, and the prolonged disruption caused by the COVID-19 pandemic challenged its business
+          model. Consequently, Eventbrite’s market performance suffered, with shares consistently trading
+          far below their historic highs and the company grappling with operational inefficiencies and
+          revenue pressures.
+        </BodyParagraph>
+
+        <SectionHeading>Bending Spoons’ Strategy for Revitalizing Digital Brands</SectionHeading>
+        <BodyParagraph>
+          The acquisition offer from Bending Spoons, while generous, aligns closely with its broader
+          corporate strategy. Over the past decade, Bending Spoons has cultivated a reputation for acquiring
+          mature digital brands, optimizing their operational structures, and integrating its proprietary
+          AI-driven technologies to reinvigorate growth. By leveraging data analytics, user engagement
+          insights, and advanced product design, the company has been able to enhance user retention, expand
+          monetization avenues, and modernize legacy platforms. Industry observers note that Bending Spoons’
+          approach combines financial acumen with a tech-first mindset, creating a blueprint for reviving
+          established but stagnating digital businesses.
+        </BodyParagraph>
+
+        <SectionHeading>A Rare Display of Financial Power in European Tech</SectionHeading>
+        <BodyParagraph>
+          More than anything, this acquisition underscores Bending Spoons’ formidable financial resources.
+          In 2025, the company raised $710 million in new equity, boosting its valuation to $11 billion, and
+          secured nearly $2.8 billion in debt financing. This combination of equity and debt not only
+          provides ample liquidity for strategic acquisitions but also signals the company’s readiness to
+          compete with global giants in the tech sector. Such a financial position is rare for a European
+          technology firm, particularly one outside the traditional startup ecosystem. The capital base
+          equips Bending Spoons with the flexibility to pursue both opportunistic acquisitions and long-term
+          strategic initiatives without jeopardizing operational stability.
+        </BodyParagraph>
+
+        <TableCard
+          title="Key Financial Figures Mentioned"
+          className="mb-8"
+          header={['Item', 'Amount']}
+          rows={[
+            ['Acquisition price', '$500 million (cash)'],
+            ['Per-share price', '$4.50'],
+            ['Premium over market', '81–82%'],
+            ['Eventbrite IPO valuation (2018)', '$1.7+ billion'],
+            ['Equity raised by Bending Spoons (2025)', '$710 million'],
+            ['Post-raise valuation', '$11 billion'],
+            ['Debt financing', '≈$2.8 billion'],
+          ]}
+        />
+
+        <SectionHeading>The Transformation Ahead for Eventbrite</SectionHeading>
+        <BodyParagraph>
+          Under the leadership of CEO Luca Ferrari, Eventbrite is expected to undergo a significant
+          strategic and technological transformation. Key initiatives will likely include the modernization
+          of the platform through AI-enhanced tools, the development of more efficient monetization models
+          for event organizers, and deeper integration with Bending Spoons’ existing ecosystem of digital
+          assets. Analysts suggest that these transformations could position Eventbrite not only as a market
+          leader in event management but also as a more resilient and scalable platform capable of weathering
+          fluctuations in demand and evolving consumer preferences.
+        </BodyParagraph>
+
+        <SectionHeading>A New Era of European Tech Consolidators</SectionHeading>
+        <BodyParagraph>
+          The acquisition also illustrates a broader trend in the European tech landscape: the emergence of
+          a new class of tech consolidators capable of acquiring, scaling, and integrating digital brands at
+          a level previously seen mainly in U.S.-based tech holding companies and private equity funds. By
+          combining operational expertise, technological innovation, and substantial financial firepower,
+          companies like Bending Spoons are reshaping the way digital platforms grow and compete globally.
+          This development could inspire similar strategies across Europe, potentially leading to increased
+          consolidation in digital sectors that have historically been fragmented.
+        </BodyParagraph>
+
+        <SectionHeading>A Timely Bet on the Experience Economy</SectionHeading>
+        <BodyParagraph>
+          Financially, the acquisition is notable not just for its premium but also for its strategic
+          timing. The events industry, while resilient, has been recovering unevenly from pandemic
+          disruptions, with hybrid events, live experiences, and virtual engagement platforms emerging as
+          critical growth areas. By securing Eventbrite now, Bending Spoons positions itself to capture
+          value in both traditional and innovative event formats, combining established infrastructure with
+          modern digital enhancements. Investors view this move as a forward-looking bet on the long-term
+          recovery and expansion of the experience economy, rather than a short-term financial maneuver.
+        </BodyParagraph>
+
+        <SectionHeading>Long-Term Implications for Both Companies</SectionHeading>
+        <BodyParagraph>
+          In conclusion, Bending Spoons’ $500 million acquisition of Eventbrite represents a strategically
+          significant move for both companies. It underscores the Milan-based firm’s growing financial and
+          technological influence while offering Eventbrite a path toward renewed growth, modernization, and
+          competitive relevance. As Eventbrite undergoes transformation under Luca Ferrari’s leadership, the
+          industry will be watching closely to see how effectively Bending Spoons can integrate its
+          proprietary technologies, optimize operational efficiencies, and expand Eventbrite’s market
+          footprint. This acquisition signals the emergence of a new paradigm in European tech, one defined
+          by bold investment, strategic consolidation, and a focus on long-term value creation.
+        </BodyParagraph>
+
+        <BodyParagraph>Written by Luca Citton & Federico Furioso</BodyParagraph>
+
+        <SectionHeading>References</SectionHeading>
+
+        <ul className="text-sm text-gray-400 space-y-2">
+          <li>
+            <a
+              href="https://investor.eventbrite.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#C5A059] hover:underline"
+            >
+              investor.eventbrite.com
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://www.investing.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#C5A059] hover:underline"
+            >
+              investing.com
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://www.eu-startups.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#C5A059] hover:underline"
+            >
+              eu-startups.com
+            </a>
+          </li>
+        </ul>
+      </>
+    ),
+  },
+
   'tether-sp-downgrade-2025': {
     slug: 'tether-sp-downgrade-2025',
     title: 'S&P DOWNGRADES TETHER’S ASSETS TO LOWEST LEVEL',
